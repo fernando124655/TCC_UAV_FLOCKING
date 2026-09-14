@@ -1,0 +1,70 @@
+analyze_generalization();
+Couzin       [vazia     ] <- mc_Couzin_vazia_20260811_162623.mat
+Couzin       [obstaculos] <- mc_Couzin_obstaculos_20260812_160111.mat
+Reynolds     [vazia     ] <- mc_Reynolds_vazia_20260811_163552.mat
+Reynolds     [obstaculos] <- mc_Reynolds_obstaculos_20260812_161342.mat
+OlfatiSaber  [vazia     ] <- mc_OlfatiSaber_vazia_20260811_164523.mat
+OlfatiSaber  [obstaculos] <- mc_OlfatiSaber_obstaculos_20260812_162643.mat
+Vasarhelyi   [vazia     ] <- mc_Vasarhelyi_vazia_20260811_165531.mat
+Vasarhelyi   [obstaculos] <- mc_Vasarhelyi_obstaculos_20260812_164029.mat
+
+n = 20 execucoes por algoritmo por ambiente
+
+===== DEGRADACAO DE phi_corr (vazia -> obstaculos) =====
+alpha = 0.05 ; Bonferroni p/ 4 algoritmos => alpha_c = 0.0125
+algoritmo     par     vazia     obst. queda(pp)    %rel  p(t par)   p(Wilc) signif
+Couzin          5    0.9476    0.8541      9.35    9.9%   0.00000   0.00009 SIM
+Reynolds        6    0.9754    0.9324      4.30    4.4%   0.10267   0.00116 nao
+OlfatiSaber     7    0.9366    0.6008     33.58   35.9%   0.00000   0.00009 SIM
+Vasarhelyi     11    0.9224    0.8065     11.58   12.6%   0.00000   0.00009 SIM
+
+Ranking de robustez (menor degradacao primeiro):
+  1. Reynolds      +4.30 pp
+  2. Couzin        +9.35 pp
+  3. Vasarhelyi    +11.58 pp
+  4. OlfatiSaber   +33.58 pp
+
+===== DEGRADACAO DE phi_vel (vazia -> obstaculos) =====
+ATENCAO: Reynolds, Couzin e OlfatiSaber receberam normalizacao de
+velocidade constante (adaptacao de Vicsek); Vasarhelyi mantem
+autopropulsao nativa. Comparacoes de phi_vel ENTRE algoritmos
+medem essa adaptacao, nao a arquitetura original.
+
+algoritmo        vazia     obst.  variacao   p(Wilc)
+Couzin          1.0075    0.9940   -0.0135   0.00009
+Reynolds        1.0194    1.0220    0.0026   0.00405
+OlfatiSaber     1.0229    1.0178   -0.0052   0.00009
+Vasarhelyi      0.9660    0.8015   -0.1645   0.00009
+
+===== VIOLACOES DE SEGURANCA POR AMBIENTE =====
+             --- arena vazia ---    --- com obstaculos ---
+algoritmo     colisao   parede   tot  colisao   parede   tot
+Couzin            9/20      0/20     9     12/20      0/20    12
+Reynolds          0/20      6/20     6      0/20      2/20     2
+OlfatiSaber       0/20      1/20     1      0/20     20/20    20
+Vasarhelyi        0/20      0/20     0      0/20      0/20     0
+
+NOTA: reportar CONTAGEM, nao media. A media de phi_wall e
+enganosa: com obstaculos, Reynolds tem media maior que
+OlfatiSaber (0.0044 vs 0.0025) mas viola em 2/20 contra 20/20 --
+a media do Reynolds e inflada por uma unica execucao extrema.
+
+--- McNemar: violacao (colisao OU parede) mudou de ambiente? ---
+algoritmo    so vazia so obst.          p
+Couzin              4        7    0.54883
+Reynolds            6        2    0.28906
+OlfatiSaber         0       19    0.00000
+Vasarhelyi          0        0        NaN
+
+===== DISTANCIA MINIMA ENTRE DRONES (m) =====
+Convertida de phi_MND: min(dist) = r_coll / phi_MND, r_coll = 0.40 m
+Valor de phi_MND ALTO => drones MAIS PROXIMOS => maior risco.
+
+algoritmo     par    vazia (m)    obst. (m)   variacao
+Couzin          5         2.72         2.68      -0.04
+Reynolds        6         6.60         6.04      -0.57
+OlfatiSaber     7         7.16         5.08      -2.08
+Vasarhelyi     11         5.50         4.99      -0.51
+
+Analise concluida.
+diary off;

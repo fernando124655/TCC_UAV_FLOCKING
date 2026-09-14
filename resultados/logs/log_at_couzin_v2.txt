@@ -1,0 +1,486 @@
+main_auto_tuning_production('Couzin', 1:5);
+=== Auto-Tuning de Producao: Couzin ===
+Parametros: 5 | Populacao: 30 | Geracoes: 30 | Nr: 3
+Sementes GA (multi-start): [1 2 3 4 5]
+Sementes das config. de treino: [101 102 103]
+  r_r          [   0.500,    8.000]
+  r_o          [   3.000,   35.000]
+  r_a          [   5.000,   45.000]
+  r_shill      [   1.000,   15.000]
+  w_shill      [   0.100,    8.000]
+Restricoes lineares: 2
+Gerando 3 XMLs pareados para Couzin (sementes de treino: [101 102 103])
+  cfg1 (seed 101): xml_config_files\parameters_at_Couzin_cfg1.xml  [ok]
+  cfg2 (seed 102): xml_config_files\parameters_at_Couzin_cfg2.xml  [ok]
+  cfg3 (seed 103): xml_config_files\parameters_at_Couzin_cfg3.xml  [ok]
+Warm-up: gerando arquivos de logica no cliente...
+  3 XML(s) processado(s). Arquivos de despacho atualizados.
+  As guardas de timestamp faram os workers pularem a reescrita (sem corrida de I/O).
+Starting parallel pool (parpool) using the 'Processes' profile ...
+Connected to parallel pool with 6 workers.
+
+--- Multi-start 1/5 (semente GA = 1) ---
+
+Single objective optimization:
+5 Variables
+2 Linear inequality constraints
+
+Options:
+CreationFcn:       @gacreationlinearfeasible
+CrossoverFcn:      @crossoverintermediate
+SelectionFcn:      @selectionstochunif
+MutationFcn:       @mutationadaptfeasible
+
+                                  Best           Mean      Stall
+Generation      Func-count        f(x)           f(x)    Generations
+    1               60         0.04289          0.7654        0
+    2               88         0.04289          0.6131        1
+    3              116         0.04289          0.4628        2
+    4              144         0.04289          0.3656        3
+    5              172         0.04229          0.3009        0
+    6              200         0.04219          0.2552        0
+    7              228         0.04219          0.2502        1
+    8              256         0.04219          0.2369        2
+    9              284         0.04219           0.279        3
+   10              312         0.04219          0.2643        4
+   11              340         0.04219          0.2416        5
+   12              368         0.04151          0.2317        0
+   13              396         0.03608           0.181        0
+   14              424         0.03608          0.2943        1
+   15              452         0.03608          0.2783        2
+   16              480         0.03608          0.2536        3
+   17              508         0.03608          0.2084        4
+   18              536         0.03608          0.2304        5
+   19              564         0.03608          0.2115        6
+   20              592         0.03608          0.2352        7
+   21              620         0.03608          0.2392        8
+   22              648         0.03608          0.1874        9
+   23              676         0.03608          0.2424       10
+   24              704          0.0356          0.2305        0
+   25              732          0.0356          0.2104        1
+   26              760          0.0356          0.1562        2
+   27              788          0.0356          0.1793        3
+   28              816         0.03399          0.1945        0
+   29              844         0.03399          0.1241        1
+   30              872         0.03399          0.1778        2
+ga stopped because it exceeded options.MaxGenerations.
+Semente 1: F = 0.033987  (502.9 min)
+  x = [2.6456 17.651 17.7602 2.64151 1.52052]
+
+--- Multi-start 2/5 (semente GA = 2) ---
+
+Single objective optimization:
+5 Variables
+2 Linear inequality constraints
+
+Options:
+CreationFcn:       @gacreationlinearfeasible
+CrossoverFcn:      @crossoverintermediate
+SelectionFcn:      @selectionstochunif
+MutationFcn:       @mutationadaptfeasible
+
+                                  Best           Mean      Stall
+Generation      Func-count        f(x)           f(x)    Generations
+    1               60          0.3068          0.7889        0
+    2               88         0.05604          0.6401        0
+    3              116         0.03141          0.5331        0
+    4              144         0.03141          0.4991        1
+    5              172         0.03141          0.3865        2
+    6              200         0.03141          0.3198        3
+    7              228         0.03141          0.2871        4
+    8              256         0.03001          0.2847        0
+    9              284         0.03001          0.2309        1
+   10              312         0.03001          0.2633        2
+   11              340         0.03001          0.2393        3
+   12              368         0.03001          0.1946        4
+   13              396         0.02967          0.2305        0
+   14              424         0.02967          0.1924        1
+   15              452         0.02967          0.2315        2
+   16              480         0.02967           0.218        3
+   17              508         0.02967          0.1832        4
+   18              536         0.02967          0.1912        5
+   19              564         0.02964          0.1539        0
+   20              592         0.02964          0.1641        1
+   21              620         0.02938          0.1843        0
+   22              648         0.02938          0.1652        1
+   23              676         0.02938          0.1403        2
+   24              704         0.02938          0.1708        3
+   25              732         0.02938          0.1677        4
+   26              760         0.02854          0.1921        0
+   27              788         0.02854          0.1788        1
+   28              816         0.02854          0.1887        2
+   29              844         0.02854          0.1425        3
+   30              872         0.02854          0.1687        4
+ga stopped because it exceeded options.MaxGenerations.
+Semente 2: F = 0.028537  (435.1 min)
+  x = [2.24108 28.2574 38.3594 2.82164 1.84066]
+
+--- Multi-start 3/5 (semente GA = 3) ---
+
+Single objective optimization:
+5 Variables
+2 Linear inequality constraints
+
+Options:
+CreationFcn:       @gacreationlinearfeasible
+CrossoverFcn:      @crossoverintermediate
+SelectionFcn:      @selectionstochunif
+MutationFcn:       @mutationadaptfeasible
+
+                                  Best           Mean      Stall
+Generation      Func-count        f(x)           f(x)    Generations
+    1               60          0.3071          0.8432        0
+    2               88         0.05214          0.7457        0
+    3              116         0.04048           0.597        0
+    4              144         0.03744          0.4619        0
+    5              172         0.03744          0.4608        1
+    6              200         0.03744          0.4101        2
+    7              228         0.03744          0.3954        3
+    8              256         0.02699          0.3856        0
+    9              284         0.02699          0.4019        1
+   10              312         0.02699          0.3101        2
+   11              340         0.02699          0.4023        3
+   12              368         0.02699          0.3189        4
+   13              396         0.02699          0.3199        5
+   14              424         0.02699          0.4009        6
+   15              452         0.02699          0.3545        7
+   16              480         0.02699          0.3281        8
+   17              508         0.02699          0.3194        9
+   18              536         0.02699          0.3066       10
+   19              564         0.02699          0.3679       11
+   20              592         0.02699          0.3483       12
+   21              620         0.02699          0.3372       13
+   22              648         0.02606          0.3243        0
+   23              676         0.02606          0.2974        1
+   24              704         0.02606          0.2835        2
+   25              732         0.02606          0.2115        3
+   26              760         0.02606          0.2188        4
+   27              788         0.02606          0.2508        5
+   28              816         0.02606          0.2193        6
+   29              844         0.02606          0.2088        7
+   30              872         0.02606          0.2593        8
+ga stopped because it exceeded options.MaxGenerations.
+Semente 3: F = 0.026057  (431.6 min)
+  x = [1.88722 23.4132 26.2503 2.1831 1.88043]
+
+--- Multi-start 4/5 (semente GA = 4) ---
+
+Single objective optimization:
+5 Variables
+2 Linear inequality constraints
+
+Options:
+CreationFcn:       @gacreationlinearfeasible
+CrossoverFcn:      @crossoverintermediate
+SelectionFcn:      @selectionstochunif
+MutationFcn:       @mutationadaptfeasible
+
+                                  Best           Mean      Stall
+Generation      Func-count        f(x)           f(x)    Generations
+    1               60            0.59          0.9548        0
+    2               88          0.5509          0.9286        0
+    3              116          0.1218           0.818        0
+    4              144          0.1218          0.7504        1
+    5              172          0.1218          0.6326        2
+    6              200          0.1218          0.5024        3
+    7              228          0.1218          0.4888        4
+    8              256          0.1218          0.4792        5
+    9              284          0.1218          0.4552        6
+   10              312          0.1218          0.4734        7
+   11              340          0.1218          0.4687        8
+   12              368          0.1218          0.4462        9
+{Operation terminated by user during <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('parallel.internal.parfor.ParforEngine/getCompleteIntervals', 'C:\Program Files\MATLAB\R2026a\toolbox\parallel\cluster\+parallel\+internal\+parfor\ParforEngine.m', 209)" style="font-weight:bold">parallel.internal.parfor.ParforEngine/getCompleteIntervals</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\parallel\cluster\+parallel\+internal\+parfor\ParforEngine.m',209,0)">line 209</a>)
+
+
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('parallel_function>distributed_execution', 'C:\Program Files\MATLAB\R2026a\toolbox\matlab\lang\parallel_function.m', 711)" style="font-weight:bold">parallel_function>distributed_execution</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\matlab\lang\parallel_function.m',711,0)">line 711</a>)
+        [tags, out] = P.getCompleteIntervals(chunkSize);
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('parallel_function', 'C:\Program Files\MATLAB\R2026a\toolbox\matlab\lang\parallel_function.m', 543)" style="font-weight:bold">parallel_function</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\matlab\lang\parallel_function.m',543,0)">line 543</a>)
+    R = distributed_execution(...
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('fcnvectorizer', 'C:\Program Files\MATLAB\R2026a\toolbox\globaloptim\globaloptim\private\fcnvectorizer.m', 23)" style="font-weight:bold">fcnvectorizer</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\globaloptim\globaloptim\private\fcnvectorizer.m',23,0)">line 23</a>)
+        parfor (i = 1:popSize)
+        ^
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('stepGA', 'C:\Program Files\MATLAB\R2026a\toolbox\globaloptim\globaloptim\private\stepGA.m', 61)" style="font-weight:bold">stepGA</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\globaloptim\globaloptim\private\stepGA.m',61,0)">line 61</a>)
+    nextScore = fcnvectorizer(pop,FitnessFcn,1,options.SerialUserFcn,...
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('galincon', 'C:\Program Files\MATLAB\R2026a\toolbox\globaloptim\globaloptim\private\galincon.m', 89)" style="font-weight:bold">galincon</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\globaloptim\globaloptim\private\galincon.m',89,0)">line 89</a>)
+        [score,population,state] = stepGA(score,population,options,state,GenomeLength,FitnessFcn,problem);
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('ga', 'C:\Program Files\MATLAB\R2026a\toolbox\globaloptim\globaloptim\ga.m', 242)" style="font-weight:bold">ga</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\globaloptim\globaloptim\ga.m',242,0)">line 242</a>)
+            [x,fval,exitFlag,output,population,scores] = galincon(FitnessFcn,nvars, ...
+                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('main_auto_tuning_production', 'C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\main_auto_tuning_production.m', 133)" style="font-weight:bold">main_auto_tuning_production</a> (<a href="matlab: opentoline('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\main_auto_tuning_production.m',133,0)">line 133</a>)
+    [x_best, f_best] = ga(fun, n_params, A, b, [], [], lb, ub, [], options);
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 
+delete(gpc('nocreate'));
+{Unrecognized function or variable 'gpc'.
+} 
+delete(gcp('nocreate'));
+Parallel pool using the 'Processes' profile is shutting down.
+delete('data_save/auto_tuning_production/resume_Couzin.mat');
+delete('data_save/auto_tuning_production/resume_Reynolds.mat');
+[Warning: File 'data_save/auto_tuning_production/resume_Reynolds.mat' not found.] 
+delete('C:/Users/PCMALOCA/Documents/CoFlyers/matlab_simulink_ws/Prototype_Simulator/data_save/auto_tuning_production/resume_Couzin.mat');
+[Warning: File 'C:/Users/PCMALOCA/Documents/CoFlyers/matlab_simulink_ws/Prototype_Simulator/data_save/auto_tuning_production/resume_Couzin.mat' not found.] 
+dir('C:/Users/PCMALOCA/Documents/CoFlyers/matlab_simulink_ws/Prototype_Simulator/data_save/auto_tuning_production/');
+
+.                                           prod_Couzin_seed2_20260728_134005_w1.txt    prod_Couzin_seed5_20260724_162223_w2.txt    
+..                                          prod_Couzin_seed2_20260728_134005_w2.txt    prod_Couzin_seed5_20260724_162223_w3.txt    
+at_Couzin_20260723_120810.mat               prod_Couzin_seed2_20260728_134005_w3.txt    prod_Couzin_seed5_20260724_162223_w4.txt    
+at_Couzin_20260723_170119.mat               prod_Couzin_seed2_20260728_134005_w4.txt    prod_Couzin_seed5_20260724_162223_w5.txt    
+at_Couzin_20260724_162223.mat               prod_Couzin_seed2_20260728_134005_w5.txt    prod_Couzin_seed5_20260724_162223_w6.txt    
+at_Couzin_20260728_134005.mat               prod_Couzin_seed2_20260728_134005_w6.txt    prod_Reynolds_seed1_20260726_121737_w1.txt  
+at_Reynolds_20260726_121737.mat             prod_Couzin_seed3_20260723_170119_w1.txt    prod_Reynolds_seed1_20260726_121737_w2.txt  
+prod_Couzin_seed1_20260723_120810_w1.txt    prod_Couzin_seed3_20260723_170119_w2.txt    prod_Reynolds_seed1_20260726_121737_w3.txt  
+prod_Couzin_seed1_20260723_120810_w2.txt    prod_Couzin_seed3_20260723_170119_w3.txt    prod_Reynolds_seed1_20260726_121737_w4.txt  
+prod_Couzin_seed1_20260723_120810_w3.txt    prod_Couzin_seed3_20260723_170119_w4.txt    prod_Reynolds_seed1_20260726_121737_w5.txt  
+prod_Couzin_seed1_20260723_120810_w4.txt    prod_Couzin_seed3_20260723_170119_w5.txt    prod_Reynolds_seed1_20260726_121737_w6.txt  
+prod_Couzin_seed1_20260723_120810_w5.txt    prod_Couzin_seed3_20260723_170119_w6.txt    prod_Reynolds_seed2_20260726_121737_w1.txt  
+prod_Couzin_seed1_20260723_120810_w6.txt    prod_Couzin_seed3_20260724_162223_w1.txt    prod_Reynolds_seed2_20260726_121737_w2.txt  
+prod_Couzin_seed1_20260723_170119_w1.txt    prod_Couzin_seed3_20260724_162223_w2.txt    prod_Reynolds_seed2_20260726_121737_w3.txt  
+prod_Couzin_seed1_20260723_170119_w2.txt    prod_Couzin_seed3_20260724_162223_w3.txt    prod_Reynolds_seed2_20260726_121737_w4.txt  
+prod_Couzin_seed1_20260723_170119_w3.txt    prod_Couzin_seed3_20260724_162223_w4.txt    prod_Reynolds_seed2_20260726_121737_w5.txt  
+prod_Couzin_seed1_20260723_170119_w4.txt    prod_Couzin_seed3_20260724_162223_w5.txt    prod_Reynolds_seed2_20260726_121737_w6.txt  
+prod_Couzin_seed1_20260723_170119_w5.txt    prod_Couzin_seed3_20260724_162223_w6.txt    prod_Reynolds_seed3_20260726_121737_w1.txt  
+prod_Couzin_seed1_20260723_170119_w6.txt    prod_Couzin_seed3_20260728_134005_w1.txt    prod_Reynolds_seed3_20260726_121737_w2.txt  
+prod_Couzin_seed1_20260728_134005_w1.txt    prod_Couzin_seed3_20260728_134005_w2.txt    prod_Reynolds_seed3_20260726_121737_w3.txt  
+prod_Couzin_seed1_20260728_134005_w2.txt    prod_Couzin_seed3_20260728_134005_w3.txt    prod_Reynolds_seed3_20260726_121737_w4.txt  
+prod_Couzin_seed1_20260728_134005_w3.txt    prod_Couzin_seed3_20260728_134005_w4.txt    prod_Reynolds_seed3_20260726_121737_w5.txt  
+prod_Couzin_seed1_20260728_134005_w4.txt    prod_Couzin_seed3_20260728_134005_w5.txt    prod_Reynolds_seed3_20260726_121737_w6.txt  
+prod_Couzin_seed1_20260728_134005_w5.txt    prod_Couzin_seed3_20260728_134005_w6.txt    prod_Reynolds_seed4_20260726_121737_w1.txt  
+prod_Couzin_seed1_20260728_134005_w6.txt    prod_Couzin_seed4_20260724_162223_w1.txt    prod_Reynolds_seed4_20260726_121737_w2.txt  
+prod_Couzin_seed2_20260723_120810_w1.txt    prod_Couzin_seed4_20260724_162223_w2.txt    prod_Reynolds_seed4_20260726_121737_w3.txt  
+prod_Couzin_seed2_20260723_120810_w2.txt    prod_Couzin_seed4_20260724_162223_w3.txt    prod_Reynolds_seed4_20260726_121737_w4.txt  
+prod_Couzin_seed2_20260723_120810_w3.txt    prod_Couzin_seed4_20260724_162223_w4.txt    prod_Reynolds_seed4_20260726_121737_w5.txt  
+prod_Couzin_seed2_20260723_120810_w4.txt    prod_Couzin_seed4_20260724_162223_w5.txt    prod_Reynolds_seed4_20260726_121737_w6.txt  
+prod_Couzin_seed2_20260723_120810_w5.txt    prod_Couzin_seed4_20260724_162223_w6.txt    prod_Reynolds_seed5_20260726_121737_w1.txt  
+prod_Couzin_seed2_20260723_120810_w6.txt    prod_Couzin_seed4_20260728_134005_w1.txt    prod_Reynolds_seed5_20260726_121737_w2.txt  
+prod_Couzin_seed2_20260723_170119_w1.txt    prod_Couzin_seed4_20260728_134005_w2.txt    prod_Reynolds_seed5_20260726_121737_w3.txt  
+prod_Couzin_seed2_20260723_170119_w2.txt    prod_Couzin_seed4_20260728_134005_w3.txt    prod_Reynolds_seed5_20260726_121737_w4.txt  
+prod_Couzin_seed2_20260723_170119_w3.txt    prod_Couzin_seed4_20260728_134005_w4.txt    prod_Reynolds_seed5_20260726_121737_w5.txt  
+prod_Couzin_seed2_20260723_170119_w4.txt    prod_Couzin_seed4_20260728_134005_w5.txt    prod_Reynolds_seed5_20260726_121737_w6.txt  
+prod_Couzin_seed2_20260723_170119_w5.txt    prod_Couzin_seed4_20260728_134005_w6.txt    
+prod_Couzin_seed2_20260723_170119_w6.txt    prod_Couzin_seed5_20260724_162223_w1.txt    
+
+cd('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator');
+
+arq = 'data_save/auto_tuning_production/_arquivo_fitness_antiga';
+if ~exist(arq,'dir'); mkdir(arq); end
+movefile('data_save/auto_tuning_production/at_*.mat',   arq);
+movefile('data_save/auto_tuning_production/prod_*.txt', arq);
+
+% Deixa um registro do porquê
+fid = fopen(fullfile(arq,'LEIA-ME.txt'),'w');
+fprintf(fid, ['Resultados obtidos com a fitness ORIGINAL do CoFlyers:\n' ...
+  '  F = 1 - phi_vel * phi_corr   (termo de velocidade ILIMITADO)\n\n' ...
+  'A partir de 2026-07-29 a fitness foi restaurada conforme Vasarhelyi\n' ...
+  'et al. (2018): FSpeed = F1(phi_vel, v_flock, v_tol), que satura em 1.\n' ...
+  'Os valores de F destes arquivos NAO sao comparaveis com os novos.\n\n' ...
+  'Inventario:\n' ...
+  '  at_Couzin_20260723_120810 : teste reduzido (pop 6, ger 2)\n' ...
+  '  at_Couzin_20260723_170119 : producao, sementes 1-2, interrompida (corrida de I/O)\n' ...
+  '  at_Couzin_20260724_162223 : producao 5 sementes, LIMITES INCONSISTENTES\n' ...
+  '                              (sementes 1-2 alargados, 3-5 originais)\n' ...
+  '  at_Couzin_20260728_134005 : producao v2, limites alargados, interrompida\n' ...
+  '  at_Reynolds_20260726_121737 : producao 5 sementes, F = 0.050695\n']);
+fclose(fid);
+
+disp('Arquivado. Diretorio limpo para a nova fase.');
+Arquivado. Diretorio limpo para a nova fase.
+dir('data_save/auto_tuning_production/');
+
+.                        ..                       _arquivo_fitness_antiga  
+
+cd('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator');
+
+copyfile('lower_layers\evaluation_module\utils\fitness_function_combine.m', ...
+         'lower_layers\evaluation_module\utils\fitness_function_combine_BACKUP.m');
+{Error using <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('copyfile')" style="font-weight:bold">copyfile</a>
+No matching files named
+'C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\lower_layers\evaluation_module\utils\fitness_function_combine.m' were found.
+} 
+cd('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator');
+
+copyfile('lower_layers\evaluation_module\evaluation_0_module\utils\fitness_function_combine.m', ...
+         'lower_layers\evaluation_module\evaluation_0_module\utils\fitness_function_combine_BACKUP.m');
+copyfile('lower_layers\evaluation_module\evaluation_0_module\evaluation_0_module_average.m', ...
+         'lower_layers\evaluation_module\evaluation_0_module\evaluation_0_module_average_BACKUP.m');
+disp('Backups criados.');
+Backups criados.
+clear all; close all; clc;
+cd('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator');
+addpath(genpath(pwd));
+
+% (a) A nova fitness satura? Deve dar F = 1 - phi_corr para phi_vel >= 1
+v_flock = 1.0; a_tol = 0.00003; v_tol = 1.5/4*v_flock; r_tol = 0;
+casos = [1.0216 0.9957;   % Olfati-Saber (antes: F = -0.0172)
+         1.0049 0.8922;   % Couzin       (antes: F =  0.1034)
+         0.9904 0.9959;   % Vasarhelyi   (antes: F =  0.0137)
+         0.7000 0.9000];  % velocidade baixa: deve penalizar
+for i = 1:size(casos,1)
+    [Fs,~,~,~,F] = fitness_function_combine(v_flock,a_tol,v_tol,r_tol, ...
+        casos(i,1), 0, 0, casos(i,2));
+    fprintf('phi_vel=%.4f phi_corr=%.4f -> FSpeed=%.4f  F=%.6f\n', ...
+        casos(i,1), casos(i,2), Fs, F);
+end
+phi_vel=1.0216 phi_corr=0.9957 -> FSpeed=1.0000  F=0.004300
+phi_vel=1.0049 phi_corr=0.8922 -> FSpeed=1.0000  F=0.107800
+phi_vel=0.9904 phi_corr=0.9959 -> FSpeed=0.9984  F=0.005710
+phi_vel=0.7000 phi_corr=0.9000 -> FSpeed=0.0955  F=0.914058
+
+% (b) A reparametrizacao do Couzin converte certo?
+%     r_r=2.07, k_o=10.2, k_a=4.0  ->  r_o~23.2, r_a~31.5
+t = @(x) [x(1), x(1)*(1+x(2)), x(1)*(1+x(2)+x(3)), x(4), x(5)];
+disp('Transform Couzin:'); disp(t([2.07, 10.2, 4.0, 3.74, 1.45]));
+Transform Couzin:
+    2.0700   23.1840   31.4640    3.7400    1.4500
+
+clear all; close all; clc;
+cd('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator');
+addpath(genpath(pwd));
+main_auto_tuning_production('Couzin', 1:2);
+=== Auto-Tuning de Producao: Couzin ===
+Parametros: 5 | Populacao: 6 | Geracoes: 2 | Nr: 3
+Sementes GA (multi-start): [1 2]
+Sementes das config. de treino: [101 102 103]
+Espaco de busca:
+  r_r        [   0.500,    3.500]
+  k_o        [   0.000,   15.000]
+  k_a        [   0.000,   15.000]
+  r_shill    [   1.000,   15.000]
+  w_shill    [   0.100,    8.000]
+Restricoes lineares: nenhuma
+Gerando 3 XMLs pareados para Couzin (sementes de treino: [101 102 103])
+  cfg1 (seed 101): xml_config_files\parameters_at_Couzin_cfg1.xml  [ok]
+  cfg2 (seed 102): xml_config_files\parameters_at_Couzin_cfg2.xml  [ok]
+  cfg3 (seed 103): xml_config_files\parameters_at_Couzin_cfg3.xml  [ok]
+Warm-up: gerando arquivos de logica no cliente...
+  3 XML(s) processado(s). Arquivos de despacho atualizados.
+  As guardas de timestamp faram os workers pularem a reescrita (sem corrida de I/O).
+Starting parallel pool (parpool) using the 'Processes' profile ...
+Connected to parallel pool with 6 workers.
+
+--- Multi-start 1/2 (semente GA = 1) ---
+
+Single objective optimization:
+5 Variables
+
+Options:
+CreationFcn:       @gacreationuniform
+CrossoverFcn:      @crossoverscattered
+SelectionFcn:      @selectionstochunif
+MutationFcn:       @mutationadaptfeasible
+
+                                  Best           Mean      Stall
+Generation      Func-count        f(x)           f(x)    Generations
+    1               12          0.6813          0.8891        0
+    2               17          0.5702           0.803        0
+ga stopped because it exceeded options.MaxGenerations.
+Semente 1: F = 0.570240  (9.5 min)
+  busca    : [1.6903 13.1718 14.5239 2.19062 1.44166]
+  CoFlyers : [1.6903 23.9546 48.5044 2.19062 1.44166]
+
+--- Multi-start 2/2 (semente GA = 2) ---
+
+Single objective optimization:
+5 Variables
+
+Options:
+CreationFcn:       @gacreationuniform
+CrossoverFcn:      @crossoverscattered
+SelectionFcn:      @selectionstochunif
+MutationFcn:       @mutationadaptfeasible
+
+                                  Best           Mean      Stall
+Generation      Func-count        f(x)           f(x)    Generations
+    1               12          0.9229          0.9656        0
+    2               17          0.7704          0.9357        0
+ga stopped because it exceeded options.MaxGenerations.
+Semente 2: F = 0.770393  (10.2 min)
+  busca    : [1.11395 7.93713 11.78 8.07345 1.88549]
+  CoFlyers : [1.11395 9.95548 23.0778 8.07345 1.88549]
+
+===== ESTABILIDADE NO ESPACO DE BUSCA (Couzin, 2 de 2) =====
+parametro       media  desv.pad.    CV(%)  pos.faixa
+r_r            1.4021     0.4075     29.1        40%
+k_o           10.5544     3.7014     35.1        88%
+k_a           13.1520     1.9402     14.8        97% <-- na fronteira
+r_shill        5.1320     4.1598     81.1         9% <-- na fronteira
+w_shill        1.6636     0.3138     18.9        17%
+
+Fitness por semente: [0.57024 0.77039]
+MELHOR: semente 1, F = 0.570240
+
+Parametros para aplicar no XML (espaco CoFlyers):
+  r_r        = 1.690302
+  r_o        = 23.954563
+  r_a        = 48.504386
+  r_shill    = 2.190619
+  w_shill    = 1.441660
+
+LEITURA: CV > 20% indica multiplos otimos locais (resultado valido).
+         "na fronteira" indica limite possivelmente restringindo o otimo.
+
+Resultados salvos em: data_save/auto_tuning_production/at_Couzin_20260729_161518.mat
+
+PROXIMO PASSO: aplicar x_final com xml_set_param_in_block (escopo por bloco).
+clear all; clc;
+cd('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator');
+addpath(genpath(pwd));
+
+% --- Couzin ---
+xl = {'xml_config_files\parameters_at_Couzin_cfg1.xml', ...
+      'xml_config_files\parameters_at_Couzin_cfg2.xml', ...
+      'xml_config_files\parameters_at_Couzin_cfg3.xml'};
+pn = ["CoFlyers.swarm.Couzin.r_r","CoFlyers.swarm.Couzin.r_o", ...
+      "CoFlyers.swarm.Couzin.r_a","CoFlyers.swarm.Couzin.r_shill", ...
+      "CoFlyers.swarm.Couzin.w_shill"];
+fprintf('Couzin validacao : F = %.6f\n', fitness_paired_configs( ...
+    [4.805168, 23.161807, 32.780239, 4.134955, 3.408409], pn, xl, 1000, ''));
+Couzin validacao : F = 0.100647
+fprintf('Couzin producao  : F = %.6f\n', fitness_paired_configs( ...
+    [2.071455, 23.287304, 31.605799, 3.737468, 1.451248], pn, xl, 1000, ''));
+Couzin producao  : F = 0.038432
+
+% --- Reynolds ---
+xl = {'xml_config_files\parameters_at_Reynolds_cfg1.xml', ...
+      'xml_config_files\parameters_at_Reynolds_cfg2.xml', ...
+      'xml_config_files\parameters_at_Reynolds_cfg3.xml'};
+pn = ["CoFlyers.swarm.Reynolds.w_sep","CoFlyers.swarm.Reynolds.w_ali", ...
+      "CoFlyers.swarm.Reynolds.w_coh","CoFlyers.swarm.Reynolds.w_shill", ...
+      "CoFlyers.swarm.Reynolds.r_sep","CoFlyers.swarm.Reynolds.r_shill"];
+fprintf('Reynolds validacao: F = %.6f\n', fitness_paired_configs( ...
+    [4.1013, 2.8086, 1.2974, 0.6871, 4.6921, 5.5857], pn, xl, 1000, ''));
+Reynolds validacao: F = 0.232703
+fprintf('Reynolds producao : F = %.6f\n', fitness_paired_configs( ...
+    [4.708940, 4.014755, 0.131250, 0.555885, 7.371872, 7.699279], pn, xl, 1000, ''));
+Reynolds producao : F = 0.062838
+cd('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator');
+addpath(genpath(pwd));
+
+xml_set_param_in_block('xml_config_files\parameters.xml', 'Reynolds', {'r_com'}, 20);
+Bloco <Reynolds> atualizado em xml_config_files\parameters.xml (1 parametros).
+
+% Confirma que so o bloco Reynolds mudou
+content = fileread('xml_config_files\parameters.xml');
+lines = strsplit(content, newline);
+for b = ["Couzin","Reynolds","OlfatiSaber","Vasarhelyi"]
+    dentro = false;
+    for i = 1:numel(lines)
+        L = strtrim(lines{i});
+        if contains(L, "<"+b+">"); dentro = true; continue; end
+        if contains(L, "</"+b+">"); dentro = false; continue; end
+        if dentro && contains(L, '<r_com')
+            fprintf('%-12s %s\n', b, L);
+        end
+    end
+end
+Reynolds     <r_com value="20.000000"/>
+OlfatiSaber  <r_com value="50"/>
+Vasarhelyi   <r_com value="20"/>
+clear all; close all; clc;
+cd('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator');
+addpath(genpath(pwd));
+diary('log_at_couzin_v3.txt');

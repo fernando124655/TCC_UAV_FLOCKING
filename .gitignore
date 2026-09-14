@@ -1,0 +1,22 @@
+﻿# Arquivos gerados automaticamente pelo read_parameter_xml
+**/params_for_parallel/
+**/*_module_parameters*.m
+
+# Copias de trabalho criadas pelos scripts
+**/parameters_mc_*.xml
+**/parameters_bp_*.xml
+**/parameters_at_*.xml
+**/parameters_teste*.xml
+
+# Artefatos do MATLAB
+*.slxc
+slprj/
+*.asv
+
+# Videos: hospedados na nuvem, link no README
+*.mp4
+*.avi
+*.mkv
+
+# Backups locais
+*_BACKUP.m

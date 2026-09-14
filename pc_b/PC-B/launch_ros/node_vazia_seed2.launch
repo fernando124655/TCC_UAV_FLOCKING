@@ -1,0 +1,158 @@
+<launch>
+    <!-- No ROS pareado: vazia, semente 2.
+         Pontos de nascimento IDENTICOS aos de hifi_vazia_seed2.launch.
+         Gerado por build_hifi_launches.m ; nao editar a mao. -->
+    <arg name="ipLocal_"  value="192.168.1.157"/>
+    <arg name="ipTarget_" value="192.168.1.155"/>
+
+    <!-- UAV0 : x = -3.2003  y = -23.7037 -->
+    <group ns="uav0">
+        <arg name="ID" value="0"/>
+        <include file="$(find px4_sitl_coflyers)/launch/px4_node_single.launch">
+            <arg name="x" value="-3.2003"/>
+            <arg name="y" value="-23.7037"/>
+            <arg name="ID" value="$(arg ID)"/>
+            <arg name="ipLocal"  default="$(arg ipLocal_)"/>
+            <arg name="portLocal" default="21001"/>
+            <arg name="ipTarget" default="$(arg ipTarget_)"/>
+            <arg name="portTarget" default="21000"/>
+            <arg name="portTargetBat" default="20000"/>
+        </include>
+    </group>
+
+    <!-- UAV1 : x = 2.4831  y = -3.2339 -->
+    <group ns="uav1">
+        <arg name="ID" value="1"/>
+        <include file="$(find px4_sitl_coflyers)/launch/px4_node_single.launch">
+            <arg name="x" value="2.4831"/>
+            <arg name="y" value="-3.2339"/>
+            <arg name="ID" value="$(arg ID)"/>
+            <arg name="ipLocal"  default="$(arg ipLocal_)"/>
+            <arg name="portLocal" default="21003"/>
+            <arg name="ipTarget" default="$(arg ipTarget_)"/>
+            <arg name="portTarget" default="21002"/>
+            <arg name="portTargetBat" default="20002"/>
+        </include>
+    </group>
+
+    <!-- UAV2 : x = -3.9816  y = -8.4833 -->
+    <group ns="uav2">
+        <arg name="ID" value="2"/>
+        <include file="$(find px4_sitl_coflyers)/launch/px4_node_single.launch">
+            <arg name="x" value="-3.9816"/>
+            <arg name="y" value="-8.4833"/>
+            <arg name="ID" value="$(arg ID)"/>
+            <arg name="ipLocal"  default="$(arg ipLocal_)"/>
+            <arg name="portLocal" default="21005"/>
+            <arg name="ipTarget" default="$(arg ipTarget_)"/>
+            <arg name="portTarget" default="21004"/>
+            <arg name="portTargetBat" default="20004"/>
+        </include>
+    </group>
+
+    <!-- UAV3 : x = -14.7676  y = 5.9635 -->
+    <group ns="uav3">
+        <arg name="ID" value="3"/>
+        <include file="$(find px4_sitl_coflyers)/launch/px4_node_single.launch">
+            <arg name="x" value="-14.7676"/>
+            <arg name="y" value="5.9635"/>
+            <arg name="ID" value="$(arg ID)"/>
+            <arg name="ipLocal"  default="$(arg ipLocal_)"/>
+            <arg name="portLocal" default="21007"/>
+            <arg name="ipTarget" default="$(arg ipTarget_)"/>
+            <arg name="portTarget" default="21006"/>
+            <arg name="portTargetBat" default="20006"/>
+        </include>
+    </group>
+
+    <!-- UAV4 : x = -10.0173  y = -11.6586 -->
+    <group ns="uav4">
+        <arg name="ID" value="4"/>
+        <include file="$(find px4_sitl_coflyers)/launch/px4_node_single.launch">
+            <arg name="x" value="-10.0173"/>
+            <arg name="y" value="-11.6586"/>
+            <arg name="ID" value="$(arg ID)"/>
+            <arg name="ipLocal"  default="$(arg ipLocal_)"/>
+            <arg name="portLocal" default="21009"/>
+            <arg name="ipTarget" default="$(arg ipTarget_)"/>
+            <arg name="portTarget" default="21008"/>
+            <arg name="portTargetBat" default="20008"/>
+        </include>
+    </group>
+
+    <!-- UAV5 : x = 6.0567  y = 1.4571 -->
+    <group ns="uav5">
+        <arg name="ID" value="5"/>
+        <include file="$(find px4_sitl_coflyers)/launch/px4_node_single.launch">
+            <arg name="x" value="6.0567"/>
+            <arg name="y" value="1.4571"/>
+            <arg name="ID" value="$(arg ID)"/>
+            <arg name="ipLocal"  default="$(arg ipLocal_)"/>
+            <arg name="portLocal" default="21011"/>
+            <arg name="ipTarget" default="$(arg ipTarget_)"/>
+            <arg name="portTarget" default="21010"/>
+            <arg name="portTargetBat" default="20010"/>
+        </include>
+    </group>
+
+    <!-- UAV6 : x = -18.2710  y = 0.6789 -->
+    <group ns="uav6">
+        <arg name="ID" value="6"/>
+        <include file="$(find px4_sitl_coflyers)/launch/px4_node_single.launch">
+            <arg name="x" value="-18.2710"/>
+            <arg name="y" value="0.6789"/>
+            <arg name="ID" value="$(arg ID)"/>
+            <arg name="ipLocal"  default="$(arg ipLocal_)"/>
+            <arg name="portLocal" default="21013"/>
+            <arg name="ipTarget" default="$(arg ipTarget_)"/>
+            <arg name="portTarget" default="21012"/>
+            <arg name="portTargetBat" default="20012"/>
+        </include>
+    </group>
+
+    <!-- UAV7 : x = -15.7780  y = 14.2668 -->
+    <group ns="uav7">
+        <arg name="ID" value="7"/>
+        <include file="$(find px4_sitl_coflyers)/launch/px4_node_single.launch">
+            <arg name="x" value="-15.7780"/>
+            <arg name="y" value="14.2668"/>
+            <arg name="ID" value="$(arg ID)"/>
+            <arg name="ipLocal"  default="$(arg ipLocal_)"/>
+            <arg name="portLocal" default="21015"/>
+            <arg name="ipTarget" default="$(arg ipTarget_)"/>
+            <arg name="portTarget" default="21014"/>
+            <arg name="portTargetBat" default="20014"/>
+        </include>
+    </group>
+
+    <!-- UAV8 : x = 17.6988  y = -0.2882 -->
+    <group ns="uav8">
+        <arg name="ID" value="8"/>
+        <include file="$(find px4_sitl_coflyers)/launch/px4_node_single.launch">
+            <arg name="x" value="17.6988"/>
+            <arg name="y" value="-0.2882"/>
+            <arg name="ID" value="$(arg ID)"/>
+            <arg name="ipLocal"  default="$(arg ipLocal_)"/>
+            <arg name="portLocal" default="21017"/>
+            <arg name="ipTarget" default="$(arg ipTarget_)"/>
+            <arg name="portTarget" default="21016"/>
+            <arg name="portTargetBat" default="20016"/>
+        </include>
+    </group>
+
+    <!-- UAV9 : x = 17.3281  y = -21.0177 -->
+    <group ns="uav9">
+        <arg name="ID" value="9"/>
+        <include file="$(find px4_sitl_coflyers)/launch/px4_node_single.launch">
+            <arg name="x" value="17.3281"/>
+            <arg name="y" value="-21.0177"/>
+            <arg name="ID" value="$(arg ID)"/>
+            <arg name="ipLocal"  default="$(arg ipLocal_)"/>
+            <arg name="portLocal" default="21019"/>
+            <arg name="ipTarget" default="$(arg ipTarget_)"/>
+            <arg name="portTarget" default="21018"/>
+            <arg name="portTargetBat" default="20018"/>
+        </include>
+    </group>
+
+</launch>

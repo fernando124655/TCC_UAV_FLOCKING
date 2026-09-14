@@ -1,0 +1,277 @@
+main_auto_tuning_production('Couzin', 1:5);
+=== Auto-Tuning de Producao: Couzin ===
+Parametros: 5 | Populacao: 30 | Geracoes: 30 | Nr: 3
+Sementes GA (multi-start): [1 2 3 4 5]
+Sementes das config. de treino: [101 102 103]
+  r_r          [   0.500,    5.000]
+  r_o          [   3.000,   25.000]
+  r_a          [   8.000,   40.000]
+  r_shill      [   2.000,   10.000]
+  w_shill      [   0.500,    5.000]
+Restricoes lineares: 2
+Gerando 3 XMLs pareados para Couzin (sementes de treino: [101 102 103])
+  cfg1 (seed 101): xml_config_files\parameters_at_Couzin_cfg1.xml  [ok]
+  cfg2 (seed 102): xml_config_files\parameters_at_Couzin_cfg2.xml  [ok]
+  cfg3 (seed 103): xml_config_files\parameters_at_Couzin_cfg3.xml  [ok]
+Preparando ambiente para execucao paralela segura...
+  warm-up: arquivos de logica gerados no cliente
+  lock: 3 arquivos de despacho protegidos contra reescrita
+Ambiente pronto para parfor.
+Starting parallel pool (parpool) using the 'Processes' profile ...
+Connected to parallel pool with 6 workers.
+Retomando: 2 de 5 sementes ja concluidas ([1 2])
+
+--- Multi-start 1/5 (semente GA = 1) JA CONCLUIDA, pulando ---
+
+--- Multi-start 2/5 (semente GA = 2) JA CONCLUIDA, pulando ---
+
+--- Multi-start 3/5 (semente GA = 3) ---
+
+Single objective optimization:
+5 Variables
+2 Linear inequality constraints
+
+Options:
+CreationFcn:       @gacreationlinearfeasible
+CrossoverFcn:      @crossoverintermediate
+SelectionFcn:      @selectionstochunif
+MutationFcn:       @mutationadaptfeasible
+restore_parallel_safe: 3 arquivos com escrita restaurada.
+{Error using <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('fprintf')" style="font-weight:bold">fprintf</a>
+Invalid file identifier. Use fopen to generate a valid file identifier.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('read_parameter_xml/write_swarm_module_generate_desire', 'C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\utils\xml_read\read_parameter_xml.m', 449)" style="font-weight:bold">read_parameter_xml/write_swarm_module_generate_desire</a> (<a href="matlab: opentoline('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\utils\xml_read\read_parameter_xml.m',449,0)">line 449</a>)
+        fprintf(file_id,['function [command_upper_s,control_mode_s] = swarm_module_generate_desire(swarm_algorithm_type, t, states, sample_time, sensor_data_s, map3d_struct, terrain, terrain_params)\n']);
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('read_parameter_xml', 'C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\utils\xml_read\read_parameter_xml.m', 240)" style="font-weight:bold">read_parameter_xml</a> (<a href="matlab: opentoline('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\utils\xml_read\read_parameter_xml.m',240,0)">line 240</a>)
+write_swarm_module_generate_desire(dir_name_sm, file_name_sm, field_names_swarm, ctime_xml);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('initialize_parameters_states', 'C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\combine_modules\initialize_parameters_states.m', 34)" style="font-weight:bold">initialize_parameters_states</a> (<a href="matlab: opentoline('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\combine_modules\initialize_parameters_states.m',34,0)">line 34</a>)
+    terrain, terrain_params] = read_parameter_xml(xml_name, ps_mofify);
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('model_swarm', 'C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\combine_modules\model_swarm.m', 20)" style="font-weight:bold">model_swarm</a> (<a href="matlab: opentoline('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\combine_modules\model_swarm.m',20,0)">line 20</a>)
+    terrain,terrain_params] = initialize_parameters_states(parameters_gui,parameters_op, ...
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('fitness_paired_configs', 'C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\fitness_paired_configs.m', 38)" style="font-weight:bold">fitness_paired_configs</a> (<a href="matlab: opentoline('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\fitness_paired_configs.m',38,0)">line 38</a>)
+    v = model_swarm([], ps, [], i, 1, xml_list{i}, []);
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('main_auto_tuning_production>@(x)fitness_paired_configs(x,param_names,xml_list,RNG_BASE,txt_base)', 'C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\main_auto_tuning_production.m', 124)" style="font-weight:bold">main_auto_tuning_production>@(x)fitness_paired_configs(x,param_names,xml_list,RNG_BASE,txt_base)</a> (<a href="matlab: opentoline('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\main_auto_tuning_production.m',124,0)">line 124</a>)
+    fun = @(x) fitness_paired_configs(x, param_names, xml_list, RNG_BASE, txt_base);
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('createAnonymousFcn>@(x)fcn(x,FcnArgs{:})', 'C:\Program Files\MATLAB\R2026a\toolbox\globaloptim\globaloptim\private\createAnonymousFcn.m', 11)" style="font-weight:bold">createAnonymousFcn>@(x)fcn(x,FcnArgs{:})</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\globaloptim\globaloptim\private\createAnonymousFcn.m',11,0)">line 11</a>)
+fcn_handle = @(x) fcn(x,FcnArgs{:});
+                  ^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('makeState', 'C:\Program Files\MATLAB\R2026a\toolbox\globaloptim\globaloptim\private\makeState.m', 64)" style="font-weight:bold">makeState</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\globaloptim\globaloptim\private\makeState.m',64,0)">line 64</a>)
+            firstMemberScore = FitnessFcn(state.Population(initScoreProvided+1,:));
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('galincon', 'C:\Program Files\MATLAB\R2026a\toolbox\globaloptim\globaloptim\private\galincon.m', 23)" style="font-weight:bold">galincon</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\globaloptim\globaloptim\private\galincon.m',23,0)">line 23</a>)
+state = makeState(GenomeLength,FitnessFcn,Iterate,output.problemtype,options,problem);
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('ga', 'C:\Program Files\MATLAB\R2026a\toolbox\globaloptim\globaloptim\ga.m', 242)" style="font-weight:bold">ga</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\globaloptim\globaloptim\ga.m',242,0)">line 242</a>)
+            [x,fval,exitFlag,output,population,scores] = galincon(FitnessFcn,nvars, ...
+                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('main_auto_tuning_production', 'C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\main_auto_tuning_production.m', 135)" style="font-weight:bold">main_auto_tuning_production</a> (<a href="matlab: opentoline('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\main_auto_tuning_production.m',135,0)">line 135</a>)
+    [x_best, f_best] = ga(fun, n_params, A, b, [], [], lb, ub, [], options);
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Caused by:
+    Failure in initial user-supplied fitness function evaluation. GA cannot continue.
+} 
+cd('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator');
+restore_parallel_safe();   % destrava os 3 arquivos
+restore_parallel_safe: 3 arquivos com escrita restaurada.
+copyfile('read_parameter_xml.m', 'read_parameter_xml_BACKUP.m');
+{Error using <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('copyfile')" style="font-weight:bold">copyfile</a>
+No matching files named 'C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\read_parameter_xml.m' were found.
+} 
+cd('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\utils\xml_read\');
+copyfile('read_parameter_xml.m', 'read_parameter_xml_BACKUP.m');
+disp('Backup criado: read_parameter_xml_BACKUP.m');
+Backup criado: read_parameter_xml_BACKUP.m
+
+% Confirma as 3 regioes comentadas (linhas aproximadas 442, 562, 597)
+content = fileread('read_parameter_xml.m');
+lines = strsplit(content, newline);
+alvos = [442, 562, 597];
+for a = alvos
+    fprintf('\n--- Regiao perto da linha %d ---\n', a);
+    for i = max(1,a-2):min(numel(lines),a+7)
+        fprintf('%4d: %s\n', i, lines{i});
+    end
+end
+
+--- Regiao perto da linha 442 ---
+ 440:         % if exist(file_fullpath,"file")
+ 441:         %     file_now = dir(file_fullpath);
+ 442:         %     ctime_file = datenum(file_now.date);
+ 443:         %     if ctime_file > ctime_xml
+ 444:         %         return
+ 445:         %     end
+ 446:         % end
+ 447:         %%% write function name %%%
+ 448:         file_id = fopen(file_fullpath,'w');
+ 449:         fprintf(file_id,['function [command_upper_s,control_mode_s] = swarm_module_generate_desire(swarm_algorithm_type, t, states, sample_time, sensor_data_s, map3d_struct, terrain, terrain_params)\n']);
+
+--- Regiao perto da linha 562 ---
+ 560:         % if exist(file_fullpath,"file")
+ 561:         %     file_now = dir(file_fullpath);
+ 562:         %     ctime_file = datenum(file_now.date);
+ 563:         %     if ctime_file > ctime_xml
+ 564:         %         return
+ 565:         %     end
+ 566:         % end
+ 567:         %%% write function name %%%
+ 568:         file_id = fopen(file_fullpath,'w');
+ 569:         fprintf(file_id,['function values = evaluation_module_one(evaluation_metric_type, t, states, map3d_faces, map3d_struct, terrain, terrain_params)\n']);
+
+--- Regiao perto da linha 597 ---
+ 595:         % if exist(file_fullpath,"file")
+ 596:         %     file_now = dir(file_fullpath);
+ 597:         %     ctime_file = datenum(file_now.date);
+ 598:         %     if ctime_file > ctime_xml
+ 599:         %         return
+ 600:         %     end
+ 601:         % end
+ 602:         %%% write function name %%%
+ 603:         file_id = fopen(file_fullpath,'w');
+ 604:         fprintf(file_id,['function values = evaluation_module_average(evaluation_metric_type, time_series, values_series)\n']);
+
+cd('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\utils\xml_read\');
+
+content = fileread('read_parameter_xml.m');
+
+% Bloco comentado (origem) e descomentado (destino).
+% Uso de sprintf para montar com quebras de linha reais.
+bloco_comentado = sprintf([ ...
+    '        %% if exist(file_fullpath,"file")\n', ...
+    '        %%     file_now = dir(file_fullpath);\n', ...
+    '        %%     ctime_file = datenum(file_now.date);\n', ...
+    '        %%     if ctime_file > ctime_xml\n', ...
+    '        %%         return\n', ...
+    '        %%     end\n', ...
+    '        %% end']);
+
+bloco_ativo = sprintf([ ...
+    '        if exist(file_fullpath,"file")\n', ...
+    '            file_now = dir(file_fullpath);\n', ...
+    '            ctime_file = datenum(file_now.date);\n', ...
+    '            if ctime_file > ctime_xml\n', ...
+    '                return\n', ...
+    '            end\n', ...
+    '        end']);
+
+n_antes = numel(strfind(content, bloco_comentado));
+fprintf('Ocorrencias do bloco comentado encontradas: %d (esperado 3)\n', n_antes);
+Ocorrencias do bloco comentado encontradas: 0 (esperado 3)
+
+if n_antes == 3
+    content = strrep(content, bloco_comentado, bloco_ativo);
+    fid = fopen('read_parameter_xml.m','w'); fwrite(fid, content); fclose(fid);
+    fprintf('As 3 guardas de timestamp foram ATIVADAS.\n');
+else
+    fprintf(['ATENCAO: esperava 3 ocorrencias, achei %d. ', ...
+             'Nao alterei o arquivo. Faça a edicao manual.\n'], n_antes);
+end
+ATENCAO: esperava 3 ocorrencias, achei 0. Nao alterei o arquivo. Faça a edicao manual.
+cd('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\utils\xml_read\');
+
+content = fileread('read_parameter_xml.m');
+
+% Padrao regex: casa o bloco comentado com qualquer indentacao.
+% (?m) = multiline; ^[ \t]* = qualquer indentacao no inicio da linha.
+pat = ['(?m)^[ \t]*%\s*if exist\(file_fullpath,"file"\)\s*\n', ...
+       '[ \t]*%\s*file_now = dir\(file_fullpath\);\s*\n', ...
+       '[ \t]*%\s*ctime_file = datenum\(file_now\.date\);\s*\n', ...
+       '[ \t]*%\s*if ctime_file > ctime_xml\s*\n', ...
+       '[ \t]*%\s*return\s*\n', ...
+       '[ \t]*%\s*end\s*\n', ...
+       '[ \t]*%\s*end'];
+
+n = numel(regexp(content, pat, 'once', 'start'));  % 1 se casar o primeiro
+n_total = numel(regexp(content, pat, 'start'));     % total de ocorrencias
+fprintf('Ocorrencias casadas pela regex: %d (esperado 3)\n', n_total);
+Ocorrencias casadas pela regex: 3 (esperado 3)
+
+if n_total == 3
+    % Substituicao preservando a indentacao original de cada linha.
+    rep = ['        if exist(file_fullpath,"file")\n', ...
+           '            file_now = dir(file_fullpath);\n', ...
+           '            ctime_file = datenum(file_now.date);\n', ...
+           '            if ctime_file > ctime_xml\n', ...
+           '                return\n', ...
+           '            end\n', ...
+           '        end'];
+    content_novo = regexprep(content, pat, rep);
+    fid = fopen('read_parameter_xml.m','w'); fwrite(fid, content_novo); fclose(fid);
+    fprintf('As 3 guardas de timestamp foram ATIVADAS.\n');
+else
+    fprintf('Casou %d (esperado 3). Arquivo NAO alterado.\n', n_total);
+    fprintf('Vamos inspecionar os caracteres exatos antes de editar.\n');
+end
+As 3 guardas de timestamp foram ATIVADAS.
+cd('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\utils\xml_read\');
+content = fileread('read_parameter_xml.m');
+lines = strsplit(content, newline);
+alvos = [442, 562, 597];
+for a = alvos
+    fprintf('\n--- Regiao perto da linha %d ---\n', a);
+    for i = max(1,a-2):min(numel(lines),a+6)
+        fprintf('%4d: %s\n', i, lines{i});
+    end
+end
+
+--- Regiao perto da linha 442 ---
+ 440:         if exist(file_fullpath,"file")
+ 441:             file_now = dir(file_fullpath);
+ 442:             ctime_file = datenum(file_now.date);
+ 443:             if ctime_file > ctime_xml
+ 444:                 return
+ 445:             end
+ 446:         end
+ 447:         %%% write function name %%%
+ 448:         file_id = fopen(file_fullpath,'w');
+
+--- Regiao perto da linha 562 ---
+ 560:         if exist(file_fullpath,"file")
+ 561:             file_now = dir(file_fullpath);
+ 562:             ctime_file = datenum(file_now.date);
+ 563:             if ctime_file > ctime_xml
+ 564:                 return
+ 565:             end
+ 566:         end
+ 567:         %%% write function name %%%
+ 568:         file_id = fopen(file_fullpath,'w');
+
+--- Regiao perto da linha 597 ---
+ 595:         if exist(file_fullpath,"file")
+ 596:             file_now = dir(file_fullpath);
+ 597:             ctime_file = datenum(file_now.date);
+ 598:             if ctime_file > ctime_xml
+ 599:                 return
+ 600:             end
+ 601:         end
+ 602:         %%% write function name %%%
+ 603:         file_id = fopen(file_fullpath,'w');
+
+% Teste de sintaxe: uma chamada nao deve dar erro
+cd('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator');
+try
+    clear read_parameter_xml
+    [~,~,~,p] = read_parameter_xml('xml_config_files\parameters.xml');
+    fprintf('\nOK: read_parameter_xml executou. Algoritmo ativo: %s\n', p.swarm_algorithm_type);
+catch ME
+    fprintf('\nERRO: %s\n', ME.message);
+    fprintf('Restaure: copyfile(''utils\\xml_read\\read_parameter_xml_BACKUP.m'', ''utils\\xml_read\\read_parameter_xml.m'')\n');
+end
+
+OK: read_parameter_xml executou. Algoritmo ativo: Couzin
+cd('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator');
+restore_parallel_safe();   % destrava, por garantia; se nada estiver travado, nao faz mal
+restore_parallel_safe: 3 arquivos com escrita restaurada.
+
+
+IdleTimeout has been reached.
+Parallel pool using the 'Processes' profile is shutting down.
+clear all; close all; clc;
+cd('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator');
+addpath(genpath(pwd));
+diary('log_at_couzin_resume2.txt');

@@ -1,0 +1,130 @@
+main_batch_production('Reynolds', 'cubos');
+=== Batch Processing de Producao ===
+Algoritmo: Reynolds | Ambiente: cubos
+Grade: 26x26 = 676 combinacoes | Repeticoes: 3
+eta: [0.00, 0.50] m/s | Tc: [0.01, 1.01] s
+Sementes das configuracoes iniciais: [201 202 203]
+Total de simulacoes: 2028
+  rep 1 (seed 201): xml_config_files\parameters_bp_Reynolds_cubos_r1.xml [ok]
+  rep 2 (seed 202): xml_config_files\parameters_bp_Reynolds_cubos_r2.xml [ok]
+  rep 3 (seed 203): xml_config_files\parameters_bp_Reynolds_cubos_r3.xml [ok]
+Warm-up: gerando arquivos de logica no cliente...
+  3 XML(s) processado(s). Arquivos de despacho atualizados.
+  As guardas de timestamp faram os workers pularem a reescrita (sem corrida de I/O).
+Starting parallel pool (parpool) using the 'Processes' profile ...
+Parallel pool using the 'Processes' profile is shutting down.
+
+{Error using <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('parpool', 'C:\Program Files\MATLAB\R2026a\toolbox\parallel\cluster\cluster\parpool.m', 43)" style="font-weight:bold">parpool</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\parallel\cluster\cluster\parpool.m',43,0)">line 43</a>)
+Parallel pool failed to start with the following error. For more detailed information, validate the profile 'Processes' in the Cluster Profile Manager.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('main_batch_production', 'C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\main_batch_production.m', 128)" style="font-weight:bold">main_batch_production</a> (<a href="matlab: opentoline('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\main_batch_production.m',128,0)">line 128</a>)
+    parpool('Processes', min(feature('numcores'), N_WORKERS));
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Caused by:
+    Error using <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('parallel.internal.pool.AbstractClusterPool>iStartClient', 'C:\Program Files\MATLAB\R2026a\toolbox\parallel\cluster\+parallel\+internal\+pool\@AbstractClusterPool\AbstractClusterPool.m', 812)" style="font-weight:bold">parallel.internal.pool.AbstractClusterPool>iStartClient</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\parallel\cluster\+parallel\+internal\+pool\@AbstractClusterPool\AbstractClusterPool.m',812,0)">line 812</a>)
+    The parallel pool job errored with the following message: MATLAB worker shut down unexpectedly with status 1 during task execution.
+        MATLAB worker shut down unexpectedly with status 1 during task execution.
+} 
+% Memoria disponivel
+MATLAB has lost its connection to the license server.
+MATLAB will make 8 more reconnection attempt(s) and then exit. Any unsaved changes will be lost.
+
+
+m = memory;
+fprintf('MATLAB usando: %.1f GB | disponivel: %.1f GB\n', ...
+    m.MemUsedMATLAB/1e9, m.MemAvailableAllArrays/1e9);
+MATLAB usando: 6.0 GB | disponivel: 12.4 GB
+
+% Pool fantasma de execucao anterior?
+delete(gcp('nocreate'));
+c = parcluster('Processes');
+fprintf('jobs pendentes: %d\n', numel(c.Jobs));
+jobs pendentes: 0
+delete(c.Jobs);   % limpa restos
+
+% Teste minimo
+try
+    p = parpool('Processes', 2);
+    fprintf('pool de 2 workers: OK\n');
+    delete(p);
+catch ME
+    fprintf('falhou com 2 workers: %s\n', ME.message);
+end
+Starting parallel pool (parpool) using the 'Processes' profile ...
+Parallel pool using the 'Processes' profile is shutting down.
+
+falhou com 2 workers: Parallel pool failed to start with the following error. For more detailed information, validate the profile 'Processes' in the Cluster Profile Manager.
+% Antes de fechar, confira o que ja foi salvo
+MATLAB has lost its connection to the license server.
+MATLAB will make 7 more reconnection attempt(s) and then exit. Any unsaved changes will be lost.
+
+
+d = dir('data_save/batch_production/bp_*.mat');
+for i = 1:numel(d)
+    R = load(fullfile(d(i).folder, d(i).name), 'algorithm_name','ambiente');
+    fprintf('%-28s  %s / %s\n', d(i).name, R.algorithm_name, R.ambiente);
+end
+bp_Couzin_cubos_20260819_162406.mat  Couzin / cubos
+bp_Couzin_vazia_20260817_174951.mat  Couzin / vazia
+bp_Couzin_vazia_20260817_180751.mat  Couzin / vazia
+bp_OlfatiSaber_vazia_20260818_191540.mat  OlfatiSaber / vazia
+bp_Reynolds_vazia_20260818_104435.mat  Reynolds / vazia
+bp_Vasarhelyi_vazia_20260819_095104.mat  Vasarhelyi / vazia
+% No MATLAB, imediatamente
+license('inuse')
+distrib_computing_toolbox
+matlab
+statistics_toolbox
+symbolic_toolbox
+R = load('data_save/batch_production/bp_Couzin_vazia_20260817_174951.mat');
+MATLAB has lost its connection to the license server.
+MATLAB will make 6 more reconnection attempt(s) and then exit. Any unsaved changes will be lost.
+
+
+fprintf('combinacoes: %d (teste=25, producao=676)\n', size(R.results,1));
+combinacoes: 25 (teste=25, producao=676)
+main_batch_production('Reynolds', 'cubos');
+=== Batch Processing de Producao ===
+Algoritmo: Reynolds | Ambiente: cubos
+Grade: 26x26 = 676 combinacoes | Repeticoes: 3
+eta: [0.00, 0.50] m/s | Tc: [0.01, 1.01] s
+Sementes das configuracoes iniciais: [201 202 203]
+Total de simulacoes: 2028
+  rep 1 (seed 201): xml_config_files\parameters_bp_Reynolds_cubos_r1.xml [ok]
+  rep 2 (seed 202): xml_config_files\parameters_bp_Reynolds_cubos_r2.xml [ok]
+  rep 3 (seed 203): xml_config_files\parameters_bp_Reynolds_cubos_r3.xml [ok]
+Warm-up: gerando arquivos de logica no cliente...
+  3 XML(s) processado(s). Arquivos de despacho atualizados.
+  As guardas de timestamp faram os workers pularem a reescrita (sem corrida de I/O).
+Starting parallel pool (parpool) using the 'Processes' profile ...
+Connected to parallel pool with 6 workers.
+
+--- Repeticao 1/3 (config seed 201) ---
+Repeticao 1 concluida em 2.0 h (10.9 s/simulacao)
+
+--- Repeticao 2/3 (config seed 202) ---
+Repeticao 2 concluida em 2.0 h (10.4 s/simulacao)
+
+--- Repeticao 3/3 (config seed 203) ---
+Repeticao 3 concluida em 2.1 h (11.0 s/simulacao)
+
+Concluido em 6.1 h
+
+===== RESUMO (Reynolds, cubos) =====
+metrica             min          max    amplitude
+phi_corr        0.58219      0.97521      0.39302
+phi_vel         0.35787      1.03202      0.67414
+phi_coll        0.00000      0.00000      0.00000
+phi_wall        0.00000      0.04998      0.04998
+phi_MND         0.05199      0.07212      0.02013
+
+Variabilidade entre repeticoes (desv.pad. medio):
+  phi_corr   0.04464
+  phi_vel    0.01254
+  phi_coll   0.00000
+  phi_wall   0.00150
+  phi_MND    0.00547
+
+Salvo em: data_save/batch_production/bp_Reynolds_cubos_20260820_143909.mat
+Figuras salvas em data_save/batch_production/
+diary off;

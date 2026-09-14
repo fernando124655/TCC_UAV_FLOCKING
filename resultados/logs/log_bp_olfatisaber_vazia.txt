@@ -1,0 +1,45 @@
+main_batch_production('OlfatiSaber', 'vazia');
+=== Batch Processing de Producao ===
+Algoritmo: OlfatiSaber | Ambiente: vazia
+Grade: 26x26 = 676 combinacoes | Repeticoes: 3
+eta: [0.00, 0.50] m/s | Tc: [0.01, 1.01] s
+Sementes das configuracoes iniciais: [201 202 203]
+Total de simulacoes: 2028
+  rep 1 (seed 201): xml_config_files\parameters_bp_OlfatiSaber_vazia_r1.xml [ok]
+  rep 2 (seed 202): xml_config_files\parameters_bp_OlfatiSaber_vazia_r2.xml [ok]
+  rep 3 (seed 203): xml_config_files\parameters_bp_OlfatiSaber_vazia_r3.xml [ok]
+Warm-up: gerando arquivos de logica no cliente...
+  3 XML(s) processado(s). Arquivos de despacho atualizados.
+  As guardas de timestamp faram os workers pularem a reescrita (sem corrida de I/O).
+Starting parallel pool (parpool) using the 'Processes' profile ...
+Connected to parallel pool with 6 workers.
+
+--- Repeticao 1/3 (config seed 201) ---
+Repeticao 1 concluida em 1.9 h (10.3 s/simulacao)
+
+--- Repeticao 2/3 (config seed 202) ---
+Repeticao 2 concluida em 2.7 h (14.6 s/simulacao)
+
+--- Repeticao 3/3 (config seed 203) ---
+Repeticao 3 concluida em 2.8 h (14.7 s/simulacao)
+
+Concluido em 7.4 h
+
+===== RESUMO (OlfatiSaber, vazia) =====
+metrica             min          max    amplitude
+phi_corr        0.69218      0.94450      0.25231
+phi_vel         0.96025      1.02582      0.06557
+phi_coll        0.00000      0.00004      0.00004
+phi_wall        0.00000      0.11973      0.11973
+phi_MND         0.05490      0.07999      0.02509
+
+Variabilidade entre repeticoes (desv.pad. medio):
+  phi_corr   0.02494
+  phi_vel    0.00157
+  phi_coll   0.00000
+  phi_wall   0.00923
+  phi_MND    0.00289
+
+Salvo em: data_save/batch_production/bp_OlfatiSaber_vazia_20260818_191540.mat
+Figuras salvas em data_save/batch_production/
+diary off;

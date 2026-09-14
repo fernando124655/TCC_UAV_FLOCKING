@@ -1,0 +1,106 @@
+Couzin       <- mc_Couzin_vazia_20260811_162623.mat
+Reynolds     <- mc_Reynolds_vazia_20260811_163552.mat
+OlfatiSaber  <- mc_OlfatiSaber_vazia_20260811_164523.mat
+Vasarhelyi   <- mc_Vasarhelyi_vazia_20260811_165531.mat
+
+Pareamento confirmado: 20 configuracoes identicas (sementes 1-20)
+
+===== ESTATISTICAS DESCRITIVAS (ambiente: vazia, n=20) =====
+
+--- phi_corr ---
+algoritmo     par      media   desv.pad                 IC 95% violacoes
+Couzin          5    0.94763    0.01224  [ 0.94190,  0.95336] -
+Reynolds        6    0.97536    0.03383  [ 0.95953,  0.99119] -
+OlfatiSaber     7    0.93655    0.01806  [ 0.92810,  0.94500] -
+Vasarhelyi     11    0.92236    0.03614  [ 0.90545,  0.93927] -
+
+--- phi_vel ---
+algoritmo     par      media   desv.pad                 IC 95% violacoes
+Couzin          5    1.00750    0.00199  [ 1.00657,  1.00843] -
+Reynolds        6    1.01937    0.00068  [ 1.01905,  1.01969] -
+OlfatiSaber     7    1.02293    0.00072  [ 1.02259,  1.02327] -
+Vasarhelyi     11    0.96604    0.01501  [ 0.95901,  0.97306] -
+
+--- phi_coll ---
+algoritmo     par      media   desv.pad                 IC 95% violacoes
+Couzin          5    0.00002    0.00003  [ 0.00000,  0.00003] 9/20
+Reynolds        6    0.00000    0.00000  [ 0.00000,  0.00000] 0/20
+OlfatiSaber     7    0.00000    0.00000  [ 0.00000,  0.00000] 0/20
+Vasarhelyi     11    0.00000    0.00000  [ 0.00000,  0.00000] 0/20
+
+--- phi_wall ---
+algoritmo     par      media   desv.pad                 IC 95% violacoes
+Couzin          5    0.00000    0.00000  [ 0.00000,  0.00000] 0/20
+Reynolds        6    0.01290    0.02858  [-0.00048,  0.02627] 6/20
+OlfatiSaber     7    0.00030    0.00133  [-0.00033,  0.00092] 1/20
+Vasarhelyi     11    0.00000    0.00000  [ 0.00000,  0.00000] 0/20
+
+--- phi_MND ---
+algoritmo     par      media   desv.pad                 IC 95% violacoes
+Couzin          5    0.14751    0.00531  [ 0.14502,  0.15000] -
+Reynolds        6    0.06076    0.00347  [ 0.05913,  0.06238] -
+OlfatiSaber     7    0.05589    0.00119  [ 0.05533,  0.05644] -
+Vasarhelyi     11    0.07280    0.00182  [ 0.07195,  0.07366] -
+
+===== NORMALIDADE DAS DIFERENCAS (Shapiro-Wilk via Lilliefors) =====
+phi_corr, todos os pares. p < 0.05 => rejeita normalidade => usar Wilcoxon
+[Warning: P is less than the smallest tabulated value, returning 0.001.] 
+[> In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('lillietest', 'C:\Program Files\MATLAB\R2026a\toolbox\stats\stats\lillietest.m', 141)" style="font-weight:bold">lillietest</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\stats\stats\lillietest.m',141,0)">line 141</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('analyze_monte_carlo', 'C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\analyze_monte_carlo.m', 85)" style="font-weight:bold">analyze_monte_carlo</a> (<a href="matlab: opentoline('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\analyze_monte_carlo.m',85,0)">line 85</a>)] 
+  Couzin       vs Reynolds      p = 0.0010  NAO normal
+  Couzin       vs OlfatiSaber   p = 0.0889  normal
+[Warning: P is greater than the largest tabulated value, returning 0.5.] 
+[> In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('lillietest', 'C:\Program Files\MATLAB\R2026a\toolbox\stats\stats\lillietest.m', 138)" style="font-weight:bold">lillietest</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\stats\stats\lillietest.m',138,0)">line 138</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('analyze_monte_carlo', 'C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\analyze_monte_carlo.m', 85)" style="font-weight:bold">analyze_monte_carlo</a> (<a href="matlab: opentoline('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\analyze_monte_carlo.m',85,0)">line 85</a>)] 
+  Couzin       vs Vasarhelyi    p = 0.5000  normal
+[Warning: P is less than the smallest tabulated value, returning 0.001.] 
+[> In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('lillietest', 'C:\Program Files\MATLAB\R2026a\toolbox\stats\stats\lillietest.m', 141)" style="font-weight:bold">lillietest</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\stats\stats\lillietest.m',141,0)">line 141</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('analyze_monte_carlo', 'C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\analyze_monte_carlo.m', 85)" style="font-weight:bold">analyze_monte_carlo</a> (<a href="matlab: opentoline('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\analyze_monte_carlo.m',85,0)">line 85</a>)] 
+  Reynolds     vs OlfatiSaber   p = 0.0010  NAO normal
+  Reynolds     vs Vasarhelyi    p = 0.0601  normal
+[Warning: P is greater than the largest tabulated value, returning 0.5.] 
+[> In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('lillietest', 'C:\Program Files\MATLAB\R2026a\toolbox\stats\stats\lillietest.m', 138)" style="font-weight:bold">lillietest</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\stats\stats\lillietest.m',138,0)">line 138</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('analyze_monte_carlo', 'C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\analyze_monte_carlo.m', 85)" style="font-weight:bold">analyze_monte_carlo</a> (<a href="matlab: opentoline('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\analyze_monte_carlo.m',85,0)">line 85</a>)] 
+  OlfatiSaber  vs Vasarhelyi    p = 0.5000  normal
+
+===== TESTES PAREADOS: phi_corr =====
+alpha = 0.05 ; Bonferroni p/ 6 comparacoes => alpha_c = 0.0083
+A            B             dif.media p (t par.)  p (Wilc.)  d Cohen signif.
+Couzin       Reynolds       -0.02773    0.00271    0.00151    -0.77 SIM
+Couzin       OlfatiSaber     0.01108    0.01727    0.01524     0.58 nao
+Couzin       Vasarhelyi      0.02527    0.00128    0.00359     0.84 SIM
+Reynolds     OlfatiSaber     0.03881    0.00026    0.00151     1.00 SIM
+Reynolds     Vasarhelyi      0.05300    0.00022    0.00151     1.02 SIM
+OlfatiSaber  Vasarhelyi      0.01419    0.09905    0.08592     0.39 nao
+
+===== TESTES PAREADOS: phi_vel =====
+alpha = 0.05 ; Bonferroni p/ 6 comparacoes => alpha_c = 0.0083
+A            B             dif.media p (t par.)  p (Wilc.)  d Cohen signif.
+Couzin       Reynolds       -0.01187    0.00000    0.00009    -5.65 SIM
+Couzin       OlfatiSaber    -0.01543    0.00000    0.00009    -8.45 SIM
+Couzin       Vasarhelyi      0.04146    0.00000    0.00009     2.72 SIM
+Reynolds     OlfatiSaber    -0.00356    0.00000    0.00009    -4.14 SIM
+Reynolds     Vasarhelyi      0.05333    0.00000    0.00009     3.48 SIM
+OlfatiSaber  Vasarhelyi      0.05689    0.00000    0.00009     3.76 SIM
+
+===== SEGURANCA: contagem de violacoes =====
+algoritmo         colisao       parede        total
+Couzin               9/20         0/20            9
+Reynolds             0/20         6/20            6
+OlfatiSaber          0/20         1/20            1
+Vasarhelyi           0/20         0/20            0
+
+NOTA: metricas de seguranca sao quase sempre zero, entao media e
+IC nao sao informativos. Reportar CONTAGEM de execucoes com
+violacao e comparar com teste de McNemar (pareado, binario).
+
+--- McNemar sobre violacao (colisao OU parede) ---
+A            B               A>B    B>A          p
+Couzin       Reynolds          7      4    0.54883
+Couzin       OlfatiSaber       9      1    0.02148
+Couzin       Vasarhelyi        9      0    0.00391
+Reynolds     OlfatiSaber       6      1    0.12500
+Reynolds     Vasarhelyi        6      0    0.03125
+OlfatiSaber  Vasarhelyi        1      0    1.00000
+
+Analise concluida.

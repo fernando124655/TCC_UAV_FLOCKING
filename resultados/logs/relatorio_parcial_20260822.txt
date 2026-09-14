@@ -1,0 +1,221 @@
+================================================================
+  RELATORIO PARCIAL - ANALISE COMPARATIVA DE ALGORITMOS DE
+  FLOCKING EM AMBIENTES INDOOR CONFINADOS
+  Gerado em 22/08/2026 21:50
+================================================================
+
+DESENHO EXPERIMENTAL
+--------------------
+Plataforma      : CoFlyers (MATLAB/Simulink + PX4 + Gazebo)
+Algoritmos      : Couzin (5 par.), Reynolds (6), Olfati-Saber (7),
+                  Vasarhelyi (11)
+Arena           : 60 x 60 m, 10 drones, v_flock = 1.0 m/s
+Ambientes       : vazia | 4 cilindros D=6m | 4 cubos L=6m, em (+-12,+-12)
+Otimizacao      : GA, populacao 30, 30 geracoes, multi-start 5 sementes,
+                  cada candidato avaliado sobre 3 config. iniciais pareadas
+Reproducibilidade: sementes fixadas a priori e disjuntas --
+                  treino 101-103 | teste 1-20 | batch 201-203
+Calibracao      : realizada APENAS na arena vazia. Ambientes com
+                  obstaculos sao teste de GENERALIZACAO.
+
+================================================================
+ 1. AUTO-TUNING: DESEMPENHO APOS OTIMIZACAO
+================================================================
+
+Tabela 1.1 - Melhor fitness por algoritmo (menor = melhor)
+
+algoritmo       par.     melhor F    phi_corr*    CV do F
+----------------------------------------------------------
+Couzin             5     0.031524       0.9685      17.7%
+Reynolds           6     0.011159       0.9888      39.5%
+OlfatiSaber        7     0.053293       0.9467      11.7%
+Vasarhelyi        11     0.027495       0.9725      12.7%
+
+* phi_corr implicito: com seguranca perfeita e velocidade saturada,
+  F = 1 - phi_corr.
+  CV do F entre as 5 sementes independentes = consistencia da busca.
+
+Tabela 1.2 - Estabilidade dos parametros (multi-start, 5 sementes)
+
+  Couzin
+  parametro         media   desv.pad   CV(%%)
+  r_r              2.7715     0.5798     20.9
+  k_o             12.2345     2.2280     18.2
+  k_a              8.5326     4.6214     54.2
+  r_shill          3.1788     1.5575     49.0
+  w_shill          3.7559     2.9454     78.4
+
+  Reynolds
+  parametro         media   desv.pad   CV(%%)
+  w_sep            6.3184     3.4516     54.6
+  w_ali            9.9284     0.0475      0.5
+  w_coh            0.1177     0.0852     72.4
+  w_shill          1.0756     1.8897    175.7
+  r_sep           12.8662     4.6187     35.9
+  r_shill          6.2630     3.3204     53.0
+
+  OlfatiSaber
+  parametro         media   desv.pad   CV(%%)
+  d_ref            6.7868     1.9711     29.0
+  c_vm            18.8982     7.4064     39.2
+  a                1.6208     1.3548     83.6
+  b                4.3437     1.6941     39.0
+  c_arena         13.4175     8.9954     67.0
+  d_arena          9.3694     2.8603     30.5
+  r_com           13.5650     3.2418     23.9
+
+  Vasarhelyi
+  parametro         media   desv.pad   CV(%%)
+  r_rep_0          5.3103     1.9790     37.3
+  p_rep            0.4379     0.0381      8.7
+  r_frict_0       19.3829     0.6502      3.4
+  c_frict          0.3263     0.0981     30.1
+  v_frict          0.0368     0.0171     46.5
+  p_frict          6.6244     3.5920     54.2
+  a_frict          1.4969     0.5413     36.2
+  r_shill_0        3.3986     1.2410     36.5
+  v_shill          2.3900     0.6111     25.6
+  p_shill          5.8302     3.1310     53.7
+  a_shill          1.5515     0.7125     45.9
+
+================================================================
+ 2. MONTE CARLO: DESEMPENHO SOB 20 CONFIGURACOES INICIAIS
+================================================================
+
+Tabela 2.1 - Alinhamento (phi_corr), arena vazia, n=20
+
+algoritmo       par.      media   desv.pad                  IC 95%%
+--------------------------------------------------------------------
+Couzin             5     0.9476     0.0122  [  0.9419,   0.9534]
+Reynolds           6     0.9754     0.0338  [  0.9595,   0.9912]
+OlfatiSaber        7     0.9366     0.0181  [  0.9281,   0.9450]
+Vasarhelyi        11     0.9224     0.0361  [  0.9054,   0.9393]
+
+Tabela 2.1.b - Seguranca: execucoes com violacao (de 20)
+
+algoritmo             colisao         parede      total  dist.min (m)*
+----------------------------------------------------------------------
+Couzin                   9/20           0/20          9           2.72
+Reynolds                 0/20           6/20          6           6.60
+OlfatiSaber              0/20           1/20          1           7.16
+Vasarhelyi               0/20           0/20          0           5.50
+
+* media harmonica temporal da distancia minima entre pares,
+  convertida de phi_MND por min(d) = r_coll/phi_MND, r_coll = 0.4 m.
+
+Tabela 2.2 - Alinhamento (phi_corr), com cubos, n=20
+
+algoritmo       par.      media   desv.pad                  IC 95%%
+--------------------------------------------------------------------
+Couzin             5     0.8060     0.0340  [  0.7901,   0.8219]
+Reynolds           6     0.9280     0.1000  [  0.8812,   0.9748]
+OlfatiSaber        7     0.5726     0.0559  [  0.5464,   0.5988]
+Vasarhelyi        11     0.6696     0.1190  [  0.6139,   0.7253]
+
+Tabela 2.2.b - Seguranca: execucoes com violacao (de 20)
+
+algoritmo             colisao         parede      total  dist.min (m)*
+----------------------------------------------------------------------
+Couzin                  13/20           0/20         13           2.60
+Reynolds                 0/20           2/20          2           6.23
+OlfatiSaber              0/20          20/20         20           5.18
+Vasarhelyi               0/20           0/20          0           5.04
+
+* media harmonica temporal da distancia minima entre pares,
+  convertida de phi_MND por min(d) = r_coll/phi_MND, r_coll = 0.4 m.
+
+Tabela 2.3 - Comparacoes pareadas de phi_corr (com cubos)
+Wilcoxon dos postos sinalizados; Bonferroni para 6 pares (alpha_c = 0.0083)
+
+A             B               dif.media   p (Wilc.)   d Cohen  signif.
+----------------------------------------------------------------------
+Couzin        Reynolds          -0.1220     0.00132     -1.46      SIM
+Couzin        OlfatiSaber        0.2334     0.00009      4.03      SIM
+Couzin        Vasarhelyi         0.1364     0.00010      1.17      SIM
+Reynolds      OlfatiSaber        0.3554     0.00010      3.34      SIM
+Reynolds      Vasarhelyi         0.2584     0.00010      1.80      SIM
+OlfatiSaber   Vasarhelyi        -0.0970     0.00573     -0.80      SIM
+
+================================================================
+ 3. GENERALIZACAO: PARAMETROS DA ARENA VAZIA EM AMBIENTE OBSTRUIDO
+================================================================
+
+Tabela 3.1 - Degradacao de phi_corr
+
+algoritmo       par.     vazia     cubos  queda (pp)     rel.  p (Wilc.)
+------------------------------------------------------------------------
+Couzin             5    0.9476    0.8060       14.16    14.9%    0.00009
+Reynolds           6    0.9754    0.9280        4.74     4.9%    0.00132
+OlfatiSaber        7    0.9366    0.5726       36.40    38.9%    0.00009
+Vasarhelyi        11    0.9224    0.6696       25.27    27.4%    0.00009
+
+Ranking de robustez (menor degradacao primeiro):
+  1. Reynolds       +4.74 pp  (6 parametros)
+  2. Couzin         +14.16 pp  (5 parametros)
+  3. Vasarhelyi     +25.27 pp  (11 parametros)
+  4. OlfatiSaber    +36.40 pp  (7 parametros)
+
+Correlacao de Spearman com o numero de parametros:
+  desempenho (phi_corr, arena vazia) : rho = -0.80
+  degradacao (vazia -> cubos)        : rho = +0.60
+  ATENCAO: n = 4 nao permite inferencia. Valores DESCRITIVOS.
+  Para n = 4, significancia a 5% exigiria |rho| = 1.00.
+
+================================================================
+ 4. BATCH PROCESSING: ROBUSTEZ A Tc E RUIDO DE VELOCIDADE
+================================================================
+
+Tabela 4.1 - Amplitude de phi_corr na grade 26x26 (vazia)
+
+algoritmo       par.        min        max    amplitude var. entre rep.
+------------------------------------------------------------------------
+Couzin             5     0.8937     0.9606       0.0668         0.0147
+Reynolds           6     0.6583     0.9858       0.3275         0.0200
+OlfatiSaber        7     0.6922     0.9445       0.2523         0.0249
+Vasarhelyi        11     0.8364     0.9781       0.1416         0.0211
+
+Tabela 4.2 - Amplitude de phi_corr na grade 26x26 (cubos)
+
+algoritmo       par.        min        max    amplitude var. entre rep.
+------------------------------------------------------------------------
+Couzin             5     0.7294     0.8384       0.1090         0.0236
+Reynolds           6     0.5822     0.9752       0.3930         0.0446
+OlfatiSaber        7     0.3720     0.6937       0.3217         0.0739
+Vasarhelyi        11     0.3936     0.7892       0.3956         0.1006
+
+================================================================
+ 5. SINTESE E ESTADO DAS HIPOTESES
+================================================================
+
+H1-A: maior complexidade -> melhor desempenho apos otimizacao
+  REFUTADA, com sinal invertido. A ordenacao por numero de parametros
+  (5, 6, 7, 11) nao corresponde a ordenacao por desempenho. O algoritmo
+  com 6 parametros obtem o melhor alinhamento; o de 11 fica em ultimo.
+  Spearman rho = -0.80 (descritivo, n=4).
+
+H1-B: maior complexidade -> menor robustez
+  TENDENCIA NA DIRECAO PREVISTA pela analise de generalizacao
+  (Spearman rho = +0.60). Aguarda o batch com cubos para fechamento
+  pela segunda fonte de evidencia (perturbacao de Tc e ruido).
+
+H2: a arquitetura determina a reality gap
+  SEM DADOS. Exige a etapa de alta fidelidade de producao, ainda
+  nao executada. Os dados de alta fidelidade da fase de validacao
+  nao sao utilizaveis: o mundo Gazebo continha obstaculos ausentes
+  do mapa do CoFlyers e as paredes fisicas estavam 0.5 m deslocadas.
+  A inconsistencia foi corrigida antes da producao.
+
+ACHADO ADICIONAL - perfil de falha por arquitetura
+  Cada arquitetura apresenta um tipo caracteristico de violacao de
+  seguranca, ESTAVEL entre ambientes e geometrias:
+    Couzin        (prioridade lexicografica) : colisao entre drones
+    Reynolds      (repulsao 1/d^2)           : saida da arena
+    Olfati-Saber  (phi_beta limitada)        : penetracao em obstaculo
+    Vasarhelyi    (curva de frenagem)        : nenhuma violacao
+  O Vasarhelyi nao registra violacao em nenhuma das 20 execucoes de
+  cada ambiente -- ao custo de reducao de velocidade.
+
+ETAPAS PENDENTES
+  Batch com cubos : 3 de 4 algoritmos (~30 h de maquina)
+  Alta fidelidade : nao iniciada (~28 h presenciais)
+

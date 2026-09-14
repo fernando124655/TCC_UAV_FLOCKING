@@ -1,0 +1,100 @@
+analyze_batch();
+Couzin       [vazia ] <- bp_Couzin_vazia_20260817_180751.mat
+Reynolds     [vazia ] <- bp_Reynolds_vazia_20260818_104435.mat
+OlfatiSaber  [vazia ] <- bp_OlfatiSaber_vazia_20260818_191540.mat
+Vasarhelyi   [vazia ] <- bp_Vasarhelyi_vazia_20260819_095104.mat
+Couzin       [cubos ] <- bp_Couzin_cubos_20260819_162406.mat
+Reynolds     [cubos ] <- bp_Reynolds_cubos_20260820_143909.mat
+OlfatiSaber  [cubos ] <- bp_OlfatiSaber_cubos_20260820_225721.mat
+Vasarhelyi   [cubos ] <- bp_Vasarhelyi_cubos_20260821_082627.mat
+
+================================================================
+ AMBIENTE: ARENA VAZIA
+================================================================
+
+--- Robustez de phi_corr na grade (Tc, eta) ---
+algoritmo      par      min      max  amplitude  queda p/Tc queda p/eta   reg.op.
+----------------------------------------------------------------------------------
+Couzin           5   0.8937   0.9606     0.0668      0.0016      0.0218      100%
+Reynolds         6   0.6583   0.9858     0.3275     -0.0027      0.1589       85%
+OlfatiSaber      7   0.6922   0.9445     0.2523      0.0031      0.0865       92%
+Vasarhelyi      11   0.8364   0.9781     0.1416      0.0001      0.0369       99%
+
+  amplitude   : max - min de phi_corr na grade
+  queda p/Tc  : reducao de phi_corr ao ir de Tc=0.01 a Tc=1.01 s
+  queda p/eta : reducao ao ir de eta=0.00 a eta=0.50 m/s
+  reg.op.     : % da grade com phi_corr >= 90% do melhor do algoritmo
+
+--- Violacoes de seguranca na grade (% de 676 combinacoes) ---
+algoritmo      par        colisao         parede
+--------------------------------------------------
+Couzin           5          88.6%          93.2%
+Reynolds         6           0.0%          96.2%
+OlfatiSaber      7           0.1%          89.6%
+Vasarhelyi      11           0.0%          96.0%
+
+--- Variabilidade entre as 3 repeticoes (desv.pad. medio) ---
+algoritmo         phi_corr      phi_vel
+----------------------------------------
+Couzin             0.01471      0.00280
+Reynolds           0.02001      0.00582
+OlfatiSaber        0.02494      0.00157
+Vasarhelyi         0.02109      0.01444
+
+================================================================
+ AMBIENTE: COM CUBOS
+================================================================
+
+--- Robustez de phi_corr na grade (Tc, eta) ---
+algoritmo      par      min      max  amplitude  queda p/Tc queda p/eta   reg.op.
+----------------------------------------------------------------------------------
+Couzin           5   0.7294   0.8384     0.1090      0.0023      0.0358       97%
+Reynolds         6   0.5822   0.9752     0.3930      0.0033      0.2416       75%
+OlfatiSaber      7   0.3720   0.6937     0.3217     -0.0073      0.0365       10%
+Vasarhelyi      11   0.3936   0.7892     0.3956     -0.0037      0.1283        4%
+
+  amplitude   : max - min de phi_corr na grade
+  queda p/Tc  : reducao de phi_corr ao ir de Tc=0.01 a Tc=1.01 s
+  queda p/eta : reducao ao ir de eta=0.00 a eta=0.50 m/s
+  reg.op.     : % da grade com phi_corr >= 90% do melhor do algoritmo
+
+--- Violacoes de seguranca na grade (% de 676 combinacoes) ---
+algoritmo      par        colisao         parede
+--------------------------------------------------
+Couzin           5          99.0%          94.1%
+Reynolds         6           0.0%          93.5%
+OlfatiSaber      7           4.6%         100.0%
+Vasarhelyi      11           0.0%          96.2%
+
+--- Variabilidade entre as 3 repeticoes (desv.pad. medio) ---
+algoritmo         phi_corr      phi_vel
+----------------------------------------
+Couzin             0.02360      0.00452
+Reynolds           0.04464      0.01254
+OlfatiSaber        0.07392      0.00227
+Vasarhelyi         0.10063      0.01475
+
+================================================================
+ H1-B: COMPLEXIDADE PARAMETRICA vs ROBUSTEZ A PERTURBACAO
+================================================================
+
+arena vazia:
+  Spearman (parametros x amplitude)      : rho = +0.20
+  Spearman (parametros x sensib. a Tc)   : rho = +0.00
+  Spearman (parametros x sensib. a ruido): rho = +0.20
+
+com cubos:
+  Spearman (parametros x amplitude)      : rho = +0.80
+  Spearman (parametros x sensib. a Tc)   : rho = -0.60
+  Spearman (parametros x sensib. a ruido): rho = +0.40
+
+ATENCAO: n = 4 nao permite inferencia estatistica. Para n = 4, a
+significancia a 5% exigiria |rho| = 1.00. Valores DESCRITIVOS,
+a serem interpretados como tendencia, nao como teste.
+
+Ranking de robustez por amplitude (menor = mais robusto):
+  arena vazia : Couzin (0.067)  Vasarhelyi (0.142)  OlfatiSaber (0.252)  Reynolds (0.328)  
+  com cubos   : Couzin (0.109)  OlfatiSaber (0.322)  Reynolds (0.393)  Vasarhelyi (0.396)  
+
+Figuras salvas: batch_superficies_*.png e batch_sensibilidades.png
+diary off;

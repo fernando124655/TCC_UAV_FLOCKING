@@ -1,0 +1,142 @@
+analyze_hifi();
+=== EXTRAINDO METRICAS DAS EXECUCOES DE ALTA FIDELIDADE ===
+
+Couzin        [vazia ] 5/5 execucoes | duracao media 247.5 s
+Reynolds      [vazia ] 5/5 execucoes | duracao media 247.1 s
+OlfatiSaber   [vazia ] 5/5 execucoes | duracao media 247.1 s
+Vasarhelyi    [vazia ] 5/5 execucoes | duracao media 247.8 s
+Couzin        [cubos ] 5/5 execucoes | duracao media 248.5 s
+Reynolds      [cubos ] 5/5 execucoes | duracao media 246.7 s
+OlfatiSaber   [cubos ] 5/5 execucoes | duracao media 246.7 s
+Vasarhelyi    [cubos ] 5/5 execucoes | duracao media 247.7 s
+Couzin        [cilindros] 5/5 execucoes | duracao media 246.2 s
+Reynolds      [cilindros] 5/5 execucoes | duracao media 246.0 s
+OlfatiSaber   [cilindros] 5/5 execucoes | duracao media 246.1 s
+Vasarhelyi    [cilindros] 5/5 execucoes | duracao media 245.9 s
+
+================================================================
+ ALTA FIDELIDADE - ambiente: vazia (n = 5)
+================================================================
+
+algoritmo      par   phi_corr   desv.pad                 IC 95%      phi_vel
+------------------------------------------------------------------------------
+Couzin           5     0.8698     0.0134  [  0.8531,   0.8865]       0.9766
+Reynolds         6     0.8994     0.0581  [  0.8272,   0.9716]       0.8809
+OlfatiSaber      7     0.8580     0.0431  [  0.8045,   0.9116]       0.9855
+Vasarhelyi      11     0.8818     0.0281  [  0.8470,   0.9167]       0.8581
+
+algoritmo            colisao         parede   dist.min (m)
+------------------------------------------------------------
+Couzin                  4/5           0/5           2.28
+Reynolds                0/5           1/5           6.12
+OlfatiSaber             1/5           4/5           5.14
+Vasarhelyi              0/5           0/5           5.25
+
+================================================================
+ ALTA FIDELIDADE - ambiente: cubos (n = 5)
+================================================================
+
+algoritmo      par   phi_corr   desv.pad                 IC 95%      phi_vel
+------------------------------------------------------------------------------
+Couzin           5     0.7064     0.0687  [  0.6211,   0.7917]       0.9518
+Reynolds         6     0.7197     0.0813  [  0.6188,   0.8206]       0.7584
+OlfatiSaber      7     0.5100     0.0417  [  0.4582,   0.5617]       0.9646
+Vasarhelyi      11     0.4594     0.1245  [  0.3048,   0.6139]       0.6479
+
+algoritmo            colisao         parede   dist.min (m)
+------------------------------------------------------------
+Couzin                  3/5           1/5           2.07
+Reynolds                0/5           0/5           6.04
+OlfatiSaber             0/5           5/5           3.97
+Vasarhelyi              0/5           0/5           5.09
+
+================================================================
+ ALTA FIDELIDADE - ambiente: cilindros (n = 5)
+================================================================
+
+algoritmo      par   phi_corr   desv.pad                 IC 95%      phi_vel
+------------------------------------------------------------------------------
+Couzin           5     0.7758     0.0271  [  0.7422,   0.8095]       0.9613
+Reynolds         6     0.7713     0.0416  [  0.7196,   0.8230]       0.7855
+OlfatiSaber      7     0.5147     0.0830  [  0.4116,   0.6178]       0.9685
+Vasarhelyi      11     0.6062     0.0795  [  0.5075,   0.7049]       0.7105
+
+algoritmo            colisao         parede   dist.min (m)
+------------------------------------------------------------
+Couzin                  0/5           0/5           2.44
+Reynolds                0/5           0/5           5.64
+OlfatiSaber             1/5           5/5           3.81
+Vasarhelyi              0/5           0/5           5.07
+
+================================================================
+ REALITY GAP: RAPID PROTOTYPING -> ALTA FIDELIDADE
+================================================================
+
+--- ambiente: vazia ---
+algoritmo      par        RP      HiFi   gap (pp)     rel.  p (Wilc.)   d Cohen
+--------------------------------------------------------------------------------
+Couzin           5    0.9574    0.8698       8.76     9.1%     0.0625      5.20
+Reynolds         6    0.9865    0.8994       8.71     8.8%     0.0625      1.64
+OlfatiSaber      7    0.9369    0.8580       7.89     8.4%     0.0625      3.30
+Vasarhelyi      11    0.9462    0.8818       6.43     6.8%     0.0625      5.03
+
+--- ambiente: cubos ---
+algoritmo      par        RP      HiFi   gap (pp)     rel.  p (Wilc.)   d Cohen
+--------------------------------------------------------------------------------
+Couzin           5    0.7976    0.7064       9.12    11.4%     0.0625      1.46
+Reynolds         6    0.9580    0.7197      23.83    24.9%     0.0625      4.35
+OlfatiSaber      7    0.5923    0.5100       8.23    13.9%     0.1250      1.13
+Vasarhelyi      11    0.7294    0.4594      27.00    37.0%     0.0625      1.93
+
+--- ambiente: cilindros ---
+algoritmo      par        RP      HiFi   gap (pp)     rel.  p (Wilc.)   d Cohen
+--------------------------------------------------------------------------------
+Couzin           5    0.8605    0.7758       8.47     9.8%     0.0625      2.37
+Reynolds         6    0.9653    0.7713      19.40    20.1%     0.0625      6.44
+OlfatiSaber      7    0.5489    0.5147       3.42     6.2%     0.6250      0.43
+Vasarhelyi      11    0.8558    0.6062      24.96    29.2%     0.0625      2.23
+
+NOTA SOBRE OS p-VALORES: com n = 5, o menor p possivel no teste de
+Wilcoxon pareado e 0.0625. Nenhuma comparacao individual pode
+atingir 0.05. Interpretar por TAMANHO DE EFEITO (d de Cohen) e
+consistencia de sinal entre as 5 execucoes, nao por significancia.
+
+================================================================
+ H2: ARQUITETURA vs COMPLEXIDADE PARAMETRICA
+================================================================
+
+--- vazia ---
+Ranking por reality gap (menor primeiro):
+  1. Vasarhelyi     +6.43 pp  | 11 par. | curva de frenagem
+  2. OlfatiSaber    +7.89 pp  |  7 par. | potencial suave
+  3. Reynolds       +8.71 pp  |  6 par. | heuristica ponderada
+  4. Couzin         +8.76 pp  |  5 par. | prioridade lexicografica
+
+Spearman (parametros x reality gap): rho = -1.00
+  n = 4: valor DESCRITIVO. Significancia a 5% exigiria |rho| = 1.00.
+  H2 preve que a ordenacao siga a ARQUITETURA, nao a complexidade.
+
+--- cubos ---
+Ranking por reality gap (menor primeiro):
+  1. OlfatiSaber    +8.23 pp  |  7 par. | potencial suave
+  2. Couzin         +9.12 pp  |  5 par. | prioridade lexicografica
+  3. Reynolds      +23.83 pp  |  6 par. | heuristica ponderada
+  4. Vasarhelyi    +27.00 pp  | 11 par. | curva de frenagem
+
+Spearman (parametros x reality gap): rho = +0.40
+  n = 4: valor DESCRITIVO. Significancia a 5% exigiria |rho| = 1.00.
+  H2 preve que a ordenacao siga a ARQUITETURA, nao a complexidade.
+
+--- cilindros ---
+Ranking por reality gap (menor primeiro):
+  1. OlfatiSaber    +3.42 pp  |  7 par. | potencial suave
+  2. Couzin         +8.47 pp  |  5 par. | prioridade lexicografica
+  3. Reynolds      +19.40 pp  |  6 par. | heuristica ponderada
+  4. Vasarhelyi    +24.96 pp  | 11 par. | curva de frenagem
+
+Spearman (parametros x reality gap): rho = +0.40
+  n = 4: valor DESCRITIVO. Significancia a 5% exigiria |rho| = 1.00.
+  H2 preve que a ordenacao siga a ARQUITETURA, nao a complexidade.
+
+Figura salva: reality_gap.png
+diary off;

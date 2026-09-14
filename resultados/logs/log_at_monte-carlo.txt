@@ -1,0 +1,152 @@
+for alg = ["Couzin","Reynolds","OlfatiSaber","Vasarhelyi"]
+    main_monte_carlo_rapid_prototyping(char(alg));
+end
+=== Monte Carlo Rapid Prototyping: Couzin ===
+Execucoes: 20 | d_min: 5.0 m | z_init: 1.0 m | sementes: 1..20
+Algoritmo ativo confirmado: Couzin
+Arena X:[-30.0, 30.0] Y:[-30.0, 30.0] | drones: 10
+  run  1 (seed  1): F=0.0390 corr=0.9610 vel=1.0086 coll=0 wall=0 MND=0.153  [27.8s]
+  run  2 (seed  2): F=0.7828 corr=0.9650 vel=1.0094 coll=3.324e-05 wall=0 MND=0.147  [28.0s]
+  run  3 (seed  3): F=0.8963 corr=0.9532 vel=1.0072 coll=6.094e-05 wall=0 MND=0.140  [28.3s]
+  run  4 (seed  4): F=0.3296 corr=0.9409 vel=1.0096 coll=5.54e-06 wall=0 MND=0.145  [28.2s]
+  run  5 (seed  5): F=0.0333 corr=0.9667 vel=1.0088 coll=0 wall=0 MND=0.135  [28.4s]
+  run  6 (seed  6): F=0.0405 corr=0.9595 vel=1.0088 coll=0 wall=0 MND=0.149  [28.0s]
+  run  7 (seed  7): F=0.0629 corr=0.9371 vel=1.0073 coll=0 wall=0 MND=0.144  [28.1s]
+  run  8 (seed  8): F=0.0489 corr=0.9511 vel=1.0066 coll=0 wall=0 MND=0.149  [28.1s]
+  run  9 (seed  9): F=0.0695 corr=0.9305 vel=1.0027 coll=0 wall=0 MND=0.149  [28.3s]
+  run 10 (seed 10): F=0.0520 corr=0.9480 vel=1.0076 coll=0 wall=0 MND=0.147  [28.5s]
+  run 11 (seed 11): F=0.6966 corr=0.9171 vel=1.0034 coll=2.216e-05 wall=0 MND=0.145  [28.2s]
+  run 12 (seed 12): F=0.6087 corr=0.9450 vel=1.0079 coll=1.662e-05 wall=0 MND=0.148  [28.0s]
+  run 13 (seed 13): F=0.0496 corr=0.9504 vel=1.0094 coll=0 wall=0 MND=0.144  [28.2s]
+  run 14 (seed 14): F=0.0533 corr=0.9467 vel=1.0073 coll=0 wall=0 MND=0.151  [28.5s]
+  run 15 (seed 15): F=0.0533 corr=0.9467 vel=1.0099 coll=0 wall=0 MND=0.153  [28.4s]
+  run 16 (seed 16): F=0.4998 corr=0.9380 vel=1.0052 coll=1.108e-05 wall=0 MND=0.153  [28.0s]
+  run 17 (seed 17): F=0.9496 corr=0.9428 vel=1.0055 coll=9.973e-05 wall=0 MND=0.146  [28.2s]
+  run 18 (seed 18): F=0.6883 corr=0.9423 vel=1.0071 coll=2.216e-05 wall=0 MND=0.159  [28.1s]
+  run 19 (seed 19): F=0.0357 corr=0.9643 vel=1.0089 coll=0 wall=0 MND=0.142  [28.1s]
+  run 20 (seed 20): F=0.8832 corr=0.9463 vel=1.0086 coll=5.54e-05 wall=0 MND=0.152  [28.3s]
+Concluido em 9.4 min (media 28.2 s/execucao)
+
+===== RESUMO ESTATISTICO (Couzin, n=20) =====
+metrica           media    desv.pad.                     IC 95%
+F               0.34365      0.35921   [   0.17553,    0.51176]
+phi_corr        0.94763      0.01224   [   0.94190,    0.95336]
+phi_vel         1.00750      0.00199   [   1.00657,    1.00843]
+phi_coll        0.00002      0.00003   [   0.00000,    0.00003]
+phi_wall        0.00000      0.00000   [   0.00000,    0.00000]
+phi_MND         0.14751      0.00531   [   0.14502,    0.15000]
+
+Resultados salvos em: data_save/monte_carlo/mc_Couzin_vazia_20260811_162623.mat
+XML original preservado. Copia de trabalho: xml_config_files\parameters_mc_vazia.xml
+=== Monte Carlo Rapid Prototyping: Reynolds ===
+Execucoes: 20 | d_min: 5.0 m | z_init: 1.0 m | sementes: 1..20
+Algoritmo ativo confirmado: Reynolds
+Arena X:[-30.0, 30.0] Y:[-30.0, 30.0] | drones: 10
+  run  1 (seed  1): F=1.0000 corr=0.9863 vel=1.0195 coll=0 wall=0.05268 MND=0.064  [28.4s]
+  run  2 (seed  2): F=0.0110 corr=0.9890 vel=1.0197 coll=0 wall=0 MND=0.065  [28.2s]
+  run  3 (seed  3): F=0.0095 corr=0.9905 vel=1.0191 coll=0 wall=0 MND=0.060  [28.6s]
+  run  4 (seed  4): F=0.0225 corr=0.9775 vel=1.0192 coll=0 wall=0 MND=0.065  [28.4s]
+  run  5 (seed  5): F=0.0109 corr=0.9891 vel=1.0198 coll=0 wall=0 MND=0.059  [28.4s]
+  run  6 (seed  6): F=1.0000 corr=0.9858 vel=1.0193 coll=0 wall=0.07918 MND=0.065  [28.4s]
+  run  7 (seed  7): F=0.0229 corr=0.9771 vel=1.0190 coll=0 wall=0 MND=0.058  [28.3s]
+  run  8 (seed  8): F=1.0000 corr=0.8334 vel=1.0174 coll=0 wall=0.09394 MND=0.060  [28.3s]
+  run  9 (seed  9): F=0.0261 corr=0.9739 vel=1.0195 coll=0 wall=0 MND=0.060  [28.0s]
+  run 10 (seed 10): F=0.0173 corr=0.9827 vel=1.0206 coll=0 wall=0 MND=0.057  [28.3s]
+  run 11 (seed 11): F=0.0153 corr=0.9847 vel=1.0203 coll=0 wall=0 MND=0.067  [28.5s]
+  run 12 (seed 12): F=0.0236 corr=0.9764 vel=1.0188 coll=0 wall=0 MND=0.056  [28.6s]
+  run 13 (seed 13): F=0.0251 corr=0.9749 vel=1.0197 coll=0 wall=0 MND=0.057  [28.2s]
+  run 14 (seed 14): F=1.0000 corr=0.9874 vel=1.0187 coll=0 wall=0.03131 MND=0.061  [28.4s]
+  run 15 (seed 15): F=0.0251 corr=0.9749 vel=1.0198 coll=0 wall=0 MND=0.061  [28.5s]
+  run 16 (seed 16): F=0.0108 corr=0.9892 vel=1.0187 coll=0 wall=0 MND=0.057  [28.2s]
+  run 17 (seed 17): F=0.9938 corr=0.9829 vel=1.0199 coll=0 wall=0.000349 MND=0.057  [28.3s]
+  run 18 (seed 18): F=0.0158 corr=0.9842 vel=1.0197 coll=0 wall=0 MND=0.059  [28.1s]
+  run 19 (seed 19): F=0.0154 corr=0.9846 vel=1.0196 coll=0 wall=0 MND=0.066  [28.3s]
+  run 20 (seed 20): F=0.9965 corr=0.9828 vel=1.0192 coll=0 wall=0.0004737 MND=0.063  [28.3s]
+Concluido em 9.4 min (media 28.3 s/execucao)
+
+===== RESUMO ESTATISTICO (Reynolds, n=20) =====
+metrica           media    desv.pad.                     IC 95%
+F               0.31208      0.46100   [   0.09633,    0.52784]
+phi_corr        0.97536      0.03383   [   0.95953,    0.99119]
+phi_vel         1.01937      0.00068   [   1.01905,    1.01969]
+phi_coll        0.00000      0.00000   [   0.00000,    0.00000]
+phi_wall        0.01290      0.02858   [  -0.00048,    0.02627]
+phi_MND         0.06076      0.00347   [   0.05913,    0.06238]
+
+Resultados salvos em: data_save/monte_carlo/mc_Reynolds_vazia_20260811_163552.mat
+XML original preservado. Copia de trabalho: xml_config_files\parameters_mc_vazia.xml
+=== Monte Carlo Rapid Prototyping: OlfatiSaber ===
+Execucoes: 20 | d_min: 5.0 m | z_init: 1.0 m | sementes: 1..20
+Algoritmo ativo confirmado: OlfatiSaber
+Arena X:[-30.0, 30.0] Y:[-30.0, 30.0] | drones: 10
+  run  1 (seed  1): F=0.0764 corr=0.9236 vel=1.0240 coll=0 wall=0 MND=0.057  [28.6s]
+  run  2 (seed  2): F=0.0406 corr=0.9594 vel=1.0226 coll=0 wall=0 MND=0.056  [28.4s]
+  run  3 (seed  3): F=0.0354 corr=0.9646 vel=1.0227 coll=0 wall=0 MND=0.054  [28.7s]
+  run  4 (seed  4): F=0.0654 corr=0.9346 vel=1.0227 coll=0 wall=0 MND=0.056  [28.6s]
+  run  5 (seed  5): F=0.0975 corr=0.9025 vel=1.0229 coll=0 wall=0 MND=0.056  [28.4s]
+  run  6 (seed  6): F=0.0526 corr=0.9474 vel=1.0235 coll=0 wall=0 MND=0.057  [28.5s]
+  run  7 (seed  7): F=0.0591 corr=0.9409 vel=1.0230 coll=0 wall=0 MND=0.056  [28.6s]
+  run  8 (seed  8): F=0.0609 corr=0.9391 vel=1.0218 coll=0 wall=0 MND=0.056  [28.4s]
+  run  9 (seed  9): F=1.0000 corr=0.9459 vel=1.0216 coll=0 wall=0.005959 MND=0.056  [28.4s]
+  run 10 (seed 10): F=0.0522 corr=0.9478 vel=1.0226 coll=0 wall=0 MND=0.055  [28.2s]
+  run 11 (seed 11): F=0.1094 corr=0.8906 vel=1.0233 coll=0 wall=0 MND=0.056  [28.4s]
+  run 12 (seed 12): F=0.0606 corr=0.9394 vel=1.0223 coll=0 wall=0 MND=0.057  [28.2s]
+  run 13 (seed 13): F=0.0879 corr=0.9121 vel=1.0240 coll=0 wall=0 MND=0.053  [28.5s]
+  run 14 (seed 14): F=0.0591 corr=0.9409 vel=1.0241 coll=0 wall=0 MND=0.056  [28.1s]
+  run 15 (seed 15): F=0.0536 corr=0.9464 vel=1.0233 coll=0 wall=0 MND=0.055  [28.5s]
+  run 16 (seed 16): F=0.0701 corr=0.9299 vel=1.0223 coll=0 wall=0 MND=0.057  [28.3s]
+  run 17 (seed 17): F=0.0552 corr=0.9448 vel=1.0226 coll=0 wall=0 MND=0.055  [28.2s]
+  run 18 (seed 18): F=0.0519 corr=0.9481 vel=1.0236 coll=0 wall=0 MND=0.055  [28.5s]
+  run 19 (seed 19): F=0.0557 corr=0.9443 vel=1.0222 coll=0 wall=0 MND=0.058  [28.3s]
+  run 20 (seed 20): F=0.0713 corr=0.9287 vel=1.0235 coll=0 wall=0 MND=0.056  [28.6s]
+Concluido em 9.5 min (media 28.4 s/execucao)
+
+===== RESUMO ESTATISTICO (OlfatiSaber, n=20) =====
+metrica           media    desv.pad.                     IC 95%
+F               0.11074      0.21007   [   0.01243,    0.20906]
+phi_corr        0.93655      0.01806   [   0.92810,    0.94500]
+phi_vel         1.02293      0.00072   [   1.02259,    1.02327]
+phi_coll        0.00000      0.00000   [   0.00000,    0.00000]
+phi_wall        0.00030      0.00133   [  -0.00033,    0.00092]
+phi_MND         0.05589      0.00119   [   0.05533,    0.05644]
+
+Resultados salvos em: data_save/monte_carlo/mc_OlfatiSaber_vazia_20260811_164523.mat
+XML original preservado. Copia de trabalho: xml_config_files\parameters_mc_vazia.xml
+=== Monte Carlo Rapid Prototyping: Vasarhelyi ===
+Execucoes: 20 | d_min: 5.0 m | z_init: 1.0 m | sementes: 1..20
+Algoritmo ativo confirmado: Vasarhelyi
+Arena X:[-30.0, 30.0] Y:[-30.0, 30.0] | drones: 10
+  run  1 (seed  1): F=0.0521 corr=0.9681 vel=0.9654 coll=0 wall=0 MND=0.074  [30.3s]
+  run  2 (seed  2): F=0.0537 corr=0.9569 vel=0.9749 coll=0 wall=0 MND=0.072  [30.3s]
+  run  3 (seed  3): F=0.0377 corr=0.9666 vel=0.9841 coll=0 wall=0 MND=0.071  [29.9s]
+  run  4 (seed  4): F=0.1557 corr=0.8756 vel=0.9546 coll=0 wall=0 MND=0.073  [30.1s]
+  run  5 (seed  5): F=0.0433 corr=0.9638 vel=0.9794 coll=0 wall=0 MND=0.072  [30.5s]
+  run  6 (seed  6): F=0.0941 corr=0.9469 vel=0.9499 coll=0 wall=0 MND=0.074  [30.4s]
+  run  7 (seed  7): F=0.1080 corr=0.9198 vel=0.9583 coll=0 wall=0 MND=0.073  [30.3s]
+  run  8 (seed  8): F=0.0525 corr=0.9560 vel=0.9775 coll=0 wall=0 MND=0.073  [30.1s]
+  run  9 (seed  9): F=0.1734 corr=0.8676 vel=0.9477 coll=0 wall=0 MND=0.075  [30.3s]
+  run 10 (seed 10): F=0.1983 corr=0.8844 vel=0.9258 coll=0 wall=0 MND=0.077  [30.5s]
+  run 11 (seed 11): F=0.1541 corr=0.8636 vel=0.9657 coll=0 wall=0 MND=0.073  [30.1s]
+  run 12 (seed 12): F=0.1052 corr=0.8992 vel=0.9834 coll=0 wall=0 MND=0.072  [30.5s]
+  run 13 (seed 13): F=0.1300 corr=0.8829 vel=0.9711 coll=0 wall=0 MND=0.071  [30.5s]
+  run 14 (seed 14): F=0.1023 corr=0.9247 vel=0.9590 coll=0 wall=0 MND=0.073  [30.4s]
+  run 15 (seed 15): F=0.1253 corr=0.9077 vel=0.9542 coll=0 wall=0 MND=0.076  [30.4s]
+  run 16 (seed 16): F=0.0302 corr=0.9733 vel=0.9857 coll=0 wall=0 MND=0.071  [30.3s]
+  run 17 (seed 17): F=0.0627 corr=0.9462 vel=0.9769 coll=0 wall=0 MND=0.070  [30.3s]
+  run 18 (seed 18): F=0.1059 corr=0.9033 vel=0.9759 coll=0 wall=0 MND=0.072  [30.0s]
+  run 19 (seed 19): F=0.0842 corr=0.9302 vel=0.9702 coll=0 wall=0 MND=0.072  [30.3s]
+  run 20 (seed 20): F=0.1135 corr=0.9105 vel=0.9611 coll=0 wall=0 MND=0.073  [30.5s]
+Concluido em 10.1 min (media 30.3 s/execucao)
+
+===== RESUMO ESTATISTICO (Vasarhelyi, n=20) =====
+metrica           media    desv.pad.                     IC 95%
+F               0.09911      0.04772   [   0.07678,    0.12144]
+phi_corr        0.92236      0.03614   [   0.90545,    0.93927]
+phi_vel         0.96604      0.01501   [   0.95901,    0.97306]
+phi_coll        0.00000      0.00000   [   0.00000,    0.00000]
+phi_wall        0.00000      0.00000   [   0.00000,    0.00000]
+phi_MND         0.07280      0.00182   [   0.07195,    0.07366]
+
+Resultados salvos em: data_save/monte_carlo/mc_Vasarhelyi_vazia_20260811_165531.mat
+XML original preservado. Copia de trabalho: xml_config_files\parameters_mc_vazia.xml
+diary off;

@@ -1,0 +1,103 @@
+Couzin       <- mc_Couzin_obstaculos_20260814_162949.mat
+Reynolds     <- mc_Reynolds_obstaculos_20260814_164343.mat
+OlfatiSaber  <- mc_OlfatiSaber_obstaculos_20260814_165742.mat
+Vasarhelyi   <- mc_Vasarhelyi_obstaculos_20260814_171330.mat
+
+Pareamento confirmado: 20 configuracoes identicas (sementes 1-20)
+
+===== ESTATISTICAS DESCRITIVAS (ambiente: obstaculos, n=20) =====
+
+--- phi_corr ---
+algoritmo     par      media   desv.pad                 IC 95% violacoes
+Couzin          5    0.80600    0.03399  [ 0.79010,  0.82191] -
+Reynolds        6    0.92798    0.10002  [ 0.88117,  0.97479] -
+OlfatiSaber     7    0.57259    0.05592  [ 0.54642,  0.59876] -
+Vasarhelyi     11    0.66962    0.11897  [ 0.61394,  0.72530] -
+
+--- phi_vel ---
+algoritmo     par      media   desv.pad                 IC 95% violacoes
+Couzin          5    0.98758    0.00577  [ 0.98488,  0.99028] -
+Reynolds        6    1.02322    0.00355  [ 1.02156,  1.02488] -
+OlfatiSaber     7    1.01703    0.00125  [ 1.01645,  1.01762] -
+Vasarhelyi     11    0.72183    0.03353  [ 0.70614,  0.73752] -
+
+--- phi_coll ---
+algoritmo     par      media   desv.pad                 IC 95% violacoes
+Couzin          5    0.00002    0.00003  [ 0.00001,  0.00004] 13/20
+Reynolds        6    0.00000    0.00000  [ 0.00000,  0.00000] 0/20
+OlfatiSaber     7    0.00000    0.00000  [ 0.00000,  0.00000] 0/20
+Vasarhelyi     11    0.00000    0.00000  [ 0.00000,  0.00000] 0/20
+
+--- phi_wall ---
+algoritmo     par      media   desv.pad                 IC 95% violacoes
+Couzin          5    0.00000    0.00000  [ 0.00000,  0.00000] 0/20
+Reynolds        6    0.00791    0.03529  [-0.00861,  0.02443] 2/20
+OlfatiSaber     7    0.00409    0.00118  [ 0.00354,  0.00465] 20/20
+Vasarhelyi     11    0.00000    0.00000  [ 0.00000,  0.00000] 0/20
+
+--- phi_MND ---
+algoritmo     par      media   desv.pad                 IC 95% violacoes
+Couzin          5    0.15394    0.00579  [ 0.15123,  0.15665] -
+Reynolds        6    0.06476    0.00615  [ 0.06189,  0.06764] -
+OlfatiSaber     7    0.07779    0.00654  [ 0.07472,  0.08085] -
+Vasarhelyi     11    0.07944    0.00248  [ 0.07828,  0.08060] -
+
+===== NORMALIDADE DAS DIFERENCAS (Shapiro-Wilk via Lilliefors) =====
+phi_corr, todos os pares. p < 0.05 => rejeita normalidade => usar Wilcoxon
+[Warning: P is less than the smallest tabulated value, returning 0.001.] 
+[> In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('lillietest', 'C:\Program Files\MATLAB\R2026a\toolbox\stats\stats\lillietest.m', 141)" style="font-weight:bold">lillietest</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\stats\stats\lillietest.m',141,0)">line 141</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('analyze_monte_carlo', 'C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\analyze_monte_carlo.m', 85)" style="font-weight:bold">analyze_monte_carlo</a> (<a href="matlab: opentoline('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\analyze_monte_carlo.m',85,0)">line 85</a>)] 
+  Couzin       vs Reynolds      p = 0.0010  NAO normal
+[Warning: P is greater than the largest tabulated value, returning 0.5.] 
+[> In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('lillietest', 'C:\Program Files\MATLAB\R2026a\toolbox\stats\stats\lillietest.m', 138)" style="font-weight:bold">lillietest</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\stats\stats\lillietest.m',138,0)">line 138</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('analyze_monte_carlo', 'C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\analyze_monte_carlo.m', 85)" style="font-weight:bold">analyze_monte_carlo</a> (<a href="matlab: opentoline('C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\analyze_monte_carlo.m',85,0)">line 85</a>)] 
+  Couzin       vs OlfatiSaber   p = 0.5000  normal
+  Couzin       vs Vasarhelyi    p = 0.0012  NAO normal
+  Reynolds     vs OlfatiSaber   p = 0.0059  NAO normal
+  Reynolds     vs Vasarhelyi    p = 0.0042  NAO normal
+  OlfatiSaber  vs Vasarhelyi    p = 0.3933  normal
+
+===== TESTES PAREADOS: phi_corr =====
+alpha = 0.05 ; Bonferroni p/ 6 comparacoes => alpha_c = 0.0083
+A            B             dif.media p (t par.)  p (Wilc.)  d Cohen signif.
+Couzin       Reynolds       -0.12198    0.00000    0.00132    -1.46 SIM
+Couzin       OlfatiSaber     0.23342    0.00000    0.00009     4.03 SIM
+Couzin       Vasarhelyi      0.13638    0.00005    0.00010     1.17 SIM
+Reynolds     OlfatiSaber     0.35540    0.00000    0.00010     3.34 SIM
+Reynolds     Vasarhelyi      0.25836    0.00000    0.00010     1.80 SIM
+OlfatiSaber  Vasarhelyi     -0.09703    0.00209    0.00573    -0.80 SIM
+
+===== TESTES PAREADOS: phi_vel =====
+alpha = 0.05 ; Bonferroni p/ 6 comparacoes => alpha_c = 0.0083
+A            B             dif.media p (t par.)  p (Wilc.)  d Cohen signif.
+Couzin       Reynolds       -0.03564    0.00000    0.00009    -6.37 SIM
+Couzin       OlfatiSaber    -0.02945    0.00000    0.00009    -4.80 SIM
+Couzin       Vasarhelyi      0.26575    0.00000    0.00009     7.59 SIM
+Reynolds     OlfatiSaber     0.00619    0.00000    0.00022     1.63 SIM
+Reynolds     Vasarhelyi      0.30139    0.00000    0.00009     8.67 SIM
+OlfatiSaber  Vasarhelyi      0.29520    0.00000    0.00009     8.93 SIM
+
+===== SEGURANCA: contagem de violacoes =====
+algoritmo         colisao       parede        total
+Couzin              13/20         0/20           13
+Reynolds             0/20         2/20            2
+OlfatiSaber          0/20        20/20           20
+Vasarhelyi           0/20         0/20            0
+
+NOTA: metricas de seguranca sao quase sempre zero, entao media e
+IC nao sao informativos. Reportar CONTAGEM de execucoes com
+violacao e comparar com teste de McNemar (pareado, binario).
+
+--- McNemar sobre violacao (colisao OU parede) ---
+A            B               A>B    B>A          p
+Couzin       Reynolds         12      1    0.00342
+Couzin       OlfatiSaber       0      7    0.01563
+Couzin       Vasarhelyi       13      0    0.00024
+Reynolds     OlfatiSaber       0     18    0.00001
+Reynolds     Vasarhelyi        2      0    0.50000
+OlfatiSaber  Vasarhelyi       20      0    0.00000
+
+Analise concluida.
+{Unrecognized function or variable 'dia'.
+} 
+diary off

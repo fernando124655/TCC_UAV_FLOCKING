@@ -1,0 +1,297 @@
+main_auto_tuning_production('OlfatiSaber', 1:5);
+=== Auto-Tuning de Producao: OlfatiSaber ===
+Parametros: 6 | Populacao: 30 | Geracoes: 30 | Nr: 3
+Sementes GA (multi-start): [1 2 3 4 5]
+Sementes das config. de treino: [101 102 103]
+Espaco de busca:
+  d_ref      [   4.000,   13.000]
+  c_vm       [   0.500,   20.000]
+  a          [   0.500,   10.000]
+  b          [   1.000,   10.000]
+  c_arena    [   1.000,   60.000]
+  d_arena    [   2.000,   12.000]
+Restricoes lineares: 1
+Gerando 3 XMLs pareados para OlfatiSaber (sementes de treino: [101 102 103])
+  cfg1 (seed 101): xml_config_files\parameters_at_OlfatiSaber_cfg1.xml  [ok]
+  cfg2 (seed 102): xml_config_files\parameters_at_OlfatiSaber_cfg2.xml  [ok]
+  cfg3 (seed 103): xml_config_files\parameters_at_OlfatiSaber_cfg3.xml  [ok]
+Warm-up: gerando arquivos de logica no cliente...
+  3 XML(s) processado(s). Arquivos de despacho atualizados.
+  As guardas de timestamp faram os workers pularem a reescrita (sem corrida de I/O).
+Starting parallel pool (parpool) using the 'Processes' profile ...
+Connected to parallel pool with 6 workers.
+Arquivo de retomada incompativel; recomecando do zero.
+
+--- Multi-start 1/5 (semente GA = 1) ---
+
+Single objective optimization:
+6 Variables
+1 Linear inequality constraints
+
+Options:
+CreationFcn:       @gacreationlinearfeasible
+CrossoverFcn:      @crossoverintermediate
+SelectionFcn:      @selectionstochunif
+MutationFcn:       @mutationadaptfeasible
+
+                                  Best           Mean      Stall
+Generation      Func-count        f(x)           f(x)    Generations
+    1               60          0.5159           0.801        0
+    2               88          0.5159          0.7565        1
+    3              116          0.2678          0.6871        0
+    4              144          0.2678          0.6198        1
+    5              172          0.2678          0.5942        2
+    6              200          0.2678          0.5504        3
+    7              228          0.2678          0.5089        4
+    8              256          0.2678          0.5598        5
+    9              284          0.2678          0.5149        6
+   10              312          0.2678          0.4796        7
+   11              340          0.2275          0.4066        0
+   12              368          0.2275          0.5038        1
+   13              396          0.2275          0.5162        2
+   14              424          0.2275          0.4357        3
+   15              452          0.2275          0.4502        4
+   16              480          0.2275          0.4253        5
+   17              508          0.2275           0.444        6
+   18              536          0.2225          0.3692        0
+   19              564          0.2225          0.4351        1
+   20              592          0.2225          0.4124        2
+   21              620          0.2225          0.4477        3
+   22              648          0.2145          0.4499        0
+   23              676          0.2145          0.4192        1
+   24              704          0.2145           0.393        2
+   25              732          0.2145          0.4164        3
+   26              760          0.2145          0.4074        4
+   27              788          0.2145          0.3856        5
+   28              816          0.2145          0.4261        6
+   29              844          0.2145          0.3924        7
+   30              872          0.2145          0.3644        8
+ga stopped because it exceeded options.MaxGenerations.
+Semente 1: F = 0.214548  (400.1 min)
+  busca    : [6.63334 19.5841 0.786498 2.94808 17.069 5.87121]
+  CoFlyers : [6.63334 19.5841 0.786498 2.94808 17.069 5.87121 7.96001]
+
+--- Multi-start 2/5 (semente GA = 2) ---
+
+Single objective optimization:
+6 Variables
+1 Linear inequality constraints
+
+Options:
+CreationFcn:       @gacreationlinearfeasible
+CrossoverFcn:      @crossoverintermediate
+SelectionFcn:      @selectionstochunif
+MutationFcn:       @mutationadaptfeasible
+
+                                  Best           Mean      Stall
+Generation      Func-count        f(x)           f(x)    Generations
+    1               60          0.3203          0.7014        0
+    2               88          0.3203          0.7064        1
+    3              116          0.3203          0.6623        2
+    4              144          0.3203          0.6412        3
+    5              172          0.2888          0.5362        0
+    6              200          0.2888          0.5074        1
+    7              228          0.2532          0.4883        0
+    8              256          0.2532          0.4928        1
+    9              284          0.2532           0.477        2
+   10              312          0.2532          0.4769        3
+   11              340          0.2532          0.4979        4
+   12              368          0.2532          0.4385        5
+   13              396          0.2532          0.4747        6
+   14              424          0.2532          0.3981        7
+   15              452          0.2532          0.4196        8
+   16              480          0.2532          0.4404        9
+   17              508          0.2532          0.4159       10
+   18              536          0.2532          0.4187       11
+   19              564          0.2532           0.435       12
+   20              592          0.2531          0.3788        0
+   21              620          0.2447          0.3841        0
+   22              648          0.2447          0.3786        1
+   23              676          0.2447          0.3957        2
+   24              704          0.2415          0.3918        0
+   25              732          0.2415          0.3462        1
+   26              760          0.2406          0.3548        0
+   27              788          0.2406          0.3637        1
+   28              816          0.2406           0.314        2
+   29              844          0.2406          0.3405        3
+   30              872          0.2351           0.324        0
+ga stopped because it exceeded options.MaxGenerations.
+Semente 2: F = 0.235102  (485.9 min)
+  busca    : [6.26832 17.6088 1.62962 3.05408 15.1879 7.96328]
+  CoFlyers : [6.26832 17.6088 1.62962 3.05408 15.1879 7.96328 7.52198]
+
+--- Multi-start 3/5 (semente GA = 3) ---
+
+Single objective optimization:
+6 Variables
+1 Linear inequality constraints
+
+Options:
+CreationFcn:       @gacreationlinearfeasible
+CrossoverFcn:      @crossoverintermediate
+SelectionFcn:      @selectionstochunif
+MutationFcn:       @mutationadaptfeasible
+
+                                  Best           Mean      Stall
+Generation      Func-count        f(x)           f(x)    Generations
+    1               60          0.7093          0.8983        0
+    2               88          0.5016          0.8279        0
+    3              116          0.5016          0.7503        1
+    4              144          0.4507          0.6902        0
+    5              172          0.4007          0.6484        0
+    6              200          0.4007          0.6054        1
+    7              228          0.4007          0.6324        2
+    8              256          0.4007           0.558        3
+    9              284          0.4007          0.5653        4
+   10              312          0.4007          0.5765        5
+   11              340          0.4007           0.588        6
+   12              368          0.4007           0.581        7
+   13              396          0.4007          0.5449        8
+   14              424          0.4007           0.563        9
+   15              452          0.4007          0.5738       10
+   16              480          0.4007          0.5191       11
+   17              508          0.3939          0.5432        0
+   18              536          0.3939          0.5256        1
+   19              564          0.3939          0.5679        2
+   20              592          0.3939          0.5536        3
+   21              620          0.3939          0.5373        4
+   22              648          0.3891          0.5736        0
+   23              676          0.3891          0.5317        1
+   24              704          0.3891          0.5076        2
+   25              732          0.3891          0.5637        3
+   26              760          0.3891          0.5466        4
+   27              788          0.3891          0.5573        5
+   28              816          0.3891          0.5441        6
+   29              844          0.3891          0.5412        7
+   30              872          0.3891          0.4956        8
+ga stopped because it exceeded options.MaxGenerations.
+Semente 3: F = 0.389119  (468.2 min)
+  busca    : [8.34959 7.64381 0.990883 3.06592 12.2886 8.06856]
+  CoFlyers : [8.34959 7.64381 0.990883 3.06592 12.2886 8.06856 10.0195]
+
+--- Multi-start 4/5 (semente GA = 4) ---
+
+Single objective optimization:
+6 Variables
+1 Linear inequality constraints
+
+Options:
+CreationFcn:       @gacreationlinearfeasible
+CrossoverFcn:      @crossoverintermediate
+SelectionFcn:      @selectionstochunif
+MutationFcn:       @mutationadaptfeasible
+
+                                  Best           Mean      Stall
+Generation      Func-count        f(x)           f(x)    Generations
+    1               60           0.431          0.7196        0
+    2               88          0.3201          0.6866        0
+    3              116          0.3201          0.5852        1
+    4              144          0.3067          0.5904        0
+    5              172          0.2975           0.578        0
+    6              200          0.2975          0.5374        1
+    7              228          0.2975          0.5218        2
+    8              256          0.2975          0.5323        3
+    9              284          0.2975          0.5119        4
+   10              312          0.2975           0.497        5
+   11              340          0.2975          0.5206        6
+   12              368          0.2975          0.4855        7
+   13              396          0.2975          0.5035        8
+   14              424          0.2975          0.4999        9
+   15              452          0.2975          0.4572       10
+   16              480          0.2975           0.465       11
+   17              508          0.2975          0.4585       12
+   18              536          0.2975          0.4176       13
+   19              564          0.2975          0.4405       14
+   20              592          0.2975          0.3818       15
+   21              620          0.2975          0.4139       16
+   22              648          0.2975          0.4065       17
+   23              676          0.2975          0.4153       18
+   24              704          0.2908          0.4247        0
+   25              732          0.2872          0.4115        0
+   26              760          0.2872          0.3933        1
+   27              788          0.2872          0.4012        2
+   28              816          0.2872          0.4391        3
+   29              844          0.2872          0.3879        4
+   30              872          0.2872          0.4234        5
+ga stopped because it exceeded options.MaxGenerations.
+Semente 4: F = 0.287194  (391.2 min)
+  busca    : [7.46137 14.4767 0.883357 4.3308 10.637 9.7352]
+  CoFlyers : [7.46137 14.4767 0.883357 4.3308 10.637 9.7352 8.95365]
+
+--- Multi-start 5/5 (semente GA = 5) ---
+
+Single objective optimization:
+6 Variables
+1 Linear inequality constraints
+
+Options:
+CreationFcn:       @gacreationlinearfeasible
+CrossoverFcn:      @crossoverintermediate
+SelectionFcn:      @selectionstochunif
+MutationFcn:       @mutationadaptfeasible
+
+                                  Best           Mean      Stall
+Generation      Func-count        f(x)           f(x)    Generations
+    1               60          0.5672          0.8634        0
+    2               88           0.546          0.7683        0
+    3              116          0.5191          0.6847        0
+    4              144          0.5099          0.6566        0
+    5              172          0.4712          0.6382        0
+    6              200          0.4712          0.6043        1
+    7              228          0.4712          0.6055        2
+    8              256          0.4712          0.6178        3
+    9              284          0.4712          0.6005        4
+   10              312          0.4589          0.6174        0
+   11              340          0.4489           0.623        0
+   12              368          0.4489          0.6144        1
+   13              396          0.4489          0.5948        2
+   14              424          0.4489          0.5944        3
+   15              452          0.4489          0.5872        4
+   16              480          0.4489          0.6052        5
+   17              508          0.4489          0.5974        6
+   18              536          0.4489          0.5825        7
+   19              564          0.4489          0.5673        8
+   20              592          0.4489           0.564        9
+   21              620          0.4489          0.6084       10
+   22              648          0.4489          0.5611       11
+   23              676          0.4489          0.5584       12
+   24              704          0.4489          0.6081       13
+   25              732          0.4489          0.6035       14
+   26              760          0.4489          0.5961       15
+   27              788          0.4489          0.5855       16
+   28              816          0.4489          0.5907       17
+   29              844          0.4489          0.5719       18
+   30              872          0.4489          0.6066       19
+ga stopped because it exceeded options.MaxGenerations.
+Semente 5: F = 0.448900  (393.2 min)
+  busca    : [11.156 8.83187 2.4313 3.67565 13.4856 9.78895]
+  CoFlyers : [11.156 8.83187 2.4313 3.67565 13.4856 9.78895 13.3871]
+
+===== ESTABILIDADE NO ESPACO DE BUSCA (OlfatiSaber, 5 de 5) =====
+parametro       media  desv.pad.    CV(%)  pos.faixa
+d_ref          7.9737     1.9516     24.5        29%
+c_vm          13.6291     5.2644     38.6        98% <-- na fronteira
+a              1.3443     0.6913     51.4         3% <-- na fronteira
+b              3.4149     0.5867     17.2        22%
+c_arena       13.7336     2.4989     18.2        27%
+d_arena        8.2854     1.6079     19.4        39%
+
+Fitness por semente: [0.21455 0.2351 0.38912 0.28719 0.4489]
+MELHOR: semente 1, F = 0.214548
+
+Parametros para aplicar no XML (espaco CoFlyers):
+  d_ref      = 6.633344
+  c_vm       = 19.584098
+  a_coeff    = 0.786498
+  b_coeff    = 2.948079
+  c_arena    = 17.069013
+  d_arena    = 5.871209
+  r_com      = 7.960012
+
+LEITURA: CV > 20% indica multiplos otimos locais (resultado valido).
+         "na fronteira" indica limite possivelmente restringindo o otimo.
+
+Resultados salvos em: data_save/auto_tuning_production/at_OlfatiSaber_20260804_150018.mat
+
+PROXIMO PASSO: aplicar x_final com xml_set_param_in_block (escopo por bloco).
+diary off;
