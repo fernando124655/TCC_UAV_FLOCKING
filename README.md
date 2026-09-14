@@ -1,6 +1,6 @@
 # Análise Comparativa de Algoritmos de Flocking para Enxames de UAVs em Ambientes Indoor Confinados
 
-Repositório de código, configuração e resultados de uma dissertação de mestrado que compara quatro algoritmos canônicos de flocking sob condições experimentais idênticas, usando a plataforma CoFlyers.
+Repositório de código, configuração e resultados de uma dissertação de conclusão de curso que compara quatro algoritmos canônicos de flocking sob condições experimentais idênticas, usando a plataforma CoFlyers.
 
 ---
 
