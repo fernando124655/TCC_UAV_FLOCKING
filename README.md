@@ -176,4 +176,4 @@ O `verificar_hifi` confere sete itens de configuração antes de cada bloco de e
 
 ## Autoria
 
-Fernando — dissertação de mestrado. Boa Vista, Roraima, Brasil.
+Fernando — dissertação de conclusão de curso. Boa Vista, Roraima, Brasil.
