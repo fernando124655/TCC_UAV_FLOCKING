@@ -36,7 +36,7 @@ Dois computadores, comunicando por UDP em rede local.
 
 **PC-B (Simulador)** executa PX4-SITL e Gazebo dentro de um contêiner Docker, simulando a dinâmica dos quadrotores e o controle de baixo nível.
 
-A propriedade central dessa divisão é o **reuso de código**: o mesmo arquivo `.m` de cada algoritmo roda nas quatro etapas do pipeline, da prototipagem rápida à alta fidelidade. Isso é o que dá validade à medição de *reality gap* — a diferença observada entre etapas não pode ser artefato de reimplementação, porque não há duas implementações.
+A propriedade central dessa divisão é o **reuso de código**: o mesmo arquivo `.m`, que contém a lógic de cada algoritmo, roda nas quatro etapas do pipeline, da prototipagem rápida à alta fidelidade. Isso dá validade à medição de *reality gap* — a diferença observada entre etapas não pode ser artefato de reimplementação, porque não há duas lógicas implementadas.
 
 ---
 
@@ -73,7 +73,7 @@ Três propriedades decorrem disso. **Reprodutibilidade**: mesma semente, mesmo r
 
 O determinismo da função-objetivo foi verificado empiricamente: o mesmo vetor de parâmetros avaliado duas vezes retorna valor idêntico até o último dígito.
 
-*Limitação:* na etapa de alta fidelidade, as sementes controlam apenas as posições iniciais. Gazebo e PX4 possuem fontes próprias de estocasticidade que não passam pelo gerador do MATLAB.
+*Limitação:* na etapa de alta fidelidade, as sementes controlam apenas as posições iniciais. Gazebo e PX4 possuem fontes próprias de estocasticidade que não passam pelo gerador do MATLAB (normrnd).
 
 ---
 
