@@ -98,7 +98,7 @@ pc_b/
 
 ### Sobre os dados brutos
 
-Os arquivos `.mat` das simulações **não** estão versionados. São cerca de 160 MB e, mais importante, são **regeneráveis**: com o código, as configurações e as sementes documentadas acima, qualquer pessoa reproduz os experimentos. O arquivo `metricas_high_fidelity.csv` contém os resultados extraídos.
+Os arquivos `.mat` das simulações **não** estão versionados. São cerca de 160 MB e **regeneráveis**: com o código, as configurações e as sementes documentadas acima. O arquivo `metricas_high_fidelity.csv` contém os resultados extraídos.
 
 Disponíveis mediante solicitação, ou versionáveis via Git LFS se necessário.
 
