@@ -159,6 +159,59 @@ O `verificar_hifi` confere sete itens de configuração antes de cada bloco de e
 
 **Plataforma** — CoFlyers v3.0.0 (Huang, Wang & Hu, IROS 2023), licença GPL-3.0. Repositório original: github.com/micros-uav/CoFlyers
 
+## Arquivos de configuração das arenas (leia antes de rodar)
+
+**O `parameters.xml` não é a arena vazia.** O `preparar_hifi.m` copia o XML do ambiente escolhido sobre o `xml_config_files/parameters.xml` antes de cada bloco de alta fidelidade. O último bloco foi o dos cilindros, em 03/09/2026. Desde então, o `parameters.xml` contém os quatro cilindros, e é essa a versão que está em `codigo/xml/parameters.xml`.
+
+Os scripts de produção abaixo leem o `parameters.xml` e o tratam como arena vazia. Se rodados sem ajuste, eles executam na arena com cilindros, sem nenhum aviso:
+
+| script | onde lê o `parameters.xml` |
+|---|---|
+| `main_monte_carlo_rapid_prototyping.m` | valor padrão de `xml_original` (linha 34) |
+| `main_batch_production.m` | `ambiente = 'vazia'` (linha 52) |
+| `prepare_paired_xmls.m` (calibração) | linha 30 |
+
+### Qual XML corresponde a cada arena
+
+| arena | XML | obstáculos ativos |
+|---|---|---|
+| vazia | `parameters_vazia_BACKUP.xml` | nenhum |
+| cilindros | `parameters_obst_cilindro.xml` | 4 × `cylinder_rough.stl` em (±12, ±12) m |
+| cubos | `parameters_obst_cubo.xml` | 4 × `cube.stl` em (±12, ±12) m |
+
+O `parameters_vazia_BACKUP.xml` é idêntico à configuração usada na calibração, no Monte Carlo e no lote de agosto. A comparação foi feita com as cópias de trabalho que o lote gravou (`parameters_bp_<algoritmo>_vazia_r<n>.xml`, de 17 a 19/08). As únicas diferenças são o algoritmo ativo, as posições iniciais e `activate_plot`, que os scripts sobrescrevem em toda execução.
+
+### Para reproduzir a calibração, o Monte Carlo ou o lote na arena vazia
+
+Restaure a arena vazia no `parameters.xml` antes de rodar, a partir da pasta `Prototype_Simulator`:
+
+```matlab
+copyfile('xml_config_files\parameters_vazia_BACKUP.xml', 'xml_config_files\parameters.xml');
+```
+
+No Monte Carlo, também dá para passar o XML de forma explícita:
+
+```matlab
+main_monte_carlo_rapid_prototyping('Vasarhelyi', 'xml_config_files\parameters_vazia_BACKUP.xml');
+```
+
+Depois de rodar a alta fidelidade, repita a restauração, porque o `preparar_hifi.m` volta a sobrescrever o `parameters.xml`.
+
+**Conferência rápida:** fora dos comentários, o `parameters.xml` da arena vazia não pode ter nenhuma tag `<stl value=...>`:
+
+```matlab
+c = regexprep(fileread('xml_config_files\parameters.xml'), '<!--.*?-->', '');
+n = numel(regexp(c, '<stl\s+value', 'match'))   % deve ser 0 na arena vazia
+```
+
+A varredura de T<sub>c</sub> em série (`main_tc_sweep_serial.m`) já faz essa conferência sozinha. Ela usa o `parameters_vazia_BACKUP.xml` e o `parameters_obst_cubo.xml`, e para com erro se o número de obstáculos do XML não corresponder à arena pedida.
+
+### Modelo de movimento do simulador protótipo
+
+Todos os XMLs usam `<motion_model_type value="'quadcopter'"/>`, que é o padrão do CoFlyers. A calibração, o Monte Carlo e o lote rodaram com o modelo de quadricóptero do simulador protótipo, e não com o de ponto-massa:
+- dinâmica de corpo rígido em 6 graus de liberdade, com resposta de primeira ordem dos motores;
+- malhas PID de posição e de velocidade e controlador PD de atitude;
+- controladores atuando sobre o estado verdadeiro do veículo, sem sensores nem estimação de estado.
 ---
 
 ## Referências
