@@ -159,6 +159,59 @@ O `verificar_hifi` confere sete itens de configuração antes de cada bloco de e
 
 **Plataforma** — CoFlyers v3.0.0 (Huang, Wang & Hu, IROS 2023), licença GPL-3.0. Repositório original: github.com/micros-uav/CoFlyers
 
+## Arquivos da plataforma modificados
+
+Este trabalho usa o CoFlyers v3.1.3 (ramo `main`, commit `ac9e6e5`). Os arquivos abaixo são da plataforma e foram alterados. Os demais arquivos da plataforma estão como no repositório original. Os arquivos criados neste trabalho (módulos dos algoritmos, scripts de produção e de análise) estão em `codigo/`.
+
+Caminhos relativos a `matlab_simulink_ws/Prototype_Simulator/`:
+
+| arquivo | alteração | motivo | registro |
+|---|---|---|---|
+| `utils/xml_read/read_parameter_xml.m` | ativadas as três guardas de *timestamp*, que vêm comentadas no original, em `write_swarm_module_generate_desire`, `write_evaluation_module_one` e `write_evaluation_module_average` | impedir a reescrita concorrente dos arquivos de despacho no auto-tuning paralelo; usada com `prepare_parallel_safe.m`, que regenera esses arquivos no cliente antes de abrir o *pool* | `resultados/logs/log_at_couzin_resume.txt`; cópia de segurança `read_parameter_xml_BACKUP.m` |
+| `lower_layers/evaluation_module/evaluation_0_module/utils/fitness_function_combine.m` | termo de velocidade da *fitness*: `heaviside(phiVel)*phiVel` → `fitness_function_1(phiVel, vFlock, vTol)` | restaurar a forma limitada F1 de Vásárhelyi et al. (2018), que satura em 1 | `resultados/logs/log_at_couzin_v2.txt` (29/07/2026); cópia de segurança `fitness_function_combine_BACKUP.m` |
+| `lower_layers/evaluation_module/evaluation_0_module/evaluation_0_module_average.m` | `v_tol = 0` → `v_tol = 1.5/4 * v_flock` | tolerância de velocidade de Vásárhelyi et al. (2018), exigida pela F1 | cópia modificada em `codigo/modulos/`; cópia de segurança `evaluation_0_module_average_BACKUP.m` |
+| `xml_config_files/parameters*.xml` | blocos `<Couzin>`, `<Reynolds>` e `<OlfatiSaber>`; parâmetros calibrados; arena, obstáculos e posições iniciais | configuração do estudo | cópias em `codigo/xml/` |
+
+Conferidos contra o original e **não** modificados: `lower_layers/swarm_module/Vasarhelyi_module/Vasarhelyi_module_generate_desire.m` e `lower_layers/evaluation_module/evaluation_0_module/evaluation_0_module_one.m` (as cópias em `codigo/modulos/` são idênticas às do CoFlyers v3.1.3).
+
+No PC-B, o nó `px4_node.cpp` do pacote `px4_sitl_coflyers` não foi alterado. Os arquivos de lançamento gerados para cada semente estão em `pc_b/`.
+
+<!--
+==========================================================================
+COMO USAR ESTE ARQUIVO (apague este bloco depois)
+
+1. No GitHub, abra o README.md do repositório TCC_UAV_FLOCKING.
+2. Clique no lápis ("Edit this file").
+3. Cole a seção acima logo depois da seção "## Ambiente de software".
+4. Confira a última pendência abaixo e clique em "Commit changes".
+
+Pendência que só você confirma:
+- Você alterou o testControlWithDroneSwarm.slx (comandante Simulink) ou
+  algum outro arquivo da plataforma que não aparece na tabela? Se sim,
+  acrescente uma linha.
+
+Sugestão: copie os três arquivos .m modificados para uma pasta
+codigo/plataforma_modificada/. Hoje o fitness_function_combine.m e o
+read_parameter_xml.m modificados só existem na sua instalação, e a
+reprodução depende deles.
+
+Outras correções que encontrei no README:
+- "Plataforma — CoFlyers v3.0.0" → v3.1.3 (a interface com terrain e
+  terrain_params só existe no ramo main).
+- A seção "Estrutura do repositório" descreve pastas que não existem
+  (pc_a/, xml_config/, modulos_algoritmos/, graficos/). As reais são
+  codigo/, dados/, resultados/, docs/ e pc_b/.
+- "Sobre os dados brutos" diz que os .mat não estão versionados, mas eles
+  estão no repositório via Git LFS (pasta dados/).
+- metricas_high_fidelity.csv tem 59 linhas de dados, não 60: falta
+  couzin, cilindros, semente 4 (o .mat existe). Reexporte o CSV.
+- "Vasárhelyi não viola nada em 100 execuções": são 75 (60 no Monte
+  Carlo e 15 na alta fidelidade).
+- A "Síntese dos resultados" diz que a H1-B foi sustentada. Os dados do
+  lote mudam essa leitura (ver o roteiro da seção 5 de 12/10).
+==========================================================================
+-->
+
 ## Arquivos de configuração das arenas (leia antes de rodar)
 
 **O `parameters.xml` não é a arena vazia.** O `preparar_hifi.m` copia o XML do ambiente escolhido sobre o `xml_config_files/parameters.xml` antes de cada bloco de alta fidelidade. O último bloco foi o dos cilindros, em 03/09/2026. Desde então, o `parameters.xml` contém os quatro cilindros, e é essa a versão que está em `codigo/xml/parameters.xml`.
