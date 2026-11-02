@@ -1,0 +1,127 @@
+=== Execucoes de 16/10 | inicio 18-Oct-2026 09:19:17 | etapas [6 7] ===
+
+
+######## ETAPA 6: AG com orcamento proporcional (Vasarhelyi) | 18-Oct-2026 09:19:17 ########
+restore_parallel_safe: 3 arquivos com escrita restaurada.
+=== AG com orcamento proporcional: Vasarhelyi ===
+Semente do AG: 3 (F original em 30 geracoes: 0.027495)
+Geracoes: 67 | Populacao: 30 | avaliacoes previstas: 1908
+  treino cfg1 (semente 101): xml_config_files\parameters_ag16_Vasarhelyi_cfg1.xml [ok]
+  treino cfg2 (semente 102): xml_config_files\parameters_ag16_Vasarhelyi_cfg2.xml [ok]
+  treino cfg3 (semente 103): xml_config_files\parameters_ag16_Vasarhelyi_cfg3.xml [ok]
+Conferencia: F(x_final original) = 0.027495377 | gravado = 0.027495377 | diferenca = 0.0e+00
+Warm-up: gerando arquivos de logica no cliente...
+  3 XML(s) processado(s). Arquivos de despacho atualizados.
+  As guardas de timestamp faram os workers pularem a reescrita (sem corrida de I/O).
+Starting parallel pool (parpool) using the 'Processes' profile ...
+Connected to parallel pool with 6 workers.
+
+Single objective optimization:
+11 Variables
+
+Options:
+CreationFcn:       @gacreationuniform
+CrossoverFcn:      @crossoverscattered
+SelectionFcn:      @selectionstochunif
+MutationFcn:       @mutationadaptfeasible
+
+                                  Best           Mean      Stall
+Generation      Func-count        f(x)           f(x)    Generations
+    1               60         0.07093          0.2604        0
+    2               88         0.06109          0.2068        0
+    3              116         0.06109          0.2549        1
+    4              144         0.05513          0.2281        0
+    5              172          0.0544          0.2167        0
+    6              200         0.05397          0.1433        0
+    7              228         0.04923         0.08531        0
+    8              256         0.04433          0.1012        0
+    9              284         0.04363         0.07895        0
+   10              312         0.03077         0.07716        0
+   11              340         0.03077         0.06541        1
+   12              368         0.03077         0.05395        2
+   13              396         0.03077         0.06806        3
+   14              424          0.0289         0.04522        0
+   15              452          0.0289          0.0433        1
+   16              480         0.02868         0.04326        0
+   17              508         0.02786         0.04004        0
+   18              536         0.02786         0.04871        1
+   19              564         0.02786         0.04612        2
+   20              592         0.02786         0.05306        3
+   21              620         0.02786         0.04114        4
+   22              648         0.02786         0.03236        5
+   23              676          0.0275         0.03091        0
+   24              704          0.0275         0.03083        1
+   25              732          0.0275         0.03042        2
+   26              760          0.0275         0.03015        3
+   27              788          0.0275          0.0299        4
+   28              816          0.0275         0.03002        5
+   29              844          0.0275         0.02966        6
+[CONFERENCIA] geracao 30: melhor F = 0.027495 | original = 0.027495 | IGUAL: as 30 primeiras geracoes repetiram a execucao original
+   30              872          0.0275         0.03993        7
+
+                                  Best           Mean      Stall
+Generation      Func-count        f(x)           f(x)    Generations
+   31              900          0.0275         0.03877        8
+   32              928          0.0275         0.02978        9
+   33              956          0.0275         0.02955       10
+   34              984          0.0275         0.02869       11
+   35             1012         0.02737         0.02882        0
+   36             1040         0.02737         0.02848        1
+   37             1068         0.02737         0.02899        2
+   38             1096         0.02737         0.02933        3
+   39             1124         0.02737         0.02915        4
+   40             1152         0.02737         0.02859        5
+   41             1180         0.02737          0.0291        6
+   42             1208         0.02737         0.02992        7
+   43             1236         0.02737         0.02937        8
+   44             1264         0.02737         0.02888        9
+   45             1292         0.02737         0.02924       10
+   46             1320         0.02737         0.02843       11
+   47             1348         0.02737         0.02852       12
+   48             1376         0.02737         0.02936       13
+   49             1404         0.02737          0.0285       14
+   50             1432         0.02737         0.02963       15
+   51             1460         0.02737         0.02851       16
+   52             1488         0.02737         0.02887       17
+   53             1516         0.02737         0.02843       18
+   54             1544         0.02737         0.02831       19
+   55             1572         0.02737         0.02835       20
+   56             1600         0.02737         0.02853       21
+   57             1628         0.02737         0.02869       22
+   58             1656         0.02736         0.02828        0
+   59             1684         0.02736         0.02845        1
+   60             1712         0.02736         0.02858        2
+ga stopped because the average change in the fitness value is less than options.FunctionTolerance.
+
+Terminou em 20.7 h | F = 0.027355 (original em 30 geracoes: 0.027495)
+Melhora relativa sobre o F* original: 0.5%
+x_best: [5.741 0.484115 19.0845 0.389233 0.0482166 6.16987 1.55035 1.21028 2.01495 3.15226 0.967407]
+Resultado salvo em data_save\auto_tuning_orcamento\at_Vasarhelyi_orcamento_20261018_092135.mat
+restore_parallel_safe: 3 arquivos com escrita restaurada.
+
+>> Etapa 6: OK em 20.73 h
+
+
+######## ETAPA 7: Monte Carlo com os parametros novos | 19-Oct-2026 06:03:07 ########
+restore_parallel_safe: 3 arquivos com escrita restaurada.
+=== Monte Carlo do Vasarhelyi com os parametros de data_save\auto_tuning_orcamento\at_Vasarhelyi_orcamento_20261018_092135.mat ===
+F da calibracao proporcional: 0.027355 (original: 0.027495)
+Bloco <Vasarhelyi> atualizado em xml_config_files\parameters_orc16_Vasarhelyi_vazia.xml (11 parametros).
+vazia     phi_corr: novo 0.9221 | artigo 0.9224 | diferenca media -0.0002 (9 de 20 execucoes melhores) | violacoes novo: colisao 0, parede 0
+Bloco <Vasarhelyi> atualizado em xml_config_files\parameters_orc16_Vasarhelyi_cilindros.xml (11 parametros).
+cilindros phi_corr: novo 0.7711 | artigo 0.8065 | diferenca media -0.0355 (9 de 20 execucoes melhores) | violacoes novo: colisao 0, parede 1
+Bloco <Vasarhelyi> atualizado em xml_config_files\parameters_orc16_Vasarhelyi_cubos.xml (11 parametros).
+cubos     phi_corr: novo 0.6852 | artigo 0.6696 | diferenca media +0.0156 (8 de 20 execucoes melhores) | violacoes novo: colisao 0, parede 1
+
+>> Etapa 7: OK em 0.63 h
+
+
+=== RESUMO (21.4 h no total) ===
+  1  Monte Carlo com phi_wall separado             nao pedida
+  2  Alta fidelidade com phi_wall separado         nao pedida
+  3  Componentes da funcao-objetivo no treino      nao pedida
+  4  Varredura de Tc nos cilindros                 nao pedida
+  5  Ruido nos cilindros                           nao pedida
+  6  AG com orcamento proporcional (Vasarhelyi)    OK em 20.73 h
+  7  Monte Carlo com os parametros novos           OK em 0.63 h
+Pacote de resultados: C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\resultados_16-10_20261019_064044.zip (41 arquivos, 0.1 MB)
