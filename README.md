@@ -185,8 +185,9 @@ main_couzin_ra20          % calibração, Monte Carlo e comparação com o origi
 
 % 8. Validação dos módulos no espaço livre (74 execuções de 300 s), cerca de 0,5 h
 main_validacao_modulos    % grava validacao_*.mat, os CSVs e o log em data_save\validacao_modulos
-% A figura do Apêndice D do artigo é refeita em Python (numpy, scipy e matplotlib):
-% python codigo/analise/figura_validacao_modulos.py dados/validacao_modulos/validacao_20261101_121846.mat fig_validacao_modulos.pdf
+% A Figura 8 do artigo (Apêndice D) sai de figuras_validacao_modulos, chamada no fim;
+% para refazê-la sozinha: figuras_validacao_modulos('data_save\validacao_modulos\validacao_20261101_121846.mat')
+
 
 ```
 
