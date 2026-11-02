@@ -55,6 +55,7 @@ O protocolo foi projetado para que a origem das diferenças fosse identificável
 | Alta fidelidade (PX4-SITL e Gazebo) | lacuna *sim-to-sim* (exploratória) | 5 × 4 algoritmos × 3 arenas = 60 |
 | Verificação do orçamento (Vásárhelyi) | se o orçamento igual prejudicou o algoritmo de mais parâmetros | a execução do AG da semente 3 estendida até 67 gerações (parou na 60, com 1.712 avaliações) e Monte Carlo com os parâmetros novos, 20 × 3 arenas |
 | Couzin com alcance limitado | efeito do alcance de percepção | Couzin recalibrado com r<sub>o</sub> e r<sub>a</sub> ≤ 20 m (5 sementes do AG × 872 avaliações) e Monte Carlo, 20 × 3 arenas = 60 |
+| Validação dos módulos | se os módulos próprios do Couzin, do Reynolds e do Olfati-Saber reproduzem os modelos originais | 74 execuções de 300 s no espaço livre: Couzin com Δr<sub>o</sub> de 0 a 14 m e Δr<sub>a</sub> de 14 m (9 valores) ou de 2 m (4 valores), 3 sementes; Olfati-Saber com os parâmetros calibrados e com os do artigo original, 5 sementes; Reynolds com os pesos de referência, sem cada uma das regras e calibrado, 5 sementes |
 
 **Defeito do lote paralelo.** No lote, a variação de T<sub>c</sub> não chegou ao simulador: cada *worker* grava a sua cópia das configurações gerais com o sufixo da tarefa, mas o simulador protótipo lê a cópia sem sufixo, com T<sub>c</sub> = 0,1 s. O ruído foi aplicado normalmente. A grade paralela mede, por isso, só a robustez ao ruído, com 78 execuções por nível de η, e a robustez a T<sub>c</sub> vem da varredura em série, em que cada execução confere o período aplicado.
 
@@ -103,6 +104,7 @@ dados/
 ├── tc_sweep/      varredura de Tc em série (tc_*.mat)
 ├── ruido/         ruído por tipo de violação (rs19_*, rs_Vasarhelyi_* e rsjan_*.mat)
 ├── couzin_ra20/   Couzin com r_o e r_a ≤ 20 m: calibração, Monte Carlo e logs
+├── validacao_modulos/ validação dos módulos: duas execuções com medidas idênticas (validacao_*.mat), resumos e logs
 └── high_fidelity/ as 60 execuções de alta fidelidade (hifi_*.mat)
 resultados/
 ├── csv/           métricas de todas as etapas em CSV (ver abaixo)
@@ -135,6 +137,8 @@ Sem o `git lfs pull`, os `.mat` ficam como ponteiros de texto de poucos bytes.
 | `calibracao_por_geracao.csv` | melhor F e F médio de cada geração, nas 20 execuções do AG (dos logs da calibração) |
 | `calibracao_por_execucao.csv` | F final, melhora entre as gerações 20 e 30 e estagnação de cada execução do AG |
 | `couzin_ra20_comparacao.csv` | Couzin com r<sub>o</sub> e r<sub>a</sub> ≤ 20 m contra o original, por arena: F, φ<sub>corr</sub>, φ<sub>vel</sub>, execuções com colisão e comparação com os outros três algoritmos |
+| `validacao_modulos.csv` | as 74 execuções da validação dos módulos: p, m, raio do grupo, vizinho mais próximo, d<sub>min</sub>, fração das amostras com colisão, maior grupo e, no Olfati-Saber, vizinho em unidades de d e desvio das ligações |
+| `validacao_modulos_resumo.csv` | o resumo da validação por configuração (médias das sementes e desvio-padrão de p e m) |
 | `arquivos_usados.csv` | o arquivo `.mat` de origem de cada parte dos CSVs gerados por `exportar_csvs.m` |
 | `monte_carlo.csv` | as 240 execuções do Monte Carlo |
 | `lote.csv` | o lote paralelo, com o T<sub>c</sub> pedido e o aplicado (0,1 s) |
@@ -143,7 +147,7 @@ Sem o `git lfs pull`, os `.mat` ficam como ponteiros de texto de poucos bytes.
 | `ruido_1440_resumo.csv` | o resumo das 1.440 por algoritmo, arena e nível de ruído |
 | `../metricas_high_fidelity.csv` | as 60 execuções de alta fidelidade |
 
-Os CSVs da calibração saem dos logs (`codigo/analise/ler_logs_calibracao.py`); os das 1.440, dos `rsjan_*.mat`; o da comparação do Couzin, de `main_couzin_ra20.m`; os demais, de `exportar_csvs.m`, que lê os `.mat` e grava também `arquivos_usados.csv`, com o arquivo de origem de cada parte.
+ Os CSVs da calibração saem dos logs (`codigo/analise/ler_logs_calibracao.py`); os das 1.440, dos `rsjan_*.mat`; o da comparação do Couzin, de `main_couzin_ra20.m`; os da validação, de `main_validacao_modulos.m`; os demais, de `exportar_csvs.m`, que lê os `.mat` e grava também `arquivos_usados.csv`, com o arquivo de origem de cada parte.
 
 ---
 
@@ -178,6 +182,12 @@ exportar_csvs()
 
 % 7. Sensibilidade ao alcance de percepção (Couzin com r_o e r_a <= 20 m), cerca de 45 h
 main_couzin_ra20          % calibração, Monte Carlo e comparação com o original
+
+% 8. Validação dos módulos no espaço livre (74 execuções de 300 s), cerca de 0,5 h
+main_validacao_modulos    % grava validacao_*.mat, os CSVs e o log em data_save\validacao_modulos
+% A figura do Apêndice D do artigo é refeita em Python (numpy, scipy e matplotlib):
+% python codigo/analise/figura_validacao_modulos.py dados/validacao_modulos/validacao_20261101_121846.mat fig_validacao_modulos.pdf
+
 ```
 
 O `verificar_hifi` confere sete itens antes de cada bloco de execuções de alta fidelidade: algoritmo ativo, mapa, geração dos *shill agents*, modo de simulação, endereçamento de rede, parâmetros aplicados e número de drones.
@@ -192,6 +202,7 @@ O `verificar_hifi` confere sete itens antes de cada bloco de execuções de alta
 - **Período de controle.** Na variante do Olfati-Saber, a integração da aceleração num único passo seguida da normalização impõe T<sub>c</sub> < v<sub>ref</sub>/a<sub>max</sub> = 0,2 s; acima disso, o enxame oscila em vez de se alinhar.
 - **QP2 (exploratória).** Sem obstáculos, a degradação na alta fidelidade foi parecida nos quatro algoritmos; com obstáculos, foi maior nos dois mais sensíveis ao ruído (Reynolds e Vásárhelyi). Com cinco execuções por condição e posições estimadas pelo PX4, isso fica como hipótese.
 - **Alcance de percepção.** Com o Couzin recalibrado com r<sub>o</sub> e r<sub>a</sub> ≤ 20 m, o alcance do Reynolds e do Vásárhelyi, os vereditos da H1-A e da H1-B e o tipo de falha do Couzin não mudam. Mudam a vantagem dele sobre o Vásárhelyi na arena vazia, que deixa de ser significativa, e o alinhamento com obstáculos, que cai 0,05 a 0,07; as colisões caem de 9, 12 e 13 para 1, 8 e 7 das 20 execuções, sem diferença significativa após a correção.
+- **Validação dos módulos.** No espaço livre, os três módulos próprios reproduzem o comportamento dos modelos originais, com uma exceção: o do Couzin forma o enxame e o grupo paralelo, mas não o toro. O do Olfati-Saber mantém os vizinhos à distância d e, sem agente-γ, se fragmenta, como o primeiro algoritmo do artigo original; no do Reynolds, tirar cada regra tira o seu efeito.
 
 Os números, os testes e as limitações estão no artigo.
 
