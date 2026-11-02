@@ -1,0 +1,180 @@
+function values = evaluation_0_module_one(t, states, map3d_faces, map3d_struct, terrain, terrain_params) %#ok<INUSD>
+%EVALUATION_0_MODULE_ONE  Metricas de um instante, com phi_wall separado por tipo.
+%
+% Versao instalada temporariamente por main_ruido_sem_transitorio.m
+% (28/10/2026). As cinco primeiras linhas sao as do avaliador nativo do
+% CoFlyers, com o mesmo codigo, inclusive o sorteio de 1e-20 somado as
+% velocidades: ele consome do gerador aleatorio a mesma quantidade de
+% numeros que o avaliador nativo, e por isso o ruido de cada execucao e o
+% mesmo da execucao original.
+%
+% Linhas devolvidas (12):
+%   1 phiCorr   2 phiVel   3 phiColl   4 phiWall   5 phiMND   (nativas)
+%   6  fracao de drones fora da arena na horizontal ou a menos de r_coll/2
+%      de uma parede
+%   7  fracao fora da arena na vertical ou a menos de r_coll/2 do piso ou do
+%      teto
+%   8  fracao a menos de r_coll/2 da superficie de um obstaculo
+%   9  fracao dentro de um obstaculo (nao entra no phi_wall da plataforma);
+%      teste pela paridade de um raio, valido para malhas nao convexas
+%   10 menor distancia de um drone a superficie de um obstaculo, negativa
+%      dentro dele (inf sem obstaculos)
+%   11 menor distancia de um drone a face interna das paredes, negativa
+%      fora da arena
+%   12 phiWall menos a fracao da uniao das linhas 6 a 8 (deve ser zero)
+
+file_name_param = 'evaluation_0_module_parameters';
+[~, str_core] = get_multi_core_value();
+fun_params = str2func([file_name_param, str_core]);
+
+[v_flock, ...
+r_coll, ...
+a_tol] = fun_params(); %#ok<ASGLU>
+
+number = size(states, 2);
+position = states(1:2, :);
+velocity = states(4:5, :);
+
+if number > 1
+    disMat = pdist(position');
+    phiColl = mean(disMat < r_coll);
+    phiMND = r_coll/min(disMat);
+else
+    phiColl = 0;
+    phiMND = 0;
+end
+velocity = velocity + rand(size(velocity))*1e-20;
+speed = vecnorm(velocity, 2, 1);
+velUnit = velocity./speed;
+if number > 1
+    phiCorr = (norm(mean(velUnit, 2))^2*number - 1)/(number - 1);
+else
+    phiCorr = norm(mean(velUnit, 2))^2;
+end
+phiVel = mean(speed)/v_flock;
+
+p3 = states(1:3, :);
+out_of_map = map_module_out_of_map(p3, map3d_struct);
+col_map = map_module_collision_detection(p3, map3d_faces, r_coll/2);
+phiWall = sum(out_of_map | col_map)/number;
+
+[parede, pisoteto, obst, dentro, d_obst, d_arena] = ...
+    separa_tipos(p3, map3d_faces, map3d_struct, r_coll/2);
+uniao = parede | pisoteto | obst;
+
+values = [phiCorr; phiVel; phiColl; phiWall; phiMND; ...
+    sum(parede)/number; sum(pisoteto)/number; sum(obst)/number; ...
+    sum(dentro)/number; d_obst; d_arena; phiWall - sum(uniao)/number];
+end
+
+
+function [parede, pisoteto, obst, dentro, d_obst, d_arena] = separa_tipos(p3, faces, ms, r)
+% Separa a violacao de cada drone pela superficie envolvida. Usa os mesmos
+% criterios de map_module_out_of_map e de map_module_collision_detection,
+% aplicados a cada grupo de faces: paredes, piso e teto, obstaculos.
+
+N = size(p3, 2);
+parede = false(1, N);
+pisoteto = false(1, N);
+obst = false(1, N);
+dentro = false(1, N);
+d_obst = inf;
+d_arena = inf;
+if isempty(ms)
+    return
+end
+
+nl = size(ms, 1);                       % as duas ultimas linhas indexam as faces
+eh_lim = ms(15, :) == -2;               % caixas dos limites da arena
+[~, fina] = min(ms(7:9, :), [], 1);     % dimensao mais fina de cada caixa
+eh_vert = eh_lim & fina == 3;           % piso e teto
+eh_par = eh_lim & fina ~= 3;            % paredes
+eh_obs = ~eh_lim;                       % obstaculos
+
+% Fora da arena, com os limites de map_module_out_of_map
+fora_h = false(1, N);
+fora_v = false(1, N);
+c = ms(1:3, eh_lim);
+if ~isempty(c)
+    fora_h = p3(1, :) < min(c(1, :)) | p3(1, :) > max(c(1, :)) | ...
+        p3(2, :) < min(c(2, :)) | p3(2, :) > max(c(2, :));
+    fora_v = p3(3, :) < min(c(3, :)) | p3(3, :) > max(c(3, :));
+end
+
+% Perto das faces de cada grupo, com o criterio de map_module_collision_detection
+perto_par = perto_das_faces(p3, faces, ms, eh_par, r, nl);
+perto_vert = perto_das_faces(p3, faces, ms, eh_vert, r, nl);
+[perto_obs, dmin_obs] = perto_das_faces(p3, faces, ms, eh_obs, r, nl);
+
+parede = fora_h | perto_par;
+pisoteto = fora_v | perto_vert;
+obst = perto_obs;
+
+% Dentro de um obstaculo: paridade de um raio, que vale tambem para malhas
+% nao convexas, como a cylinder_rough.stl da arena com cilindros
+for k = find(eh_obs)
+    dentro = dentro | dentro_da_malha(p3, faces(:, ms(nl-1, k):ms(nl, k)));
+end
+if any(eh_obs)
+    dsin = dmin_obs;
+    dsin(dentro) = -dsin(dentro);
+    d_obst = min(dsin);
+end
+
+% Distancia a face interna das paredes, positiva dentro da arena
+dist = inf(1, N);
+for k = find(eh_par)
+    centro = ms(1:3, k);
+    escala = ms(7:9, k);
+    [~, eixo] = min(escala);            % 1: parede em x; 2: parede em y
+    meio = (min(c(eixo, :)) + max(c(eixo, :)))/2;
+    if centro(eixo) < meio
+        dist = min(dist, p3(eixo, :) - (centro(eixo) + escala(eixo)/2));
+    else
+        dist = min(dist, (centro(eixo) - escala(eixo)/2) - p3(eixo, :));
+    end
+end
+if any(eh_par)
+    d_arena = min(dist);
+end
+end
+
+
+function [perto, dmin] = perto_das_faces(p3, faces, ms, sel, r, nl)
+N = size(p3, 2);
+perto = false(1, N);
+dmin = inf(1, N);
+idx = [];
+for k = find(sel)
+    idx = [idx, ms(nl-1, k):ms(nl, k)]; %#ok<AGROW>
+end
+if isempty(idx)
+    return
+end
+D = reshape(distance2faces(p3, faces(:, idx)), N, []);
+perto = (sum(D < r, 2) > 0).';
+dmin = min(D, [], 2).';
+end
+
+
+function dentro = dentro_da_malha(p3, f)
+% Um ponto esta dentro de uma malha fechada quando um raio que sai dele
+% cruza a superficie um numero impar de vezes (teste de Moller-Trumbore em
+% cada triangulo). A direcao do raio e fixa e irracional, para nao passar
+% por arestas, e o teste nao usa rand: o gerador aleatorio fica intocado.
+d = [1; sqrt(2); sqrt(3)]/sqrt(6);
+N = size(p3, 2);
+A = f(1:3, :);
+e1 = f(4:6, :) - A;
+e2 = f(7:9, :) - A;
+h = cross(repmat(d, 1, size(f, 2)), e2, 1);
+a = sum(e1 .* h, 1);
+a(abs(a) < 1e-12) = NaN;                       % raio paralelo a face
+S = permute(p3, [1 3 2]) - A;                  % 3 x faces x pontos
+u = sum(S .* h, 1) ./ a;
+Q = cross(S, repmat(e1, [1 1 N]), 1);
+v = sum(Q .* d, 1) ./ a;
+t = sum(Q .* e2, 1) ./ a;
+cruza = u >= 0 & v >= 0 & u + v <= 1 & t > 0;  % NaN conta como falso
+dentro = reshape(mod(sum(cruza, 2), 2) == 1, 1, N);
+end

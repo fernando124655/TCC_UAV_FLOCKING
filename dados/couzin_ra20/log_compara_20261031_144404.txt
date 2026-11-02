@@ -1,0 +1,39 @@
+=== Couzin com r_o e r_a <= 20 m | compara | 31-Oct-2026 14:44:04 ===
+
+================ vazia (n = 20) ================
+metrica                    original        r_a <= 20 m p (Wilc.)
+F                  0.3436 +- 0.1681   0.0914 +- 0.0658    0.114
+phi_corr           0.9476 +- 0.0057   0.9408 +- 0.0104    0.294
+phi_vel            1.0075 +- 0.0009   1.0085 +- 0.0009    0.143
+com colisao                       9                  1
+com phi_wall>0                    0                  0
+Ordem em phi_corr, com o Couzin novo: Reynolds > Couzin > OlfatiSaber > Vasarhelyi
+  Couzin (r_a <= 20) x Reynolds   : 0.9408 x 0.9754, p = 0.000586 (significativo, Bonferroni)
+  Couzin (r_a <= 20) x OlfatiSaber: 0.9408 x 0.9366, p = 0.571
+  Couzin (r_a <= 20) x Vasarhelyi : 0.9408 x 0.9224, p = 0.0532
+
+================ cubos (n = 20) ================
+metrica                    original        r_a <= 20 m p (Wilc.)
+F                  0.5526 +- 0.1433   0.4556 +- 0.1414    0.522
+phi_corr           0.8060 +- 0.0159   0.7538 +- 0.0190  8.2e-05
+phi_vel            0.9876 +- 0.0027   0.9904 +- 0.0019     0.04
+com colisao                      13                  7
+com phi_wall>0                    0                  0
+Ordem em phi_corr, com o Couzin novo: Reynolds > Couzin > Vasarhelyi > OlfatiSaber
+  Couzin (r_a <= 20) x Reynolds   : 0.7538 x 0.9280, p = 6.29e-05 (significativo, Bonferroni)
+  Couzin (r_a <= 20) x OlfatiSaber: 0.7538 x 0.5726, p = 1.91e-06 (significativo, Bonferroni)
+  Couzin (r_a <= 20) x Vasarhelyi : 0.7538 x 0.6696, p = 0.000851 (significativo, Bonferroni)
+
+================ cilindros (n = 20) ================
+metrica                    original        r_a <= 20 m p (Wilc.)
+F                  0.5159 +- 0.1485   0.4631 +- 0.1443    0.784
+phi_corr           0.8541 +- 0.0096   0.7823 +- 0.0306 1.34e-05
+phi_vel            0.9940 +- 0.0012   0.9934 +- 0.0019    0.648
+com colisao                      12                  8
+com phi_wall>0                    0                  0
+Ordem em phi_corr, com o Couzin novo: Reynolds > Vasarhelyi > Couzin > OlfatiSaber
+  Couzin (r_a <= 20) x Reynolds   : 0.7823 x 0.9324, p = 0.000586 (significativo, Bonferroni)
+  Couzin (r_a <= 20) x OlfatiSaber: 0.7823 x 0.6008, p = 1.91e-05 (significativo, Bonferroni)
+  Couzin (r_a <= 20) x Vasarhelyi : 0.7823 x 0.8065, p = 0.475
+
+Tabela gravada em data_save\couzin_ra20\comparacao_20261031_144405.csv

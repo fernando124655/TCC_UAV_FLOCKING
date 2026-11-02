@@ -1,0 +1,80 @@
+=== Couzin com r_o e r_a <= 20 m | mc | 31-Oct-2026 13:50:35 ===
+Parametros novos (at_Couzin_ra20_20261029_174910.mat): r_r 3.2085, r_o 20.0000, r_a 20.0000, r_shill 1.6876, w_shill 0.1609
+
+================ vazia ================
+Monte Carlo original: mc_Couzin_vazia_20260811_162623.mat (20 execucoes)
+XML da arena: xml_config_files\parameters_vazia_BACKUP.xml
+Conferencia (semente 1, parametros originais): diferenca maxima 0.00e+00
+  semente  1: F 0.0634  corr 0.9366  vel 1.0043  coll 0  wall 0  MND 0.126  [43 s]
+  semente  2: F 0.0579  corr 0.9421  vel 1.0061  coll 0  wall 0  MND 0.120  [47 s]
+  semente  3: F 0.0299  corr 0.9701  vel 1.0110  coll 0  wall 0  MND 0.105  [45 s]
+  semente  4: F 0.0674  corr 0.9326  vel 1.0059  coll 0  wall 0  MND 0.102  [45 s]
+  semente  5: F 0.6816  corr 0.9627  vel 1.0094  coll 2.22e-05  wall 0  MND 0.120  [46 s]
+  semente  6: F 0.0348  corr 0.9652  vel 1.0092  coll 0  wall 0  MND 0.119  [44 s]
+  semente  7: F 0.0551  corr 0.9449  vel 1.0082  coll 0  wall 0  MND 0.105  [43 s]
+  semente  8: F 0.0669  corr 0.9331  vel 1.0063  coll 0  wall 0  MND 0.120  [45 s]
+  semente  9: F 0.0761  corr 0.9239  vel 1.0106  coll 0  wall 0  MND 0.109  [45 s]
+  semente 10: F 0.0555  corr 0.9445  vel 1.0077  coll 0  wall 0  MND 0.123  [48 s]
+  semente 11: F 0.0479  corr 0.9521  vel 1.0110  coll 0  wall 0  MND 0.115  [43 s]
+  semente 12: F 0.0584  corr 0.9416  vel 1.0089  coll 0  wall 0  MND 0.119  [44 s]
+  semente 13: F 0.0710  corr 0.9290  vel 1.0085  coll 0  wall 0  MND 0.123  [45 s]
+  semente 14: F 0.1227  corr 0.8773  vel 1.0068  coll 0  wall 0  MND 0.127  [46 s]
+  semente 15: F 0.0564  corr 0.9436  vel 1.0108  coll 0  wall 0  MND 0.115  [45 s]
+  semente 16: F 0.0977  corr 0.9023  vel 1.0092  coll 0  wall 0  MND 0.118  [45 s]
+  semente 17: F 0.0316  corr 0.9684  vel 1.0098  coll 0  wall 0  MND 0.106  [42 s]
+  semente 18: F 0.0493  corr 0.9507  vel 1.0084  coll 0  wall 0  MND 0.119  [44 s]
+  semente 19: F 0.0651  corr 0.9349  vel 1.0088  coll 0  wall 0  MND 0.118  [45 s]
+  semente 20: F 0.0403  corr 0.9597  vel 1.0097  coll 0  wall 0  MND 0.123  [47 s]
+Salvo em data_save\couzin_ra20\mc_Couzin_ra20_vazia_20261031_140620.mat (15.0 min)
+
+================ cubos ================
+Monte Carlo original: mc_Couzin_obstaculos_20260814_162949.mat (20 execucoes)
+XML da arena: xml_config_files\parameters_obst_cubo.xml
+Conferencia (semente 1, parametros originais): diferenca maxima 0.00e+00
+  semente  1: F 0.2218  corr 0.7793  vel 0.9907  coll 0  wall 0  MND 0.123  [50 s]
+  semente  2: F 0.7430  corr 0.7790  vel 0.9875  coll 2.22e-05  wall 0  MND 0.128  [52 s]
+  semente  3: F 0.9141  corr 0.6979  vel 0.9871  coll 5.54e-05  wall 0  MND 0.128  [53 s]
+  semente  4: F 0.1991  corr 0.8022  vel 0.9901  coll 0  wall 0  MND 0.119  [54 s]
+  semente  5: F 0.9180  corr 0.7541  vel 0.9921  coll 6.09e-05  wall 0  MND 0.128  [50 s]
+  semente  6: F 0.1669  corr 0.8332  vel 0.9986  coll 0  wall 0  MND 0.125  [51 s]
+  semente  7: F 0.2432  corr 0.7572  vel 0.9946  coll 0  wall 0  MND 0.122  [53 s]
+  semente  8: F 0.9151  corr 0.7800  vel 0.9974  coll 6.09e-05  wall 0  MND 0.129  [53 s]
+  semente  9: F 0.2803  corr 0.7219  vel 0.9868  coll 0  wall 0  MND 0.128  [53 s]
+  semente 10: F 0.2525  corr 0.7502  vel 0.9858  coll 0  wall 0  MND 0.119  [50 s]
+  semente 11: F 0.6971  corr 0.7331  vel 0.9889  coll 1.66e-05  wall 0  MND 0.120  [51 s]
+  semente 12: F 0.2959  corr 0.7047  vel 0.9934  coll 0  wall 0  MND 0.114  [53 s]
+  semente 13: F 0.2062  corr 0.7955  vel 0.9891  coll 0  wall 0  MND 0.120  [54 s]
+  semente 14: F 0.2573  corr 0.7432  vel 0.9940  coll 0  wall 0  MND 0.119  [53 s]
+  semente 15: F 0.2645  corr 0.7385  vel 0.9846  coll 0  wall 0  MND 0.121  [51 s]
+  semente 16: F 0.9739  corr 0.7753  vel 0.9835  coll 0.000133  wall 0  MND 0.130  [52 s]
+  semente 17: F 0.2207  corr 0.7807  vel 0.9897  coll 0  wall 0  MND 0.121  [53 s]
+  semente 18: F 0.2389  corr 0.7619  vel 0.9923  coll 0  wall 0  MND 0.120  [54 s]
+  semente 19: F 0.7578  corr 0.7331  vel 0.9913  coll 2.22e-05  wall 0  MND 0.121  [49 s]
+  semente 20: F 0.3460  corr 0.6549  vel 0.9911  coll 0  wall 0  MND 0.117  [51 s]
+Salvo em data_save\couzin_ra20\mc_Couzin_ra20_cubos_20261031_142437.mat (17.3 min)
+
+================ cilindros ================
+Monte Carlo original: mc_Couzin_cilindros_20260812_160111.mat (20 execucoes)
+XML da arena: xml_config_files\parameters_obstacles_prod.xml
+Conferencia (semente 1, parametros originais): diferenca maxima 0.00e+00
+  semente  1: F 0.8771  corr 0.8709  vel 0.9997  coll 4.99e-05  wall 0  MND 0.126  [56 s]
+  semente  2: F 0.6791  corr 0.7786  vel 0.9839  coll 1.66e-05  wall 0  MND 0.142  [53 s]
+  semente  3: F 0.2212  corr 0.7796  vel 0.9923  coll 0  wall 0  MND 0.124  [54 s]
+  semente  4: F 0.2136  corr 0.7871  vel 0.9928  coll 0  wall 0  MND 0.120  [56 s]
+  semente  5: F 0.7860  corr 0.7935  vel 0.9882  coll 2.77e-05  wall 0  MND 0.136  [56 s]
+  semente  6: F 0.1899  corr 0.8106  vel 0.9946  coll 0  wall 0  MND 0.114  [56 s]
+  semente  7: F 0.2166  corr 0.7836  vel 0.9965  coll 0  wall 0  MND 0.111  [54 s]
+  semente  8: F 0.2268  corr 0.7734  vel 0.9961  coll 0  wall 0  MND 0.124  [54 s]
+  semente  9: F 0.1669  corr 0.8332  vel 0.9966  coll 0  wall 0  MND 0.113  [56 s]
+  semente 10: F 0.8147  corr 0.8243  vel 0.9916  coll 3.32e-05  wall 0  MND 0.132  [56 s]
+  semente 11: F 0.8983  corr 0.8258  vel 0.9887  coll 5.54e-05  wall 0  MND 0.122  [54 s]
+  semente 12: F 0.6383  corr 0.6795  vel 0.9892  coll 1.11e-05  wall 0  MND 0.143  [54 s]
+  semente 13: F 0.4352  corr 0.5648  vel 0.9975  coll 0  wall 0  MND 0.121  [56 s]
+  semente 14: F 0.9359  corr 0.8252  vel 0.9938  coll 7.76e-05  wall 0  MND 0.142  [57 s]
+  semente 15: F 0.2020  corr 0.7988  vel 0.9922  coll 0  wall 0  MND 0.119  [56 s]
+  semente 16: F 0.2172  corr 0.7829  vel 0.9978  coll 0  wall 0  MND 0.115  [56 s]
+  semente 17: F 0.1506  corr 0.8496  vel 0.9964  coll 0  wall 0  MND 0.116  [56 s]
+  semente 18: F 0.2443  corr 0.7564  vel 0.9928  coll 0  wall 0  MND 0.115  [57 s]
+  semente 19: F 0.2442  corr 0.7559  vel 0.9966  coll 0  wall 0  MND 0.129  [55 s]
+  semente 20: F 0.9049  corr 0.7723  vel 0.9899  coll 5.54e-05  wall 0  MND 0.140  [53 s]
+Salvo em data_save\couzin_ra20\mc_Couzin_ra20_cilindros_20261031_144404.mat (18.4 min)

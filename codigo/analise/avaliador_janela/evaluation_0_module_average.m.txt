@@ -1,0 +1,54 @@
+function values = evaluation_0_module_average(time_series, values_series)
+%EVALUATION_0_MODULE_AVERAGE  Medias da execucao inteira e sem o transitorio.
+%
+% Versao instalada temporariamente por main_ruido_sem_transitorio.m
+% (28/10/2026). Devolve 26 valores: os 13 da execucao inteira, como na
+% execucao de 20/10, seguidos dos mesmos 13 calculados so a partir de T_SKIP
+% segundos de voo.
+%
+%   1 F   2 phiCorr   3 phiVel   4 phiColl   5 phiWall   6 phiMND
+%   7 parede   8 piso/teto   9 obstaculo   10 dentro      (fracoes medias)
+%   11 menor distancia a um obstaculo   12 menor distancia as paredes
+%   13 maior |phiWall - uniao dos tipos| (checagem; deve ser zero)
+%
+% F e calculado como no avaliador de producao: v_tol de Vasarhelyi et al.
+% (2018) e r_tol = 0.
+
+T_SKIP = 7;   % s; main_ruido_sem_transitorio grava aqui o valor escolhido
+
+file_name_param = 'evaluation_0_module_parameters';
+[~, str_core] = get_multi_core_value();
+fun_params = str2func([file_name_param, str_core]);
+
+[v_flock, ...
+r_coll, ...
+a_tol] = fun_params(); %#ok<ASGLU>
+
+v_tol = 1.5/4 * v_flock;
+r_tol = 0;
+
+n = size(values_series, 2);
+t = time_series(:).';
+if numel(t) ~= n
+    t = linspace(t(1), t(end), n);
+end
+manter = t >= T_SKIP - 1e-6;
+if ~any(manter)
+    manter = true(1, n);
+end
+
+values = [resume(values_series); resume(values_series(:, manter))];
+
+    function out = resume(V)
+        phiCorr = mean(V(1, :));
+        phiVel = mean(V(2, :));
+        phiColl = mean(V(3, :));
+        phiWall = mean(V(4, :));
+        phiMND = mean(V(5, :));
+        [~, ~, ~, ~, F] = fitness_function_combine(v_flock, a_tol, v_tol, r_tol, ...
+            phiVel, phiColl, phiWall, phiCorr);
+        out = [F; phiCorr; phiVel; phiColl; phiWall; phiMND; ...
+            mean(V(6, :)); mean(V(7, :)); mean(V(8, :)); mean(V(9, :)); ...
+            min(V(10, :)); min(V(11, :)); max(abs(V(12, :)))];
+    end
+end

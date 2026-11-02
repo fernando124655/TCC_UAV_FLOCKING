@@ -1,0 +1,34 @@
+etapa,algoritmo,arena,arquivo,linhas
+alta fidelidade,todos,todas,60 arquivos hifi_*.mat,60
+monte carlo,Couzin,vazia,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\monte_carlo\mc_Couzin_vazia_20260811_162623.mat,20
+monte carlo,Couzin,cilindros,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\monte_carlo\mc_Couzin_cilindros_20260812_160111.mat,20
+monte carlo,Couzin,cubos,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\monte_carlo\mc_Couzin_obstaculos_20260814_162949.mat,20
+monte carlo,Reynolds,vazia,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\monte_carlo\mc_Reynolds_vazia_20260811_163552.mat,20
+monte carlo,Reynolds,cilindros,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\monte_carlo\mc_Reynolds_cilindros_20260812_161342.mat,20
+monte carlo,Reynolds,cubos,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\monte_carlo\mc_Reynolds_obstaculos_20260814_164343.mat,20
+monte carlo,OlfatiSaber,vazia,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\monte_carlo\mc_OlfatiSaber_vazia_20260811_164523.mat,20
+monte carlo,OlfatiSaber,cilindros,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\monte_carlo\mc_OlfatiSaber_cilindros_20260812_162643.mat,20
+monte carlo,OlfatiSaber,cubos,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\monte_carlo\mc_OlfatiSaber_obstaculos_20260814_165742.mat,20
+monte carlo,Vasarhelyi,vazia,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\monte_carlo\mc_Vasarhelyi_vazia_20260811_165531.mat,20
+monte carlo,Vasarhelyi,cilindros,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\monte_carlo\mc_Vasarhelyi_cilindros_20260812_164029.mat,20
+monte carlo,Vasarhelyi,cubos,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\monte_carlo\mc_Vasarhelyi_obstaculos_20260814_171330.mat,20
+lote,Couzin,vazia,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\batch_production\bp_Couzin_vazia_20260817_180751.mat,2028
+lote,Couzin,cubos,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\batch_production\bp_Couzin_cubos_20260819_162406.mat,2028
+lote,Reynolds,vazia,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\batch_production\bp_Reynolds_vazia_20260818_104435.mat,2028
+lote,Reynolds,cubos,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\batch_production\bp_Reynolds_cubos_20260820_143909.mat,2028
+lote,OlfatiSaber,vazia,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\batch_production\bp_OlfatiSaber_vazia_20260818_191540.mat,2028
+lote,OlfatiSaber,cubos,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\batch_production\bp_OlfatiSaber_cubos_20260820_225721.mat,2028
+lote,Vasarhelyi,vazia,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\batch_production\bp_Vasarhelyi_vazia_20260819_095104.mat,2028
+lote,Vasarhelyi,cubos,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\batch_production\bp_Vasarhelyi_cubos_20260821_082627.mat,2028
+varredura de T_c,Couzin,vazia,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\tc_sweep\tc_Couzin_vazia.mat,78
+varredura de T_c,Couzin,cubos,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\tc_sweep\tc_Couzin_cubos.mat,78
+varredura de T_c,Couzin,cilindros,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\tc_sweep\tc_Couzin_cilindros.mat,78
+varredura de T_c,Reynolds,vazia,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\tc_sweep\tc_Reynolds_vazia.mat,78
+varredura de T_c,Reynolds,cubos,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\tc_sweep\tc_Reynolds_cubos.mat,78
+varredura de T_c,Reynolds,cilindros,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\tc_sweep\tc_Reynolds_cilindros.mat,78
+varredura de T_c,OlfatiSaber,vazia,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\tc_sweep\tc_OlfatiSaber_vazia.mat,78
+varredura de T_c,OlfatiSaber,cubos,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\tc_sweep\tc_OlfatiSaber_cubos.mat,78
+varredura de T_c,OlfatiSaber,cilindros,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\tc_sweep\tc_OlfatiSaber_cilindros.mat,78
+varredura de T_c,Vasarhelyi,vazia,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\tc_sweep\tc_Vasarhelyi_vazia.mat,78
+varredura de T_c,Vasarhelyi,cubos,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\tc_sweep\tc_Vasarhelyi_cubos.mat,78
+varredura de T_c,Vasarhelyi,cilindros,C:\Users\PCMALOCA\Documents\CoFlyers\matlab_simulink_ws\Prototype_Simulator\data_save\tc_sweep\tc_Vasarhelyi_cilindros.mat,78
