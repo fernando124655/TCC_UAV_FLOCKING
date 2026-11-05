@@ -1,0 +1,39 @@
+Struct version 4.0.0 -- 07/05/26 -- LAAS/CNRS
+
+parsed net ga_n30
+
+6 places, 5 transitions, 12 arcs
+
+net ga_n30
+tr AvaliarRegistrar SimulacaoEmCurso  -> ResultadoRegistrado WorkerOcioso 
+tr DistribuirGeracao GeracaoPronta  -> CandidatoPendente*30 
+tr EscreverParametros CandidatoPendente WorkerOcioso  -> EscritaConcluida 
+tr FecharGeracao ResultadoRegistrado*30  -> GeracaoPronta 
+tr LerParametros EscritaConcluida  -> SimulacaoEmCurso 
+pl GeracaoPronta (1)
+pl WorkerOcioso (6)
+
+0.001s
+
+P-SEMI-FLOWS GENERATING SET ------------------------------------- 
+
+2 semiflow(s)  [reconstructed from 2]
+
+CandidatoPendente EscritaConcluida GeracaoPronta*30 ResultadoRegistrado SimulacaoEmCurso (30)
+EscritaConcluida SimulacaoEmCurso WorkerOcioso (6)
+
+invariant
+
+0.000s
+
+T-SEMI-FLOWS GENERATING SET ------------------------------------- 
+
+1 semiflow(s)  [reconstructed from 1]
+
+AvaliarRegistrar*30 DistribuirGeracao EscreverParametros*30 FecharGeracao LerParametros*30 (92)
+
+consistent
+
+0.000s
+
+ANALYSIS COMPLETED  --------------------------------------------- 

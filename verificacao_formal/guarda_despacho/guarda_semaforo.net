@@ -1,0 +1,12 @@
+net guarda_semaforo
+pl GuardaAberta (1)
+pl GuardaFechada (0)
+pl InicioGA (1)
+pl WorkerOcioso (0)
+pl EscrevendoDespacho (0)
+pl Avaliando (0)
+tr IniciarAvaliacaoParalela InicioGA -> WorkerOcioso*6
+tr AtravessarGuarda WorkerOcioso GuardaAberta -> EscrevendoDespacho
+tr PularReescrita WorkerOcioso GuardaFechada?1 -> Avaliando
+tr ConcluirEscrita EscrevendoDespacho -> Avaliando GuardaFechada
+tr DevolverWorker Avaliando -> WorkerOcioso

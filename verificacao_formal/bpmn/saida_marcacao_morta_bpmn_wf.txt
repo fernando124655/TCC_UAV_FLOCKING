@@ -1,0 +1,2 @@
+marcacao 7347 = 7347 : o
+dead marking(s): 7347

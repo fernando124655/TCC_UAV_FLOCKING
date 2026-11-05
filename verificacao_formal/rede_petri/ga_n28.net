@@ -1,0 +1,12 @@
+net ga_n28
+pl GeracaoPronta (1)
+pl CandidatoPendente (0)
+pl WorkerOcioso (6)
+pl EscritaConcluida (0)
+pl SimulacaoEmCurso (0)
+pl ResultadoRegistrado (0)
+tr DistribuirGeracao GeracaoPronta -> CandidatoPendente*28
+tr EscreverParametros CandidatoPendente WorkerOcioso -> EscritaConcluida
+tr LerParametros EscritaConcluida -> SimulacaoEmCurso
+tr AvaliarRegistrar SimulacaoEmCurso -> ResultadoRegistrado WorkerOcioso
+tr FecharGeracao ResultadoRegistrado*28 -> GeracaoPronta

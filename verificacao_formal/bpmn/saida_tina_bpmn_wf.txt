@@ -1,0 +1,37 @@
+Tina version 4.0.0 -- 07/04/26 -- LAAS/CNRS
+
+mode -R
+
+INPUT NET ------------------------------------------------------- 
+
+parsed net bpmn_protocolo
+
+18 places, 15 transitions, 37 arcs
+
+0.000s
+
+REACHABILITY ANALYSIS ------------------------------------------- 
+
+bounded
+
+7348 marking(s), 32703 transition(s)
+
+0.062s
+
+LIVENESS ANALYSIS ----------------------------------------------- 
+
+not live
+not reversible
+
+1 dead marking(s), 1 live marking(s)
+0 dead transition(s), 0 live transition(s)
+
+0.004s
+
+ANALYSIS COMPLETED ---------------------------------------------- 
+
+# net bpmn_protocolo, 18 places, 15 transitions, 37 arcs               #
+# bounded, not live, not reversible                                    #
+# abstraction        count      props      psets       dead       live #
+#      states         7348         18          ?          1          1 # 
+# transitions        32703         15          ?          0          0 #

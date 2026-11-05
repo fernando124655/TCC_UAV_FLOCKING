@@ -1,0 +1,15 @@
+Selt version 4.0.0 -- 07/04/26 -- LAAS/CNRS
+ktz loaded, 10 states, 15 transitions
+0.001s
+operator corrida : prop
+0.000s
+TRUE
+0.000s
+FALSE
+  state 0: L.scc*3 GuardaAberta InicioGA
+  -IniciarAvaliacaoParalela ... (preserving T)->
+  state 1: L.scc*2 GuardaAberta WorkerOcioso*6
+  -AtravessarGuarda ... (preserving - - ((GuardaAberta >= 1) /\ (WorkerOcioso + Avaliando + EscrevendoDespacho) >= 1))->
+  state 2: L.scc EscrevendoDespacho WorkerOcioso*5
+  [accepting all]
+0.000s

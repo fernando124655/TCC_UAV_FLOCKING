@@ -1,0 +1,37 @@
+Tina version 4.0.0 -- 07/04/26 -- LAAS/CNRS
+
+mode -R
+
+INPUT NET ------------------------------------------------------- 
+
+parsed net guarda_sem_aquecimento
+
+6 places, 6 transitions, 17 arcs
+
+0.001s
+
+REACHABILITY ANALYSIS ------------------------------------------- 
+
+bounded
+
+35 marking(s), 75 transition(s)
+
+0.000s
+
+LIVENESS ANALYSIS ----------------------------------------------- 
+
+not live
+not reversible
+
+0 dead marking(s), 7 live marking(s)
+0 dead transition(s), 2 live transition(s)
+
+0.000s
+
+ANALYSIS COMPLETED ---------------------------------------------- 
+
+# net guarda_sem_aquecimento, 6 places, 6 transitions, 17 arcs         #
+# bounded, not live, not reversible                                    #
+# abstraction        count      props      psets       dead       live #
+#      states           35          6          ?          0          7 # 
+# transitions           75          6          ?          0          2 #
