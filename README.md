@@ -8,15 +8,28 @@ Código, configuração e resultados do TCC 2 (formato de artigo) do Bacharelado
 
 ### Questões de pesquisa
 
-- **QP1.** Como o desempenho, a segurança e a robustez diferem entre quatro algoritmos de *flocking* de complexidade paramétrica distinta, calibrados pelo mesmo procedimento, em arenas confinadas com obstáculos?
+- **QP1.** O número de parâmetros calibrados prediz a ordenação de desempenho, segurança e robustez de quatro algoritmos de *flocking* calibrados pelo mesmo procedimento e orçamento, em arenas confinadas com obstáculos?
 - **QP2.** Como cada algoritmo se degrada na passagem da simulação idealizada para a de alta fidelidade? (análise exploratória)
 
 ### Hipótese (formulada antes dos experimentos, para a QP1)
 
-- **H1-A.** Algoritmos com mais parâmetros atingem desempenho superior após a calibração.
-- **H1-B.** Algoritmos com mais parâmetros são menos robustos à mudança de ambiente, ao ruído de velocidade e ao período de controle.
+- **H1-A.** Mais parâmetros elevam o alinhamento após a calibração.
+- **H1-B.** Mais parâmetros aumentam a perda de alinhamento sob obstáculos, ruído de velocidade e variação do período de controle.
 
-Com um algoritmo por nível de complexidade, a hipótese é avaliada como previsão de ordenação dos quatro, e não como relação entre complexidade e desempenho. As conclusões valem para estas quatro formulações e as suas implementações.
+Com um algoritmo por nível de complexidade, a hipótese é decidida como previsão de ordenação dos quatro, e não como relação entre complexidade e desempenho:
+
+- a H1-A é refutada se, em algum par de níveis adjacentes (5 e 6, 6 e 7, 7 e 11 parâmetros), o algoritmo com mais parâmetros tiver φ<sub>corr</sub> significativamente menor no Monte Carlo da arena vazia (Wilcoxon pareado, α<sub>c</sub> = 0,0083, d<sub>z</sub> ≥ 0,5);
+- H1-B é refutada se, em alguma perturbação e arena, a ordem das quedas de φ<sub>corr</sub> não seguir a do número de parâmetros (no período de controle, a ordem do período crítico T<sub>c</sub>\* é a inversa).
+
+Esses critérios foram explicitados depois dos experimentos; a hipótese é anterior a eles. As conclusões valem para estas quatro formulações e as suas implementações.
+
+### Limitações conhecidas dos módulos
+
+Estas escolhas de implementação fazem parte do que se compara e estão declaradas no artigo (seções 4.1 e 5.2.5). Quem reaproveitar os módulos deve conhecê-las:
+ 
+- **Velocidade constante em três módulos.** O Couzin (como no modelo original), o Reynolds e o Olfati-Saber (por escolha de implementação) normalizam o comando na velocidade de referência e só mudam de direção (`Couzin_module_generate_desire.m`, linhas 237-259; `Reynolds_module_generate_desire.m`, linhas 118-148; `OlfatiSaber_module_generate_desire.m`, linhas 266-294). Só o Vásárhelyi, pela curva de frenagem, reduz a velocidade: no Monte Carlo, o seu φ<sub>vel</sub> é de 0,97, 0,80 e 0,72 nas arenas vazia, com cilindros e com cubos, contra 0,99 a 1,02 nos outros três. A frenagem é uma explicação alternativa para a ausência de violações do Vásárhelyi, que este desenho não separa do número de parâmetros.
+- **Arena fixa no código do Olfati-Saber.** As paredes (x e y em ±30 m) e os centros dos obstáculos ((±12, ±12) m) estão nas linhas 76 a 98 de `OlfatiSaber_module_generate_desire.m`, e não vêm do `map3d_struct` que a interface entrega. O módulo usa esses valores para separar os *shill agents* de cada obstáculo e para calcular a distância exata a cada parede; os outros três só percebem as paredes pelos *shills*. Em outra arena, essas linhas precisam ser trocadas (ou derivadas do `map3d_struct`).
+- **Voo depois da violação.** O simulador protótipo não interrompe o drone que colide ou atravessa uma parede ou um obstáculo, e o φ<sub>corr</sub> do avaliador conta esse voo. O `main_alinhamento_pos_violacao.m` refaz o Monte Carlo e mede o φ<sub>corr</sub> sem ele (ver Reprodução).
 
 ### Algoritmos comparados
 
@@ -38,7 +51,7 @@ Dois computadores, que se comunicam por UDP em rede local:
 - **PC-A (Commander):** executa, em MATLAB/Simulink, os algoritmos de *flocking*, o módulo de ruído e o módulo de avaliação, e envia os comandos de velocidade.
 - **PC-B (Simulator):** executa o PX4-SITL e o Gazebo num contêiner Docker, com a dinâmica dos quadricópteros e o controle de baixo nível.
 
-O protocolo foi projetado para que a origem das diferenças fosse identificável: o mesmo arquivo `.m` de cada algoritmo roda em todas as etapas, todos os módulos usam a mesma interface do CoFlyers e paredes e obstáculos são representados pelos mesmos *shill agents*. Há exceções declaradas no artigo (seção 4.1): o Olfati-Saber usa um agente-β por parede e por obstáculo, o alcance de percepção é calibrado no Couzin e no Olfati-Saber e fixo nos outros dois, e os ganhos de mescla diferem.
+O protocolo foi projetado para que a origem das diferenças fosse identificável: o mesmo arquivo `.m` de cada algoritmo roda em todas as etapas, todos os módulos usam a mesma interface do CoFlyers e paredes e obstáculos são representados pelos mesmos *shill agents*. Há exceções declaradas no artigo (seção 4.1): o Olfati-Saber usa um agente-β por parede e por obstáculo, com as paredes e os centros dos obstáculos fixados no código; o alcance de percepção é calibrado no Couzin e no Olfati-Saber e fixo nos outros dois; os ganhos de mescla diferem; e só o Vásárhelyi pode reduzir a velocidade (ver "Limitações conhecidas dos módulos").
 
 ---
 
@@ -188,6 +201,13 @@ main_validacao_modulos    % grava validacao_*.mat, os CSVs e o log em data_save\
 % A Figura 8 do artigo (Apêndice D) sai de figuras_validacao_modulos, chamada no fim;
 % para refazê-la sozinha: figuras_validacao_modulos('data_save\validacao_modulos\validacao_20261101_121846.mat')
 
+% 9. Testes da H1-A (pares adjacentes) e do perfil de falha (McNemar e Clopper-Pearson), a partir dos CSVs
+inferencia_monte_carlo('resultados/csv')   % codigo/analise; roda também no GNU Octave
+
+% 10. Alinhamento sem o voo depois das violações (240 execuções do Monte Carlo refeitas), cerca de 2 h
+main_alinhamento_pos_violacao             % codigo/complementares, com a pasta avaliador_intactos
+% troca o avaliador temporariamente, confere as métricas nativas com os mc_*.mat originais
+% e grava data_save\alinhamento_pos_violacao\alinhamento_pos_violacao.csv
 
 ```
 
@@ -197,9 +217,9 @@ O `verificar_hifi` confere sete itens antes de cada bloco de execuções de alta
 
 ## Síntese dos resultados
 
-- **H1-A não sustentada.** O Reynolds (6 parâmetros) teve o maior alinhamento nas três arenas, e o Vásárhelyi (11) não superou nenhum outro na arena da calibração. Na prática, a calibração otimizou o alinhamento: o melhor indivíduo de cada algoritmo não teve violações nas configurações de treino.
-- **H1-B não sustentada.** Nenhuma perturbação ordena os algoritmos pelo número de parâmetros, e o mais frágil muda com a perturbação: o Olfati-Saber na mudança de ambiente e no período de controle; o Reynolds no ruído. O Couzin, o mais simples, é o mais robusto ao ruído e ao período de controle.
-- **Perfil de falha.** Cada algoritmo tem um tipo característico de violação de segurança: o Couzin colide entre drones; o Reynolds viola ocasionalmente o limite da arena; a variante do Olfati-Saber invade obstáculos; o Vásárhelyi não registrou violações nas 75 execuções (60 do Monte Carlo e 15 da alta fidelidade).
+- **H1-A refutada.** No par de 6 para 7 parâmetros, o Olfati-Saber tem φ<sub>corr</sub> 0,039 menor que o Reynolds na arena vazia (p = 7,1 × 10<sup>-4</sup>, d<sub>z</sub> = 1,00), também sem as execuções com violação (13 pares, p = 2,4 × 10<sup>-4</sup>, d<sub>z</sub> = 2,15). O Reynolds (6) teve o maior alinhamento nas três arenas, e o Vásárhelyi (11) não difere do Olfati-Saber (p = 0,090). Na prática, a calibração otimizou o alinhamento: como F é a média das três configurações de treino, uma violação em uma só já penaliza o candidato, e o melhor indivíduo de cada algoritmo não teve violações no treino.
+- **H1-B refutada.** Nenhuma perturbação ordena os algoritmos pelo número de parâmetros, e o mais frágil muda com a perturbação: o Olfati-Saber na mudança de ambiente e no período de controle; o Reynolds no ruído. O Couzin, o mais simples, é o mais robusto ao ruído e ao período de controle.
+- **Perfil de falha.** Com 20 execuções por algoritmo e arena, só dois perfis se distinguem dos demais (McNemar exato, α<sub>c</sub> = 0,0083): as colisões do Couzin, em cada arena (p ≤ 3,9 × 10<sup>-3</sup>), e as invasões de obstáculo da variante do Olfati-Saber (p ≤ 7,6 × 10<sup>-6</sup>). As saídas da arena do Reynolds só se distinguem das do Couzin e das do Vásárhelyi no lote, com η = 0,02 e 0,1 m/s. O Vásárhelyi, o único que reduz a velocidade, não registrou violações: a taxa real é de até 6,0% no Monte Carlo (0 em 60) e de até 1,0% no lote (nenhuma colisão nem violação de parede ou de obstáculo em 360), pelo intervalo de Clopper-Pearson de 95%.
 - **Período de controle.** Na variante do Olfati-Saber, a integração da aceleração num único passo seguida da normalização impõe T<sub>c</sub> < v<sub>ref</sub>/a<sub>max</sub> = 0,2 s; acima disso, o enxame oscila em vez de se alinhar.
 - **QP2 (exploratória).** Sem obstáculos, a degradação na alta fidelidade foi parecida nos quatro algoritmos; com obstáculos, foi maior nos dois mais sensíveis ao ruído (Reynolds e Vásárhelyi). Com cinco execuções por condição e posições estimadas pelo PX4, isso fica como hipótese.
 - **Alcance de percepção.** Com o Couzin recalibrado com r<sub>o</sub> e r<sub>a</sub> ≤ 20 m, o alcance do Reynolds e do Vásárhelyi, os vereditos da H1-A e da H1-B e o tipo de falha do Couzin não mudam. Mudam a vantagem dele sobre o Vásárhelyi na arena vazia, que deixa de ser significativa, e o alinhamento com obstáculos, que cai 0,05 a 0,07; as colisões caem de 9, 12 e 13 para 1, 8 e 7 das 20 execuções, sem diferença significativa após a correção.
