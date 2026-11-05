@@ -1,0 +1,21 @@
+Selt version 4.0.0 -- 07/04/26 -- LAAS/CNRS
+ktz loaded, 35 states, 75 transitions
+0.001s
+operator corrida : prop
+0.000s
+FALSE
+  state 0: L.scc*13 GuardaAberta InicioGA
+  -IniciarAvaliacaoParalela ... (preserving T)->
+  state 3: L.scc*10 EscrevendoDespacho*2 GuardaAberta WorkerOcioso*4
+  -AtravessarGuarda ... (preserving - - ((EscrevendoDespacho >= 2) \/ (EscrevendoDespacho >= 1) /\ Avaliando >= 1))->
+  state 4: L.scc*9 EscrevendoDespacho*3 GuardaAberta WorkerOcioso*3
+  [accepting all]
+0.000s
+FALSE
+  state 0: L.scc*13 GuardaAberta InicioGA
+  -IniciarAvaliacaoParalela ... (preserving T)->
+  state 1: L.scc*12 GuardaAberta WorkerOcioso*6
+  -AtravessarGuarda ... (preserving - - ((GuardaAberta >= 1) /\ (WorkerOcioso + Avaliando + EscrevendoDespacho) >= 1))->
+  state 2: L.scc*11 EscrevendoDespacho GuardaAberta WorkerOcioso*5
+  [accepting all]
+0.000s

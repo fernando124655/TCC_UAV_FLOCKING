@@ -1,0 +1,23 @@
+net bpmn_protocolo
+# Rede de fluxo de trabalho (WF-net) traduzida do diagrama BPMN da secao 4.1,
+# segundo o mapeamento de Dijkman, Dumas e Ouyang (2008).
+# Lugar de origem: i. Lugar de destino: o.
+# Subprocesso multi-instancia paralelo com 4 instancias (um por algoritmo):
+#   ativacao com arco de peso 4 e conclusao com arco de peso 4.
+# Pool do Simulator (caixa-preta): modelado como ambiente que responde a cada comando.
+pl i (1)
+tr Inicio                 i -> Instancia*4
+tr PrepararTestarModulo   Instancia -> ModuloTestado
+tr CalibrarParametros     ModuloTestado -> Calibrado
+tr AplicarParametros      Calibrado -> ParametrosAplicados
+tr SplitParalelo          ParametrosAplicados -> RP_pend Lote_pend HF_pend
+tr PrototipacaoRapida     RP_pend -> RP_ok
+tr ProcessamentoLote      Lote_pend -> Lote_ok
+tr HF_PreVooEnvia         HF_pend -> HF_aguarda MsgComando
+tr Simulator_Responde     MsgComando -> MsgEstado
+tr HF_Recebe              HF_aguarda MsgEstado -> HF_ciclo
+tr HF_Continua            HF_ciclo -> HF_aguarda MsgComando
+tr HF_Encerra             HF_ciclo -> HF_ok
+tr JoinParalelo           RP_ok Lote_ok HF_ok -> InstanciaConcluida
+tr ConcluirInstancias     InstanciaConcluida*4 -> ProntoAnalise
+tr AnalisarHipoteses      ProntoAnalise -> o

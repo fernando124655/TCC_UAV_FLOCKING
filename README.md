@@ -125,6 +125,7 @@ resultados/
 ├── logs/          saída textual das execuções
 └── metricas_high_fidelity.csv
 docs/              documentação de metodologia e histórico
+verificacao_formal/ modelos da verificação formal (Apêndice C): redes de Petri (TINA), modelo NuSMV e saídas
 pc_b/PC-B/
 ├── launch_gazebo/ lançamentos do Gazebo, pareados por semente
 ├── launch_ros/    lançamentos da ponte ROS, pareados por semente

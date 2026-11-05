@@ -1,0 +1,13 @@
+net guarda_sem_aquecimento
+pl GuardaAberta (1)
+pl GuardaFechada (0)
+pl InicioGA (1)
+pl WorkerOcioso (0)
+pl EscrevendoDespacho (0)
+pl Avaliando (0)
+tr IniciarAvaliacaoParalela InicioGA -> WorkerOcioso*6
+tr AtravessarGuarda WorkerOcioso GuardaAberta?1 -> EscrevendoDespacho
+tr PularReescrita WorkerOcioso GuardaFechada?1 -> Avaliando
+tr ConcluirEscritaFechando EscrevendoDespacho GuardaAberta -> Avaliando GuardaFechada
+tr ConcluirEscrita EscrevendoDespacho GuardaFechada?1 -> Avaliando
+tr DevolverWorker Avaliando -> WorkerOcioso

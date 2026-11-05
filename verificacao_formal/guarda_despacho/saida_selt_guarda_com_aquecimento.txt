@@ -1,0 +1,9 @@
+Selt version 4.0.0 -- 07/04/26 -- LAAS/CNRS
+ktz loaded, 9 states, 14 transitions
+0.001s
+operator corrida : prop
+0.000s
+TRUE
+0.001s
+TRUE
+0.000s

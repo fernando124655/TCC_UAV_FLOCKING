@@ -1,0 +1,89 @@
+-- Isolamento do arquivo de parametros entre os 6 workers do auto-tuning paralelo.
+-- Worker i grava parameters<sufixo>.m e depois o le para simular. Sufixo = '_<id>' (getCurrentTask).
+-- Variante pool = threads: SUFIXO COMUM (todos os workers usam o mesmo arquivo).
+-- Obs. (08/10): no MATLAB R2026a, sob pool de threads, getCurrentTask lanca excecao
+-- (teste do Fernando); a variante representa a perda do sufixo, nao o comportamento real sob threads.
+-- Escalonamento por entrelacamento: a cada passo, um worker (turno) executa uma acao.
+MODULE main
+CONSTANTS ocioso, escrito, lido;
+FROZENVAR
+  pool : {processos, threads};
+VAR
+  turno : 1..6;
+  pc1 : {ocioso, escrito, lido};
+  pc2 : {ocioso, escrito, lido};
+  pc3 : {ocioso, escrito, lido};
+  pc4 : {ocioso, escrito, lido};
+  pc5 : {ocioso, escrito, lido};
+  pc6 : {ocioso, escrito, lido};
+  arq0 : 0..6;   -- parameters.m (sem sufixo): id do ultimo worker que gravou
+  arq1 : 0..6;   -- parameters_1.m
+  arq2 : 0..6;   -- parameters_2.m
+  arq3 : 0..6;   -- parameters_3.m
+  arq4 : 0..6;   -- parameters_4.m
+  arq5 : 0..6;   -- parameters_5.m
+  arq6 : 0..6;   -- parameters_6.m
+  ok1 : boolean;
+  ok2 : boolean;
+  ok3 : boolean;
+  ok4 : boolean;
+  ok5 : boolean;
+  ok6 : boolean;
+DEFINE
+  f1 := case pool = processos : 1; TRUE : 0; esac;
+  lido1 := case f1 = 0 : arq0; TRUE : arq1; esac;
+  grava1 := turno = 1 & pc1 = ocioso;
+  le1 := turno = 1 & pc1 = escrito;
+  f2 := case pool = processos : 2; TRUE : 0; esac;
+  lido2 := case f2 = 0 : arq0; TRUE : arq2; esac;
+  grava2 := turno = 2 & pc2 = ocioso;
+  le2 := turno = 2 & pc2 = escrito;
+  f3 := case pool = processos : 3; TRUE : 0; esac;
+  lido3 := case f3 = 0 : arq0; TRUE : arq3; esac;
+  grava3 := turno = 3 & pc3 = ocioso;
+  le3 := turno = 3 & pc3 = escrito;
+  f4 := case pool = processos : 4; TRUE : 0; esac;
+  lido4 := case f4 = 0 : arq0; TRUE : arq4; esac;
+  grava4 := turno = 4 & pc4 = ocioso;
+  le4 := turno = 4 & pc4 = escrito;
+  f5 := case pool = processos : 5; TRUE : 0; esac;
+  lido5 := case f5 = 0 : arq0; TRUE : arq5; esac;
+  grava5 := turno = 5 & pc5 = ocioso;
+  le5 := turno = 5 & pc5 = escrito;
+  f6 := case pool = processos : 6; TRUE : 0; esac;
+  lido6 := case f6 = 0 : arq0; TRUE : arq6; esac;
+  grava6 := turno = 6 & pc6 = ocioso;
+  le6 := turno = 6 & pc6 = escrito;
+  todos_ok := ok1 & ok2 & ok3 & ok4 & ok5 & ok6;
+ASSIGN
+  init(pc1) := ocioso; init(arq1) := 0; init(ok1) := TRUE;
+  init(pc2) := ocioso; init(arq2) := 0; init(ok2) := TRUE;
+  init(pc3) := ocioso; init(arq3) := 0; init(ok3) := TRUE;
+  init(pc4) := ocioso; init(arq4) := 0; init(ok4) := TRUE;
+  init(pc5) := ocioso; init(arq5) := 0; init(ok5) := TRUE;
+  init(pc6) := ocioso; init(arq6) := 0; init(ok6) := TRUE;
+  init(arq0) := 0;
+  next(pc1) := case turno = 1 & pc1 = ocioso : escrito; turno = 1 & pc1 = escrito : lido; turno = 1 & pc1 = lido : ocioso; TRUE : pc1; esac;
+  next(pc2) := case turno = 2 & pc2 = ocioso : escrito; turno = 2 & pc2 = escrito : lido; turno = 2 & pc2 = lido : ocioso; TRUE : pc2; esac;
+  next(pc3) := case turno = 3 & pc3 = ocioso : escrito; turno = 3 & pc3 = escrito : lido; turno = 3 & pc3 = lido : ocioso; TRUE : pc3; esac;
+  next(pc4) := case turno = 4 & pc4 = ocioso : escrito; turno = 4 & pc4 = escrito : lido; turno = 4 & pc4 = lido : ocioso; TRUE : pc4; esac;
+  next(pc5) := case turno = 5 & pc5 = ocioso : escrito; turno = 5 & pc5 = escrito : lido; turno = 5 & pc5 = lido : ocioso; TRUE : pc5; esac;
+  next(pc6) := case turno = 6 & pc6 = ocioso : escrito; turno = 6 & pc6 = escrito : lido; turno = 6 & pc6 = lido : ocioso; TRUE : pc6; esac;
+  next(arq0) := case grava1 & f1 = 0 : 1; grava2 & f2 = 0 : 2; grava3 & f3 = 0 : 3; grava4 & f4 = 0 : 4; grava5 & f5 = 0 : 5; grava6 & f6 = 0 : 6; TRUE : arq0; esac;
+  next(arq1) := case grava1 & f1 = 1 : 1; TRUE : arq1; esac;
+  next(ok1) := case le1 : lido1 = 1; TRUE : ok1; esac;
+  next(arq2) := case grava2 & f2 = 2 : 2; TRUE : arq2; esac;
+  next(ok2) := case le2 : lido2 = 2; TRUE : ok2; esac;
+  next(arq3) := case grava3 & f3 = 3 : 3; TRUE : arq3; esac;
+  next(ok3) := case le3 : lido3 = 3; TRUE : ok3; esac;
+  next(arq4) := case grava4 & f4 = 4 : 4; TRUE : arq4; esac;
+  next(ok4) := case le4 : lido4 = 4; TRUE : ok4; esac;
+  next(arq5) := case grava5 & f5 = 5 : 5; TRUE : arq5; esac;
+  next(ok5) := case le5 : lido5 = 5; TRUE : ok5; esac;
+  next(arq6) := case grava6 & f6 = 6 : 6; TRUE : arq6; esac;
+  next(ok6) := case le6 : lido6 = 6; TRUE : ok6; esac;
+
+-- I1: com pool de processos, todo worker sempre le os proprios parametros
+CTLSPEC NAME I1_isolamento_processos := pool = processos -> AG todos_ok
+-- I2: com sufixo comum (variante "threads"), o isolamento vale?  Esperado: FALSO, com contraexemplo
+CTLSPEC NAME I2_isolamento_threads := pool = threads -> AG todos_ok

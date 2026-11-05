@@ -1,0 +1,97 @@
+*** This is NuSMV 2.7.1 (compiled on Mon Sep 29 15:48:16 2025)
+*** Enabled addons are: compass
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@list.fbk.eu>.
+*** Please report bugs to <Please report bugs to <nusmv-users@fbk.eu>>
+
+*** Copyright (c) 2010-2025, Fondazione Bruno Kessler
+
+*** This version of NuSMV is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of NuSMV is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+-- specification (pool = processos -> AG todos_ok)  is true
+-- specification (pool = threads -> AG todos_ok)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 1.1 <-
+    pool = threads
+    turno = 1
+    pc1 = ocioso
+    pc2 = ocioso
+    pc3 = ocioso
+    pc4 = ocioso
+    pc5 = ocioso
+    pc6 = ocioso
+    arq0 = 0
+    arq1 = 0
+    arq2 = 0
+    arq3 = 0
+    arq4 = 0
+    arq5 = 0
+    arq6 = 0
+    ok1 = TRUE
+    ok2 = TRUE
+    ok3 = TRUE
+    ok4 = TRUE
+    ok5 = TRUE
+    ok6 = TRUE
+    todos_ok = TRUE
+    le6 = FALSE
+    grava6 = FALSE
+    lido6 = 0
+    f6 = 0
+    le5 = FALSE
+    grava5 = FALSE
+    lido5 = 0
+    f5 = 0
+    le4 = FALSE
+    grava4 = FALSE
+    lido4 = 0
+    f4 = 0
+    le3 = FALSE
+    grava3 = FALSE
+    lido3 = 0
+    f3 = 0
+    le2 = FALSE
+    grava2 = FALSE
+    lido2 = 0
+    f2 = 0
+    le1 = FALSE
+    grava1 = TRUE
+    lido1 = 0
+    f1 = 0
+  -> State: 1.2 <-
+    turno = 2
+    pc1 = escrito
+    arq0 = 1
+    lido6 = 1
+    lido5 = 1
+    lido4 = 1
+    lido3 = 1
+    grava2 = TRUE
+    lido2 = 1
+    grava1 = FALSE
+    lido1 = 1
+  -> State: 1.3 <-
+    turno = 1
+    pc2 = escrito
+    arq0 = 2
+    lido6 = 2
+    lido5 = 2
+    lido4 = 2
+    lido3 = 2
+    grava2 = FALSE
+    lido2 = 2
+    le1 = TRUE
+    lido1 = 2
+  -> State: 1.4 <-
+    pc1 = lido
+    ok1 = FALSE
+    todos_ok = FALSE
+    le1 = FALSE

@@ -1,0 +1,3 @@
+op corrida = (EscrevendoDespacho >= 2) \/ ((EscrevendoDespacho >= 1) /\ (Avaliando >= 1));
+[] - corrida;
+[] - ((GuardaAberta >= 1) /\ ((WorkerOcioso + Avaliando + EscrevendoDespacho) >= 1));

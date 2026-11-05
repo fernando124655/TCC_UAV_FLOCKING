@@ -1,0 +1,15 @@
+net guarda_com_aquecimento
+pl GuardaAberta (1)
+pl GuardaFechada (0)
+pl Cliente (1)
+pl Aquecido (0)
+pl WorkerOcioso (0)
+pl EscrevendoDespacho (0)
+pl Avaliando (0)
+tr AquecerNoCliente Cliente GuardaAberta -> Aquecido GuardaFechada
+tr IniciarAvaliacaoParalela Aquecido -> WorkerOcioso*6
+tr AtravessarGuarda WorkerOcioso GuardaAberta?1 -> EscrevendoDespacho
+tr PularReescrita WorkerOcioso GuardaFechada?1 -> Avaliando
+tr ConcluirEscritaFechando EscrevendoDespacho GuardaAberta -> Avaliando GuardaFechada
+tr ConcluirEscrita EscrevendoDespacho GuardaFechada?1 -> Avaliando
+tr DevolverWorker Avaliando -> WorkerOcioso
