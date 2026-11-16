@@ -68,7 +68,7 @@ O protocolo foi projetado para que a origem das diferenças fosse identificável
 | Ruído por tipo de violação | origem das violações com ruído | 1.440 execuções do lote refeitas (η = 0; 0,02; 0,1 e 0,5 m/s; 30 por algoritmo, arena e nível), avaliadas inteiras e sem os 7 s iniciais |
 | Alta fidelidade (PX4-SITL e Gazebo) | lacuna *sim-to-sim* (análise complementar) | 5 × 4 algoritmos × 3 arenas = 60 |
 | Orçamento igual por parâmetro | se a ordenação da calibração depende do orçamento por parâmetro | as 15 execuções do AG do Couzin, do Reynolds e do Olfati-Saber truncadas nas gerações 13, 15 e 18 (cerca de 79 avaliações por parâmetro, as do Vásárhelyi), a partir dos logs, sem novas execuções |
-| Verificação do orçamento (Vásárhelyi) | se o orçamento igual prejudicou o algoritmo de mais parâmetros | a execução do AG da semente 3 estendida até 67 gerações (parou na 60, com 1.712 avaliações) e Monte Carlo com os parâmetros novos, 20 × 3 arenas |
+| Verificação do orçamento (Vásárhelyi) | se o orçamento igual prejudicou o algoritmo de mais parâmetros | as cinco execuções do AG estendidas até 67 gerações (pararam por estagnação entre a 58 e a 60, com 1.656 a 1.712 avaliações) e Monte Carlo com os quatro vetores que mudaram, 20 × 3 arenas cada (o da semente 1 não mudou) |
 | Couzin com alcance limitado | efeito do alcance de percepção | Couzin recalibrado com r<sub>o</sub> e r<sub>a</sub> ≤ 20 m (5 sementes do AG × 872 avaliações) e Monte Carlo, 20 × 3 arenas = 60 |
 | Validação dos módulos | se os módulos próprios do Couzin, do Reynolds e do Olfati-Saber reproduzem os modelos originais | 74 execuções de 300 s no espaço livre: Couzin com Δr<sub>o</sub> de 0 a 14 m e Δr<sub>a</sub> de 14 m (9 valores) ou de 2 m (4 valores), 3 sementes; Olfati-Saber com os parâmetros calibrados e com os do artigo original, 5 sementes; Reynolds com os pesos de referência, sem cada uma das regras e calibrado, 5 sementes |
 
@@ -110,7 +110,7 @@ codigo/
 ├── modulos/       os quatro módulos de flocking e o avaliador usados no estudo
 ├── producao/      scripts de produção (calibração, Monte Carlo, lote, alta fidelidade)
 ├── analise/       scripts de análise e de exportação dos CSVs
-├── complementares/ scripts das etapas de outubro de 2026 (varredura de Tc, ruído, validação)
+├── complementares/ scripts das etapas complementares, de outubro e novembro de 2026
 └── xml/           configurações das três arenas
 dados/
 ├── auto_tuning/   resultados da calibração (at_*.mat)
@@ -120,6 +120,7 @@ dados/
 ├── ruido/         ruído por tipo de violação (rs19_*, rs_Vasarhelyi_* e rsjan_*.mat)
 ├── couzin_ra20/   Couzin com r_o e r_a ≤ 20 m: calibração, Monte Carlo e logs
 ├── validacao_modulos/ validação dos módulos: duas execuções com medidas idênticas (validacao_*.mat), resumos e logs
+├── extensao_vasarhelyi/ execuções 1, 2, 4 e 5 do AG do Vásárhelyi estendidas até 67 gerações (ext_*.mat)
 └── high_fidelity/ as 60 execuções de alta fidelidade (hifi_*.mat)
 resultados/
 ├── csv/           métricas de todas as etapas em CSV (ver abaixo)
@@ -160,13 +161,14 @@ Sem o `git lfs pull`, os `.mat` ficam como ponteiros de texto de poucos bytes.
 | `lote.csv` | o lote paralelo, com o T<sub>c</sub> pedido e o aplicado (0,1 s) |
 | `varredura_tc.csv` | as 936 execuções da varredura de T<sub>c</sub> em série |
 | `ruido_1440_por_execucao.csv` | as 1.440 execuções com ruído, por tipo de violação, inteiras e sem os 7 s iniciais |
+| `extensao_ag.csv` | as cinco execuções do AG do Vásárhelyi estendidas até 67 gerações: F com 30 gerações e no fim, mudança, geração de parada, avaliações, horas, conferência das gerações 1 a 30 e o vetor final |
+| `extensao_mc.csv` | o Monte Carlo do vetor de 30 gerações e do estendido de cada execução do Vásárhelyi, nas três arenas e 20 sementes (600 linhas), com F, φ<sub>corr</sub>, φ<sub>vel</sub>, φ<sub>coll</sub>, φ<sub>wall</sub> e φ<sub>MND</sub> |
 | `ruido_1440_resumo.csv` | o resumo das 1.440 por algoritmo, arena e nível de ruído |
 | `mc_cinco_vetores.csv` | as 1.200 execuções do Monte Carlo dos cinco vetores do AG de cada algoritmo, com a semente do AG e a marca do vetor de menor F, levado às etapas seguintes |
 | `alinhamento_pos_violacao.csv` | as 240 execuções do Monte Carlo refeitas com o avaliador que registra os drones que já violaram: φ<sub>corr</sub> com todos os drones, só com os drones intactos a cada instante e só até a primeira violação, o instante da primeira violação e a fração de drones intactos no fim |
 | `../metricas_high_fidelity.csv` | as 60 execuções de alta fidelidade |
 
-Os CSVs da calibração saem dos logs (`codigo/analise/ler_logs_calibracao.py`); os das 1.440, dos `rsjan_*.mat`; o da comparação do Couzin, de `main_couzin_ra20.m`; o dos cinco vetores, de `main_mc_cinco_vetores.m`; o do alinhamento sem o voo depois das violações, de `main_alinhamento_pos_violacao.m`; os da validação, de `main_validacao_modulos.m`; os demais, de `exportar_csvs.m`, que lê os `.mat` e grava também `arquivos_usados.csv`, com o arquivo de origem de cada parte.
-
+Os CSVs da calibração saem dos logs (`codigo/analise/ler_logs_calibracao.py`); os das 1.440, dos `rsjan_*.mat`; o da comparação do Couzin, de `main_couzin_ra20.m`; o dos cinco vetores, de `main_mc_cinco_vetores.m`; o do alinhamento sem o voo depois das violações, de `main_alinhamento_pos_violacao.m`; os da extensão do AG do Vásárhelyi, de `main_extensao_vasarhelyi.m`; os da validação, de `main_validacao_modulos.m`; os demais, de `exportar_csvs.m`, que lê os `.mat` e grava também `arquivos_usados.csv`, com o arquivo de origem de cada parte.
 
 ---
 
@@ -220,6 +222,13 @@ main_mc_cinco_vetores                     % codigo/complementares; ou main_mc_ci
 % confere antes a reprodução do Monte Carlo original e grava
 % data_save\mc_cinco_vetores\mc_cinco_vetores.csv, com os pares da H1-A também pelo vetor mediano
 
+% 12. Extensão das execuções do AG do Vásárhelyi até 67 gerações, de 15 a 25 h por semente,
+%     mais cerca de 40 min de Monte Carlo para cada vetor que mudar
+main_extensao_vasarhelyi('teste')         % codigo/complementares; cerca de 15 min, antes da execução
+main_extensao_vasarhelyi                  % sementes 5, 2, 1 e 4 (a 3 foi estendida em 18-19/10)
+% confere o F final de cada execução original e as gerações 1 a 30 contra o log da calibração e grava
+% data_save\extensao_vasarhelyi\extensao_ag.csv e extensao_mc.csv
+
 ```
 
 O `verificar_hifi` confere sete itens antes de cada bloco de execuções de alta fidelidade: algoritmo ativo, mapa, geração dos *shill agents*, modo de simulação, endereçamento de rede, parâmetros aplicados e número de drones.
@@ -233,7 +242,7 @@ O `verificar_hifi` confere sete itens antes de cada bloco de execuções de alta
 - **Perfil de falha.** Com 20 execuções por algoritmo e arena, só dois perfis se distinguem dos demais (McNemar exato, α<sub>c</sub> = 0,0083): as colisões do Couzin, em cada arena (p ≤ 3,9 × 10<sup>-3</sup>), e as invasões de obstáculo da variante do Olfati-Saber (p ≤ 7,6 × 10<sup>-6</sup>). As saídas da arena do Reynolds só se distinguem das do Couzin e das do Vásárhelyi no lote, com η = 0,02 e 0,1 m/s. O Vásárhelyi, o único que reduz a velocidade, não registrou violações com o vetor levado ao Monte Carlo: a taxa real é de até 6,0% no Monte Carlo (0 em 60) e de até 1,0% no lote (nenhuma colisão nem violação de parede ou de obstáculo em 360), pelo intervalo de Clopper-Pearson de 95%. Com os outros quatro vetores do AG, ele violou em 16 das 240 execuções, ainda o que menos violou; os perfis do Couzin (colisões) e do Olfati-Saber (φ<sub>wall</sub> com obstáculos, em quatro dos cinco vetores) se mantêm.
 - **Período de controle.** Na variante do Olfati-Saber, a integração da aceleração num único passo seguida da normalização impõe T<sub>c</sub> < v<sub>ref</sub>/a<sub>max</sub> = 0,2 s; acima disso, o enxame oscila em vez de se alinhar. Com três execuções por ponto, só se interpretam as diferenças de T<sub>c</sub>\* que se mantêm nas três configurações iniciais: o Olfati-Saber tem o menor e o Couzin, o maior, em todas as arenas.
 - **Alta fidelidade (análise complementar).** Sem obstáculos, a degradação na alta fidelidade foi parecida nos quatro algoritmos; com obstáculos, foi maior nos dois mais sensíveis ao ruído (Reynolds e Vásárhelyi). Com cinco execuções por condição e posições estimadas pelo PX4, isso fica como hipótese.
-- **Orçamento.** Com o mesmo orçamento por parâmetro do Vásárhelyi, a ordenação da calibração não muda (Reynolds, Vásárhelyi, Couzin e Olfati-Saber), pelo melhor valor e pela mediana das cinco execuções do AG. A extensão de uma execução do Vásárhelyi até 1.712 avaliações melhorou o F\* em 0,5% e não mudou o Monte Carlo; a extensão das outras quatro não foi feita.
+- **Orçamento.** Com o mesmo orçamento por parâmetro do Vásárhelyi, a ordenação da calibração não muda (Reynolds, Vásárhelyi, Couzin e Olfati-Saber), pelo melhor valor e pela mediana das cinco execuções do AG. Estendidas de 30 para até 67 gerações (`main_extensao_vasarhelyi.m`), as cinco execuções do Vásárhelyi pararam por estagnação entre as gerações 58 e 60, com F\* de 0 a 1,8% menor e nenhum parâmetro mudado em mais de 0,53%; a de menor F continua a da semente 3. No Monte Carlo, os vetores estendidos não mudaram o alinhamento de forma significativa (p ≥ 0,036, α<sub>c</sub> = 0,0042), e o Vásárhelyi continua abaixo do Olfati-Saber na arena vazia e do pior vetor do Reynolds. As execuções com violação passaram de 16 para 20 das 300, duas delas do vetor estendido da semente 3, quase igual ao levado ao Monte Carlo. A extensão não foi feita nos outros três algoritmos.
 - **Cinco vetores do AG.** Com os cinco vetores calibrados de cada algoritmo no Monte Carlo (1.200 execuções, `main_mc_cinco_vetores.m`), o pior vetor do Reynolds alinha mais que o melhor de cada um dos outros três, nas três arenas, e o Olfati-Saber fica abaixo do Reynolds nas 25 combinações de vetores (significativamente em 22): a refutação da H1-A não depende do vetor nem da calibração do Vásárhelyi. Com obstáculos, a queda de φ<sub>corr</sub> do Vásárhelyi varia muito com o vetor (de 0,116 a 0,471 com cilindros e de 0,253 a 0,639 com cubos), e a do vetor levado ao Monte Carlo é a menor das cinco.
 - **Alcance de percepção.** Com o Couzin recalibrado com r<sub>o</sub> e r<sub>a</sub> ≤ 20 m, o alcance do Reynolds e do Vásárhelyi, os vereditos da H1-A e da H1-B e o tipo de falha do Couzin não mudam. Mudam a vantagem dele sobre o Vásárhelyi na arena vazia, que deixa de ser significativa, e o alinhamento com obstáculos, que cai 0,05 a 0,07; as colisões caem de 9, 12 e 13 para 1, 8 e 7 das 20 execuções, sem diferença significativa após a correção.
 - **Validação dos módulos.** No espaço livre, os três módulos próprios reproduzem o comportamento dos modelos originais, com uma exceção: o do Couzin forma o enxame e o grupo paralelo, mas não o toro. O do Olfati-Saber mantém os vizinhos à distância d e, sem agente-γ, se fragmenta, como o primeiro algoritmo do artigo original; no do Reynolds, tirar cada regra tira o seu efeito.
